@@ -13,42 +13,42 @@ const ServicesGrid = () => {
     {
       title: "Commercial Construction",
       description: "Office buildings, retail spaces, and mixed-use developments",
-      image: "/images/services/commercial.jpg",
+      image: "/images/services/commercial/commercial.png",
       projects: "50+ Projects",
       category: "commercial"
     },
     {
       title: "Infrastructure",
       description: "Bridges, roads, and public infrastructure projects",
-      image: "/images/services/infrastructure.jpg",
+      image: "/images/services/infrastructure/infrastructure%20image.jpg",
       projects: "30+ Projects",
       category: "infrastructure"
     },
     {
       title: "Healthcare",
       description: "Hospitals, clinics, and medical facilities",
-      image: "/images/services/healthcare.jpg",
+      image: "/images/services/healthcare/healthcare%20photo.png",
       projects: "25+ Projects",
       category: "healthcare"
     },
     {
       title: "Education",
       description: "Schools, universities, and educational facilities",
-      image: "/images/services/education.jpg",
+      image: "/images/services/education/education.png",
       projects: "40+ Projects",
       category: "education"
     },
     {
       title: "Residential",
       description: "Multi-family housing and residential communities",
-      image: "/images/services/residential.jpg",
+      image: "/images/services/residential/residential%20photo.png",
       projects: "35+ Projects",
       category: "residential"
     },
     {
       title: "CDOT",
       description: "Chicago Department of Transportation projects",
-      image: "/images/services/cdot.jpg",
+      image: "/images/services/cdot/cdot%20image.jpg",
       projects: "20+ Projects",
       category: "cdot"
     }
@@ -56,36 +56,36 @@ const ServicesGrid = () => {
 
   const projectsData = {
     commercial: [
-      { name: "Downtown Office Complex", description: "25-story office building", image: "/images/projects/downtown-office.jpg" },
-      { name: "Retail Mall Development", description: "Mixed-use retail space", image: "/images/projects/retail-mall.jpg" },
-      { name: "Corporate Headquarters", description: "Modern office campus", image: "/images/projects/corporate-hq.jpg" }
+      { name: "Downtown Office Complex", description: "25-story office building", image: "https://picsum.photos/seed/ashlaur-downtown-office/800/600" },
+      { name: "Retail Mall Development", description: "Mixed-use retail space", image: "https://picsum.photos/seed/ashlaur-retail-mall/800/600" },
+      { name: "Corporate Headquarters", description: "Modern office campus", image: "https://picsum.photos/seed/ashlaur-corporate-hq/800/600" }
     ],
     infrastructure: [
-      { name: "Highway Bridge Project", description: "Major bridge construction", image: "/images/projects/highway-bridge.jpg" },
-      { name: "Road Expansion", description: "Highway widening project", image: "/images/projects/road-expansion.jpg" },
-      { name: "Public Transit Hub", description: "Transportation center", image: "/images/projects/transit-hub.jpg" }
+      { name: "Highway Bridge Project", description: "Major bridge construction", image: "https://picsum.photos/seed/ashlaur-highway-bridge/800/600" },
+      { name: "Road Expansion", description: "Highway widening project", image: "https://picsum.photos/seed/ashlaur-road-expansion/800/600" },
+      { name: "Public Transit Hub", description: "Transportation center", image: "https://picsum.photos/seed/ashlaur-transit-hub/800/600" }
     ],
     healthcare: [
-      { name: "Medical Center Expansion", description: "Hospital wing addition", image: "/images/projects/medical-center.jpg" },
-      { name: "Clinic Renovation", description: "Modern medical facility", image: "/images/projects/clinic-renovation.jpg" },
-      { name: "Research Lab", description: "Medical research building", image: "/images/projects/research-lab.jpg" }
+      { name: "Medical Center Expansion", description: "Hospital wing addition", image: "https://picsum.photos/seed/ashlaur-medical-center/800/600" },
+      { name: "Clinic Renovation", description: "Modern medical facility", image: "https://picsum.photos/seed/ashlaur-clinic-renovation/800/600" },
+      { name: "Research Lab", description: "Medical research building", image: "https://picsum.photos/seed/ashlaur-research-lab/800/600" }
     ],
     education: [
-      { name: "University Campus", description: "Academic buildings", image: "/images/projects/university-campus.jpg" },
-      { name: "School Renovation", description: "K-12 facility upgrade", image: "/images/projects/school-renovation.jpg" },
-      { name: "Library Expansion", description: "Educational library", image: "/images/projects/library-expansion.jpg" }
+      { name: "University Campus", description: "Academic buildings", image: "https://picsum.photos/seed/ashlaur-university-campus/800/600" },
+      { name: "School Renovation", description: "K-12 facility upgrade", image: "https://picsum.photos/seed/ashlaur-school-renovation/800/600" },
+      { name: "Library Expansion", description: "Educational library", image: "https://picsum.photos/seed/ashlaur-library-expansion/800/600" }
     ],
     residential: [
-      { name: "Westhaven Park Station – Mixed-Income Apartments", description: "12-story mixed-income residential building with retail space. 96 apartment units (one- and two-bedroom), with three ground-floor retail spaces. Built as part of the redevelopment of the former Henry Horner Homes site on Chicago's Near West Side.", image: "/images/projects/westhaven-park.jpg" },
-      { name: "The Foglia Residences – Affordable Housing for Blind & Visually Impaired", description: "Multi-family affordable housing development. 76 affordable apartments for residents who are blind, visually impaired, disabled, and veterans. Nine-story podium structure with accessibility features.", image: "/images/projects/foglia-residences.jpg" },
-      { name: "Apartment Complex", description: "Multi-family housing", image: "/images/projects/apartment-complex.jpg" },
-      { name: "Condominium Development", description: "Luxury residences", image: "/images/projects/condominium-development.jpg" },
-      { name: "Townhouse Community", description: "Residential neighborhood", image: "/images/projects/townhouse-community.jpg" }
+      { name: "Westhaven Park Station – Mixed-Income Apartments", description: "12-story mixed-income residential building with retail space. 96 apartment units (one- and two-bedroom), with three ground-floor retail spaces. Built as part of the redevelopment of the former Henry Horner Homes site on Chicago's Near West Side.", image: "https://picsum.photos/seed/ashlaur-westhaven-park/800/600" },
+      { name: "The Foglia Residences – Affordable Housing for Blind & Visually Impaired", description: "Multi-family affordable housing development. 76 affordable apartments for residents who are blind, visually impaired, disabled, and veterans. Nine-story podium structure with accessibility features.", image: "https://picsum.photos/seed/ashlaur-foglia-residences/800/600" },
+      { name: "Apartment Complex", description: "Multi-family housing", image: "https://picsum.photos/seed/ashlaur-apartment-complex/800/600" },
+      { name: "Condominium Development", description: "Luxury residences", image: "https://picsum.photos/seed/ashlaur-condominium-development/800/600" },
+      { name: "Townhouse Community", description: "Residential neighborhood", image: "https://picsum.photos/seed/ashlaur-townhouse-community/800/600" }
     ],
     cdot: [
-      { name: "Highway Maintenance", description: "Road repair project", image: "/images/projects/highway-maintenance.jpg" },
-      { name: "Bridge Inspection", description: "Infrastructure assessment", image: "/images/projects/bridge-inspection.jpg" },
-      { name: "Traffic Signal Upgrade", description: "Transportation improvement", image: "/images/projects/traffic-signal-upgrade.jpg" }
+      { name: "Highway Maintenance", description: "Road repair project", image: "https://picsum.photos/seed/ashlaur-highway-maintenance/800/600" },
+      { name: "Bridge Inspection", description: "Infrastructure assessment", image: "https://picsum.photos/seed/ashlaur-bridge-inspection/800/600" },
+      { name: "Traffic Signal Upgrade", description: "Transportation improvement", image: "https://picsum.photos/seed/ashlaur-traffic-signal-upgrade/800/600" }
     ]
   };
 

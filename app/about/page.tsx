@@ -15,7 +15,7 @@ export default function About() {
           className="absolute inset-0 -z-10"
           style={{
             backgroundImage:
-              "linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.72) 40%, rgba(0,0,0,0.78) 100%), url('/images/about/hero.jpg')",
+              "linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.72) 40%, rgba(0,0,0,0.78) 100%), url('/images/about/about-bg.jpg')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
@@ -26,11 +26,20 @@ export default function About() {
           <header className="space-y-4">
             <p className="text-sm font-semibold tracking-wide text-blue-400">Who we are</p>
             <h1 className="text-4xl md:text-5xl font-bold text-secondary">About AshLaur</h1>
-            <p className="text-lg text-white/85 max-w-3xl">
-              AshLaur is a full-service construction partner focused on delivering high-performance spaces
-              for industrial, commercial, and community clients. We blend field-tested expertise with modern
-              project delivery so every build is safer, faster, and built to last.
-            </p>
+            <div className="space-y-4 text-lg text-white/85 max-w-3xl">
+              <p>
+                Ashlaur is a construction and development firm built on precision, accountability, and long-term partnerships. We specialize in delivering complex projects with clarity—from early planning through final closeout—while maintaining a relentless focus on quality, safety, and schedule.
+              </p>
+              <p>
+                Our team brings together hands-on field experience and disciplined project management to ensure every detail is coordinated, every stakeholder is aligned, and every project is executed with purpose. We believe successful construction is not just about building structures, but about building trust.
+              </p>
+              <p>
+                Ashlaur works collaboratively with owners, architects, engineers, and trade partners to anticipate challenges early, streamline decision-making, and deliver solutions that add real value. Whether managing tight schedules, navigating occupied spaces, or coordinating multiple trades, we approach each project with the same level of care and commitment.
+              </p>
+              <p>
+                At our core, Ashlaur is driven by integrity, transparency, and results. We take pride in being a reliable partner—one that communicates clearly, stands behind its work, and consistently deliver results.
+              </p>
+            </div>
           </header>
 
           <section className="grid gap-8 lg:grid-cols-3">

@@ -14,7 +14,7 @@ const VideoTestimonials = () => {
       role: "Homeowner",
       project: "Kitchen Renovation",
       rating: 5,
-      thumbnail: "/images/testimonials/video-1.jpg",
+      thumbnail: "https://picsum.photos/seed/ashlaur-testimonial-1/1280/720",
       videoUrl: "https://example.com/video1.mp4", // Replace with actual video URL
       quote: "ASHLAUR transformed our outdated kitchen into a modern masterpiece. Their attention to detail and professionalism exceeded our expectations.",
     },
@@ -24,7 +24,7 @@ const VideoTestimonials = () => {
       role: "Business Owner",
       project: "Office Renovation",
       rating: 5,
-      thumbnail: "/images/testimonials/video-2.jpg",
+      thumbnail: "https://picsum.photos/seed/ashlaur-testimonial-2/1280/720",
       videoUrl: "https://example.com/video2.mp4", // Replace with actual video URL
       quote: "Working with ASHLAUR was a game-changer for our office space. They delivered on time and within budget, creating a workspace we're proud of.",
     },
@@ -34,7 +34,7 @@ const VideoTestimonials = () => {
       role: "Property Developer",
       project: "Multi-Unit Renovation",
       rating: 5,
-      thumbnail: "/images/testimonials/video-3.jpg",
+      thumbnail: "https://picsum.photos/seed/ashlaur-testimonial-3/1280/720",
       videoUrl: "https://example.com/video3.mp4", // Replace with actual video URL
       quote: "ASHLAUR's expertise in large-scale renovations is unmatched. They managed our complex project seamlessly and delivered exceptional results.",
     },

@@ -4,12 +4,16 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Menu, X } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [projectsMenuOpen, setProjectsMenuOpen] = useState(false);
+  const [certsModalOpen, setCertsModalOpen] = useState(false);
+  const [aboutAllModalOpen, setAboutAllModalOpen] = useState(false);
+  const [partnersModalOpen, setPartnersModalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,7 +37,7 @@ const Navbar = () => {
       heading: "Who We Are",
       links: [
         { name: "Our Story", href: "/about#story" },
-        { name: "Leadership", href: "/about#leadership" },
+        { name: "Leadership", href: "/leadership" },
         { name: "Values", href: "/about#values" },
         { name: "View All About", href: "/about" },
       ],
@@ -107,8 +111,8 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-background/80 backdrop-blur-md border-b border-border' : 'bg-transparent'
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-[#0B1F3B] shadow-sm ${
+      isScrolled ? 'border-b border-white/10' : 'border-b border-transparent'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20">
@@ -117,7 +121,7 @@ const Navbar = () => {
               <Link href="/" className="logo-link">
                 <div className="logo-text-styled">
                   <span className="logo-ash text-blue-600">ASH</span>
-                  <span className={`logo-laur ${isScrolled ? 'logo-laur-scrolled' : 'logo-laur-transparent'}`}>LAUR</span>
+                  <span className="logo-laur text-white">LAUR</span>
                 </div>
               </Link>
             </div>
@@ -139,14 +143,14 @@ const Navbar = () => {
                   }}
                 >
                   <button
-                    className={`${isScrolled ? 'text-foreground' : 'text-white'} hover:text-primary px-4 py-2 text-lg font-semibold flex items-center transition-colors nav-link`}
+                    className="text-white hover:text-[#AFC6FF] px-4 py-2 text-lg font-semibold flex items-center transition-colors nav-link"
                     aria-haspopup="true"
                     aria-expanded={projectsMenuOpen}
                     id="projects-menu-trigger"
                     type="button"
                   >
                     {item.name}
-                    <ChevronDown className="ml-2 h-5 w-5" />
+                    <ChevronDown className="ml-2 h-5 w-5 text-white" />
                   </button>
                   <AnimatePresence>
                     {projectsMenuOpen && (
@@ -215,14 +219,14 @@ const Navbar = () => {
                   }}
                 >
                   <button
-                    className={`${isScrolled ? 'text-foreground' : 'text-white'} hover:text-primary px-4 py-2 text-lg font-semibold flex items-center transition-colors nav-link`}
+                    className="text-white hover:text-[#AFC6FF] px-4 py-2 text-lg font-semibold flex items-center transition-colors nav-link"
                     aria-haspopup="true"
                     aria-expanded={activeDropdown === "About"}
                     id="about-menu-trigger"
                     type="button"
                   >
                     {item.name}
-                    <ChevronDown className="ml-2 h-5 w-5" />
+                    <ChevronDown className="ml-2 h-5 w-5 text-white" />
                   </button>
                   <AnimatePresence>
                     {activeDropdown === "About" && (
@@ -245,8 +249,31 @@ const Navbar = () => {
                               <h3 className="mega-menu-heading text-lg font-bold mb-4">{section.heading}</h3>
                               <ul>
                                 {section.links.map((link) => (
-                                  <li key={link.href}>
-                                    <Link href={link.href} className="block py-1 text-gray-800 hover:text-primary transition-colors">{link.name}</Link>
+                                  <li key={link.href ?? link.name}>
+                                    {link.name === "Certifications" ? (
+                                      <button
+                                        onClick={() => setCertsModalOpen(true)}
+                                        className="block py-1 text-gray-800 hover:text-primary transition-colors text-left w-full"
+                                      >
+                                        {link.name}
+                                      </button>
+                                    ) : link.name === "Partners" ? (
+                                      <button
+                                        onClick={() => setPartnersModalOpen(true)}
+                                        className="block py-1 text-gray-800 hover:text-primary transition-colors text-left w-full"
+                                      >
+                                        {link.name}
+                                      </button>
+                                    ) : link.name === "View All About" ? (
+                                      <button
+                                        onClick={() => setAboutAllModalOpen(true)}
+                                        className="block py-1 text-gray-800 hover:text-primary transition-colors text-left w-full"
+                                      >
+                                        {link.name}
+                                      </button>
+                                    ) : (
+                                      <Link href={link.href} className="block py-1 text-gray-800 hover:text-primary transition-colors">{link.name}</Link>
+                                    )}
                                   </li>
                                 ))}
                               </ul>
@@ -270,14 +297,14 @@ const Navbar = () => {
                   }}
                 >
                   <button
-                    className={`${isScrolled ? 'text-foreground' : 'text-white'} hover:text-primary px-4 py-2 text-lg font-semibold flex items-center transition-colors nav-link`}
+                    className="text-white hover:text-[#AFC6FF] px-4 py-2 text-lg font-semibold flex items-center transition-colors nav-link"
                     aria-haspopup="true"
                     aria-expanded={activeDropdown === "Services"}
                     id="services-menu-trigger"
                     type="button"
                   >
                     {item.name}
-                    <ChevronDown className="ml-2 h-5 w-5" />
+                    <ChevronDown className="ml-2 h-5 w-5 text-white" />
                   </button>
                   <AnimatePresence>
                     {activeDropdown === "Services" && (
@@ -321,7 +348,7 @@ const Navbar = () => {
                 >
                   <a
                     href={item.href}
-                    className={`${isScrolled ? 'text-foreground' : 'text-white'} hover:text-primary px-4 py-2 text-lg font-semibold flex items-center transition-colors`}
+                    className="text-white hover:text-[#AFC6FF] px-4 py-2 text-lg font-semibold flex items-center transition-colors"
                   >
                     {item.name}
                     {item.hasDropdown && <ChevronDown className="ml-2 h-5 w-5" />}
@@ -351,7 +378,7 @@ const Navbar = () => {
 
           <div className="hidden md:flex items-center">
             <Link href="/projects">
-              <button className="bg-primary hover:bg-secondary text-white font-bold py-3 px-6 rounded transition duration-300 transform hover:scale-105">
+              <button className="bg-[#123563] hover:bg-[#1c3a66] text-white font-bold py-3 px-6 rounded transition duration-300 transform hover:scale-105 border border-white/15">
                 SEE OUR PROJECTS
               </button>
             </Link>
@@ -361,7 +388,7 @@ const Navbar = () => {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className={`${isScrolled ? 'text-foreground' : 'text-white'} hover:text-primary p-3 transition-colors`}
+              className="text-white hover:text-[#AFC6FF] p-3 transition-colors"
             >
               {isOpen ? <X className="h-8 w-8" /> : <Menu className="h-8 w-8" />}
             </button>
@@ -395,7 +422,7 @@ const Navbar = () => {
                     initial={{ opacity: 0, x: 50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
-                    className="text-foreground hover:text-primary text-2xl font-bold transition-colors"
+                    className="text-white hover:text-[#AFC6FF] text-2xl font-bold transition-colors"
                     onClick={() => setIsOpen(false)}
                   >
                     {item.name}
@@ -406,12 +433,195 @@ const Navbar = () => {
                     initial={{ opacity: 0, x: 50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.5 }}
-                    className="bg-primary hover:bg-secondary text-white font-bold py-4 px-8 rounded transition duration-300 text-xl mt-8"
+                    className="bg-[#123563] hover:bg-[#1c3a66] text-white font-bold py-4 px-8 rounded transition duration-300 text-xl mt-8 border border-white/15"
                     onClick={() => setIsOpen(false)}
                   >
                     SEE OUR PROJECTS
                   </motion.button>
                 </Link>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Certifications Modal */}
+      <AnimatePresence>
+        {certsModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4"
+            onClick={() => setCertsModalOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="p-8">
+                <div className="flex justify-between items-center mb-8">
+                  <h2 className="text-4xl font-bold text-secondary">Certifications & Accreditations</h2>
+                  <button
+                    onClick={() => setCertsModalOpen(false)}
+                    className="text-muted hover:text-secondary text-3xl font-bold"
+                  >
+                    ×
+                  </button>
+                </div>
+                <p className="text-lg text-muted mb-8">
+                  Our commitment to excellence is backed by industry-leading certifications and credentials.
+                </p>
+                <div className="flex flex-wrap justify-center gap-8">
+                  {[
+                    { name: "Chicago Housing Authority", image: "/images/certs/CHA+logo%20cert.png", description: "Chicago Housing Authority" },
+                    { name: "CMS Certified", image: "/images/certs/CMS+logo%20cert.jpg", description: "Central Management Services" },
+                    { name: "MBE Certified", image: "/images/certs/MBE+logo%20cert.png", description: "Minority Business Enterprise" },
+                    { name: "DBE Certified", image: "/images/certs/DBE+logo%20cert.png", description: "Disadvantaged Business Enterprise" },
+                    { name: "CDOT Approved", image: "/images/certs/CDOT-Logo%20cert.png", description: "Chicago Department of Transportation" },
+                  ].map((cert) => (
+                    <div key={cert.name} className="flex flex-col items-center text-center">
+                      <div className="relative w-32 h-32 mb-4 bg-surface rounded-lg shadow-sm overflow-hidden p-4">
+                        <Image
+                          src={cert.image}
+                          alt={cert.name}
+                          fill
+                          className="object-contain p-2"
+                        />
+                      </div>
+                      <h3 className="text-sm font-semibold text-secondary mb-1">{cert.name}</h3>
+                      <p className="text-xs text-muted">{cert.description}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Partners Modal */}
+      <AnimatePresence>
+        {partnersModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4"
+            onClick={() => setPartnersModalOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="p-8">
+                <div className="flex justify-between items-center mb-8">
+                  <h2 className="text-4xl font-bold text-secondary">Our Partners</h2>
+                  <button
+                    onClick={() => setPartnersModalOpen(false)}
+                    className="text-muted hover:text-secondary text-3xl font-bold"
+                  >
+                    ×
+                  </button>
+                </div>
+                <p className="text-lg text-muted mb-8">
+                  We work with trusted partners to deliver excellence on every project.
+                </p>
+                <div className="flex flex-wrap justify-center gap-8">
+                  {[
+                    { name: "McShane Construction Company", image: "/images/partners/mcshane/partners-01%20mcshane.png", bgColor: "#006B3F" },
+                    { name: "FHP", image: "/images/partners/fhp/partners-02%20fhp.png", bgColor: "#000000" },
+                    { name: "Skender", image: "/images/partners/skender/partners-03%20skender.png", bgColor: "#FFFFFF" },
+                    { name: "Weis Builders", image: "/images/partners/weis-builders/partners-04%20weis.png", bgColor: "#F5F5DC" },
+                    { name: "McHugh", image: "/images/partners/mchugh/partners-05%20mchugh.png", bgColor: "#003B7A" },
+                    { name: "Powers & Sons Construction", image: "/images/partners/powers-sons/partners-06-1%20p%26s.png", bgColor: "#C8102E" },
+                  ].map((partner) => (
+                    <div key={partner.name} className="flex flex-col items-center text-center w-40">
+                      <div 
+                        className="w-32 h-32 mb-4 rounded-lg shadow-sm flex items-center justify-center overflow-hidden"
+                        style={{ backgroundColor: partner.bgColor }}
+                      >
+                        <Image
+                          src={partner.image}
+                          alt={partner.name}
+                          width={128}
+                          height={128}
+                          className="object-contain"
+                        />
+                      </div>
+                      <h3 className="text-sm font-semibold text-secondary">{partner.name}</h3>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* All About Modal */}
+      <AnimatePresence>
+        {aboutAllModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4"
+            onClick={() => setAboutAllModalOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-white rounded-xl max-w-5xl w-full max-h-[90vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="p-8">
+                <div className="flex justify-between items-center mb-8">
+                  <h2 className="text-4xl font-bold text-secondary">About AshLaur</h2>
+                  <button
+                    onClick={() => setAboutAllModalOpen(false)}
+                    className="text-muted hover:text-secondary text-3xl font-bold"
+                  >
+                    ×
+                  </button>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                  {aboutSections.map((section) => (
+                    <div key={section.heading}>
+                      <h3 className="text-xl font-semibold text-secondary mb-3">{section.heading}</h3>
+                      <ul className="space-y-2">
+                        {section.links.map((link) => (
+                          <li key={link.href ?? link.name}>
+                            {link.name === 'Certifications' ? (
+                              <button
+                                onClick={() => { setAboutAllModalOpen(false); setCertsModalOpen(true); }}
+                                className="text-blue-700 hover:underline"
+                              >
+                                {link.name}
+                              </button>
+                            ) : link.name === 'Partners' ? (
+                              <button
+                                onClick={() => { setAboutAllModalOpen(false); setPartnersModalOpen(true); }}
+                                className="text-blue-700 hover:underline"
+                              >
+                                {link.name}
+                              </button>
+                            ) : (
+                              <Link href={link.href} className="text-blue-700 hover:underline">{link.name}</Link>
+                            )}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
               </div>
             </motion.div>
           </motion.div>

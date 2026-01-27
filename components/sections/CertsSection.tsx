@@ -6,33 +6,28 @@ import Image from "next/image";
 const CertsSection = () => {
   const certifications = [
     {
-      name: "OSHA Certified",
-      image: "/images/certs/osha.jpg",
-      description: "Occupational Safety and Health Administration"
+      name: "Chicago Housing Authority",
+      image: "/images/certs/CHA+logo%20cert.png",
+      description: "Chicago Housing Authority"
     },
     {
-      name: "LEED Accredited",
-      image: "/images/certs/leed.jpg",
-      description: "Leadership in Energy and Environmental Design"
-    },
-    {
-      name: "ISO 9001",
-      image: "/images/certs/iso-9001.jpg",
-      description: "Quality Management Systems"
+      name: "CMS Certified",
+      image: "/images/certs/CMS+logo%20cert.jpg",
+      description: "Central Management Services"
     },
     {
       name: "MBE Certified",
-      image: "/images/certs/mbe.jpg",
+      image: "/images/certs/MBE+logo%20cert.png",
       description: "Minority Business Enterprise"
     },
     {
       name: "DBE Certified",
-      image: "/images/certs/dbe.jpg",
+      image: "/images/certs/DBE+logo%20cert.png",
       description: "Disadvantaged Business Enterprise"
     },
     {
       name: "CDOT Approved",
-      image: "/images/certs/cdot.jpg",
+      image: "/images/certs/CDOT-Logo%20cert.png",
       description: "Chicago Department of Transportation"
     }
   ];
@@ -54,7 +49,7 @@ const CertsSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+        <div className="flex flex-wrap justify-center gap-8 max-w-5xl mx-auto">
           {certifications.map((cert, index) => (
             <motion.div
               key={cert.name}

@@ -9,32 +9,32 @@ const TeamSection = () => {
     {
       name: "John Smith",
       position: "CEO & President",
-      image: "/images/team/john-smith.jpg"
+      image: "https://picsum.photos/seed/ashlaur-john-smith/600/600"
     },
     {
       name: "Sarah Johnson",
       position: "Chief Operating Officer",
-      image: "/images/team/sarah-johnson.jpg"
+      image: "https://picsum.photos/seed/ashlaur-sarah-johnson/600/600"
     },
     {
       name: "Michael Davis",
       position: "VP of Construction",
-      image: "/images/team/michael-davis.jpg"
+      image: "https://picsum.photos/seed/ashlaur-michael-davis/600/600"
     },
     {
       name: "Emily Chen",
       position: "Director of Engineering",
-      image: "/images/team/emily-chen.jpg"
+      image: "https://picsum.photos/seed/ashlaur-emily-chen/600/600"
     },
     {
       name: "David Wilson",
       position: "Project Manager",
-      image: "/images/team/david-wilson.jpg"
+      image: "https://picsum.photos/seed/ashlaur-david-wilson/600/600"
     },
     {
       name: "Lisa Rodriguez",
       position: "Safety Director",
-      image: "/images/team/lisa-rodriguez.jpg"
+      image: "https://picsum.photos/seed/ashlaur-lisa-rodriguez/600/600"
     }
   ];
 
