@@ -1,0 +1,13 @@
+<svg width="180" height="50" viewBox="0 0 180 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background for visibility -->
+  <rect width="180" height="50" fill="transparent"/>
+  <!-- ASHLAUR Text -->
+  <text x="10" y="35" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#2563EB">ASH</text>
+  <text x="70" y="35" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="white">LAUR</text>
+  <!-- Construction icon -->
+  <g transform="translate(140, 10)">
+    <rect x="0" y="15" width="20" height="10" fill="#2563EB"/>
+    <rect x="5" y="10" width="10" height="15" fill="#2563EB"/>
+    <rect x="7" y="8" width="6" height="2" fill="white"/>
+  </g>
+</svg>
