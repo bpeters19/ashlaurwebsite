@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
 
-type ServiceCategory = "commercial" | "infrastructure" | "healthcare" | "education" | "residential" | "cdot";
+type ServiceCategory = "commercial" | "hospitality" | "healthcare" | "education" | "residential" | "cdot";
 
 const ServicesGrid = () => {
   const [selectedService, setSelectedService] = useState<ServiceCategory | null>(null);
@@ -18,11 +18,11 @@ const ServicesGrid = () => {
       category: "commercial"
     },
     {
-      title: "Infrastructure",
-      description: "Bridges, roads, and public infrastructure projects",
-      image: "/images/services/infrastructure/infrastructure%20image.jpg",
-      projects: "30+ Projects",
-      category: "infrastructure"
+      title: "Hospitality",
+      description: "Hotels, resorts, and hospitality venues",
+      image: "/images/services/hospitality/hospitality.jpg",
+      projects: "15+ Projects",
+      category: "hospitality"
     },
     {
       title: "Healthcare",
@@ -60,20 +60,19 @@ const ServicesGrid = () => {
       { name: "Retail Mall Development", description: "Mixed-use retail space", image: "https://picsum.photos/seed/ashlaur-retail-mall/800/600" },
       { name: "Corporate Headquarters", description: "Modern office campus", image: "https://picsum.photos/seed/ashlaur-corporate-hq/800/600" }
     ],
-    infrastructure: [
-      { name: "Highway Bridge Project", description: "Major bridge construction", image: "https://picsum.photos/seed/ashlaur-highway-bridge/800/600" },
-      { name: "Road Expansion", description: "Highway widening project", image: "https://picsum.photos/seed/ashlaur-road-expansion/800/600" },
-      { name: "Public Transit Hub", description: "Transportation center", image: "https://picsum.photos/seed/ashlaur-transit-hub/800/600" }
+    hospitality: [
+      { name: "Wicker Park Hyatt Hotel", description: "Boutique hotel in Wicker Park", image: "https://picsum.photos/seed/ashlaur-wicker-hyatt/800/600" },
+      { name: "Sophy Hotel Hyde Park", description: "Modern hotel near University of Chicago", image: "https://picsum.photos/seed/ashlaur-sophy-hotel/800/600" },
+      { name: "Zachary Hotel", description: "Contemporary downtown hotel", image: "https://picsum.photos/seed/ashlaur-zachary-hotel/800/600" }
     ],
     healthcare: [
-      { name: "Medical Center Expansion", description: "Hospital wing addition", image: "https://picsum.photos/seed/ashlaur-medical-center/800/600" },
-      { name: "Clinic Renovation", description: "Modern medical facility", image: "https://picsum.photos/seed/ashlaur-clinic-renovation/800/600" },
-      { name: "Research Lab", description: "Medical research building", image: "https://picsum.photos/seed/ashlaur-research-lab/800/600" }
+      { name: "Cook County Health Belmont – Cragin Health Center", description: "Community health facility", image: "https://picsum.photos/seed/ashlaur-belmont-cragin/800/600" },
+      { name: "Stroger Hospital Doors and Hardware Replacement", description: "Lower Level to 8th Floor", image: "https://picsum.photos/seed/ashlaur-stroger-doors/800/600" },
+      { name: "Friend Health Woodlawn HQ", description: "Healthcare headquarters", image: "https://picsum.photos/seed/ashlaur-friend-health/800/600" }
     ],
     education: [
-      { name: "University Campus", description: "Academic buildings", image: "https://picsum.photos/seed/ashlaur-university-campus/800/600" },
-      { name: "School Renovation", description: "K-12 facility upgrade", image: "https://picsum.photos/seed/ashlaur-school-renovation/800/600" },
-      { name: "Library Expansion", description: "Educational library", image: "https://picsum.photos/seed/ashlaur-library-expansion/800/600" }
+      { name: "Indiana University – Raintree Hall", description: "Student residence hall", image: "https://picsum.photos/seed/ashlaur-indiana-raintree/800/600" },
+      { name: "Near West CPS Offices", description: "CPS administrative facility", image: "https://picsum.photos/seed/ashlaur-near-west-cps/800/600" }
     ],
     residential: [
       { name: "Westhaven Park Station – Mixed-Income Apartments", description: "12-story mixed-income residential building with retail space. 96 apartment units (one- and two-bedroom), with three ground-floor retail spaces. Built as part of the redevelopment of the former Henry Horner Homes site on Chicago's Near West Side.", image: "https://picsum.photos/seed/ashlaur-westhaven-park/800/600" },

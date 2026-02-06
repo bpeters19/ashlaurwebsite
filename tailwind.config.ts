@@ -10,7 +10,7 @@ const config: Config = {
     extend: {
       colors: {
         primary: "#2563EB", // Primary blue
-        secondary: "#1E40AF", // Darker blue for headings
+        secondary: "#3B82F6", // Lighter blue for headings
         background: "#0A0A0A", // Deep charcoal
         surface: "#141414", // Slightly lighter dark
         accent: "#1E1E1E", // Secondary background

@@ -135,12 +135,19 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
+            className="flex flex-wrap items-center gap-6"
           >
             <Link
               href="/about"
               className="group inline-flex items-center gap-2 text-lg font-semibold border-b-2 border-primary hover:border-blue-400 transition-all duration-300 hover:gap-3"
             >
               Learn more <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
+            <Link
+              href="/gallery"
+              className="group inline-flex items-center gap-2 text-lg font-semibold border-b-2 border-primary hover:border-blue-400 transition-all duration-300 hover:gap-3"
+            >
+              View Gallery <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
           </motion.div>
         </div>

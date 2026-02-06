@@ -45,10 +45,10 @@ const Navbar = () => {
     {
       heading: "Recognition",
       links: [
-        { name: "Awards", href: "/about#awards" },
-        { name: "Certifications", href: "/about#certifications" },
-        { name: "Partners", href: "/about#partners" },
-        { name: "View All Recognition", href: "/about#recognition" },
+        { name: "Awards", href: "/recognition#awards" },
+        { name: "Certifications", href: "/recognition#certifications" },
+        { name: "Partners", href: "/recognition#partners" },
+        { name: "View All Recognition", href: "/recognition" },
       ],
     },
     {

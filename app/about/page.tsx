@@ -15,9 +15,9 @@ export default function About() {
           className="absolute inset-0 -z-10"
           style={{
             backgroundImage:
-              "linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.72) 40%, rgba(0,0,0,0.78) 100%), url('/images/about/about-bg.jpg')",
+              "linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.72) 40%, rgba(0,0,0,0.78) 100%), url('/images/about/unnamed-1.png')",
             backgroundSize: "cover",
-            backgroundPosition: "center",
+            backgroundPosition: "right center",
             backgroundRepeat: "no-repeat",
           }}
         />
