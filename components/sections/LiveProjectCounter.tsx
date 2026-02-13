@@ -68,7 +68,7 @@ const LiveProjectCounter = () => {
   ];
 
   return (
-    <section ref={ref} className="py-20 bg-gradient-to-r from-blue-900/20 via-blue-800/15 to-blue-700/10">
+    <section ref={ref} className="py-16 bg-gradient-to-r from-blue-900/20 via-blue-800/15 to-blue-700/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

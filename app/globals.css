@@ -50,6 +50,42 @@ h3 { font-size: 1.5rem; } /* 24px */
   h2 { font-size: 1.875rem; } /* 30px */
 }
 
+/* Interactive Elements - Global Interactivity Rules */
+
+/* All clickable elements get proper cursor */
+a, button, [role="button"], .cursor-pointer {
+  cursor: pointer;
+}
+
+/* Disable cursor-pointer on actual buttons and links to prevent conflicts */
+button:not(.cursor-pointer), 
+a:not([class*="cursor"]) {
+  cursor: pointer;
+}
+
+/* Smooth transitions for all interactive elements */
+a, button, [role="button"], .group, [class*="hover"] {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+/* Focus states for accessibility */
+a:focus-visible, button:focus-visible {
+  outline: 2px solid #2563EB;
+  outline-offset: 2px;
+}
+
+/* Consistent hover brightness for images in interactive contexts */
+a img {
+  transition: all 300ms ease;
+}
+
+/* Clickable card enhancement */
+.group:hover {
+  --tw-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
 /* Logo Link Styles */
 .logo-link {
   display: inline-block;
@@ -108,4 +144,23 @@ h3 { font-size: 1.5rem; } /* 24px */
   .logo-text-styled {
     font-size: 20px;
   }
+}
+
+/* Infinite Scroll Animation for Partners Section */
+@keyframes infinite-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-infinite-scroll {
+  animation: infinite-scroll 40s linear infinite;
+}
+
+/* Pause animation on hover */
+.pause-animation:hover {
+  animation-play-state: paused;
 }

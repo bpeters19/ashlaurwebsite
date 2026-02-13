@@ -31,11 +31,16 @@ const config: Config = {
       },
       animation: {
         'glow': 'glow 2s ease-in-out infinite alternate',
+        'infinite-scroll': 'infinite-scroll 40s linear infinite',
       },
       keyframes: {
         glow: {
           '0%': { boxShadow: '0 0 5px rgba(37, 99, 235, 0.5)' },
           '100%': { boxShadow: '0 0 20px rgba(37, 99, 235, 0.8)' },
+        },
+        'infinite-scroll': {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(-50%)' },
         },
       },
     },

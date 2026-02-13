@@ -13,7 +13,13 @@ const FromTheField = () => {
   const [isScrollable, setIsScrollable] = useState(false);
   const [isAtEnd, setIsAtEnd] = useState(false);
   const [isSectionActive, setIsSectionActive] = useState(false);
-  const [isLocked, setIsLocked] = useState(false);
+  const [isRightHovered, setIsRightHovered] = useState(false);
+  const [rightColumnHeight, setRightColumnHeight] = useState<number | null>(null);
+  const [featuredMinHeight, setFeaturedMinHeight] = useState<number | null>(null);
+  const featuredColumnRef = useRef<HTMLDivElement>(null);
+  const rightColumnRef = useRef<HTMLDivElement>(null);
+  const articlesListRef = useRef<HTMLDivElement>(null);
+  const firstArticleRef = useRef<HTMLAnchorElement>(null);
 
   // Featured article displayed on the left
   const featuredArticle = {
@@ -170,7 +176,7 @@ const FromTheField = () => {
     };
   }, []);
 
-  // Scroll locking mechanism with smooth, premium physics
+  // Scroll behavior scoped to right column only (hover required)
   useEffect(() => {
     const container = articlesContainerRef.current;
     if (!container) return;
@@ -179,12 +185,8 @@ const FromTheField = () => {
     const isDesktop = window.innerWidth >= 1024;
     if (!isDesktop) return;
 
-    // Determine if we should lock scroll
-    const shouldLock = isSectionActive && isScrollable && !isAtEnd;
-    setIsLocked(shouldLock);
-
     const handleWheel = (e: WheelEvent) => {
-      if (!isSectionActive || !isScrollable) return;
+      if (!isRightHovered || !isScrollable) return;
 
       // Check if we're at the boundaries
       const atTop = container.scrollTop === 0;
@@ -208,31 +210,64 @@ const FromTheField = () => {
       }
     };
 
-    if (shouldLock) {
-      document.addEventListener("wheel", handleWheel, { passive: false });
-    }
+    container.addEventListener("wheel", handleWheel, { passive: false });
 
     return () => {
-      document.removeEventListener("wheel", handleWheel);
+      container.removeEventListener("wheel", handleWheel);
       if (scrollAnimationRef.current !== null) {
         cancelAnimationFrame(scrollAnimationRef.current);
       }
     };
-  }, [isSectionActive, isScrollable, isAtEnd]);
+  }, [isRightHovered, isScrollable, isAtEnd]);
+
+  // Lock visible count to 2 full sub-articles and align heights
+  useEffect(() => {
+    const featuredCol = featuredColumnRef.current;
+    const listEl = articlesListRef.current;
+    const firstArticleEl = firstArticleRef.current;
+    if (!featuredCol || !listEl || !firstArticleEl) return;
+
+    const updateHeights = () => {
+      const articleHeight = firstArticleEl.getBoundingClientRect().height;
+      if (!articleHeight) return;
+
+      const listStyles = window.getComputedStyle(listEl);
+      const paddingTop = parseFloat(listStyles.paddingTop || "0");
+      const paddingBottom = parseFloat(listStyles.paddingBottom || "0");
+      const baseHeight = Math.ceil(articleHeight * 2 + paddingTop + paddingBottom);
+
+      setFeaturedMinHeight(baseHeight);
+
+      const featuredHeight = featuredCol.getBoundingClientRect().height;
+      const alignedHeight = Math.ceil(Math.max(featuredHeight, baseHeight));
+      setRightColumnHeight(alignedHeight);
+    };
+
+    updateHeights();
+    const observer = new ResizeObserver(updateHeights);
+    observer.observe(featuredCol);
+    observer.observe(firstArticleEl);
+    observer.observe(listEl);
+
+    window.addEventListener("resize", updateHeights);
+    return () => {
+      window.removeEventListener("resize", updateHeights);
+      observer.disconnect();
+    };
+  }, []);
 
   return (
     <section
       ref={sectionRef}
-      className="w-full bg-white relative overflow-hidden"
-      style={{ height: "100vh" }}
+      className="w-full bg-white relative"
     >
-      <div className="h-full flex flex-col">
+      <div className="flex flex-col">
         {/* Section Header - Corporate editorial style */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="px-6 sm:px-8 lg:px-12 pt-14 lg:pt-20 pb-10 lg:pb-14 flex-shrink-0 border-b border-gray-100"
+          className="px-6 sm:px-8 lg:px-12 pt-12 lg:pt-16 pb-8 lg:pb-10 flex-shrink-0 border-b border-gray-100"
         >
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-4 lg:mb-5 tracking-tight">
             From the Field
@@ -243,17 +278,19 @@ const FromTheField = () => {
         </motion.div>
 
         {/* Two-Column Layout - Turner Construction style (65-70% left, narrower right) */}
-        <div className="flex-1 flex gap-0 overflow-hidden">
+        <div className="flex-1 flex gap-0 items-start">
           {/* LEFT COLUMN: Featured Article (Static) - Primary Content (65-70% width) */}
           <motion.div
             initial={{ opacity: 0, x: -60 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9 }}
-            className="w-2/3 flex flex-col h-full overflow-hidden px-6 sm:px-8 lg:px-12 py-8 lg:py-12 border-r border-gray-100"
+            ref={featuredColumnRef}
+            className="w-2/3 flex flex-col px-6 sm:px-8 lg:px-12 py-6 lg:py-8 border-r border-gray-100"
+            style={featuredMinHeight ? { minHeight: featuredMinHeight } : undefined}
           >
-            <div className="flex flex-col h-full">
+            <a href="/projects" className="flex flex-col cursor-pointer group">
               {/* Featured Image - Large hero image with generous aspect ratio */}
-              <div className="relative w-full flex-shrink-0 overflow-hidden rounded-xl mb-10 lg:mb-14 group shadow-xl" style={{ aspectRatio: "4/3" }}>
+              <div className="relative w-full flex-shrink-0 overflow-hidden rounded-xl mb-8 lg:mb-10 shadow-xl group-hover:shadow-2xl transition-all duration-500" style={{ aspectRatio: "16/9" }}>
                 <Image
                   src={featuredArticle.image}
                   alt={featuredArticle.headline}
@@ -267,35 +304,32 @@ const FromTheField = () => {
               {/* Featured Content - Large, prominent editorial styling */}
               <div className="flex flex-col flex-shrink-0 max-w-full">
                 {/* Eyebrow label */}
-                <p className="text-xs lg:text-sm font-semibold text-gray-500 uppercase tracking-widest mb-4 lg:mb-6">
+                <p className="text-xs lg:text-sm font-semibold text-gray-500 uppercase tracking-widest mb-3 lg:mb-4 group-hover:text-blue-600 transition-colors duration-300">
                   {featuredArticle.project}
                 </p>
 
-                {/* Headline - DOMINANT, corporate editorial scale */}
-                <h3 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6 lg:mb-8 leading-tight tracking-tight">
+                {/* Headline - DOMINANT, corporate editorial scale, fully clickable */}
+                <h3 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-5 lg:mb-6 leading-tight tracking-tight group-hover:text-blue-700 transition-colors duration-300">
                   {featuredArticle.headline}
                 </h3>
 
                 {/* Summary - Larger, more readable, editorial weight */}
-                <p className="text-base lg:text-xl text-gray-700 mb-7 lg:mb-10 leading-relaxed font-light max-w-2xl">
+                <p className="text-base lg:text-xl text-gray-700 mb-5 lg:mb-7 leading-relaxed font-light max-w-2xl group-hover:text-gray-900 transition-colors duration-300">
                   {featuredArticle.summary}
                 </p>
 
                 {/* Metadata and CTA */}
-                <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 lg:gap-6">
+                <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 lg:gap-5">
                   <p className="text-sm lg:text-base text-gray-500 font-light">
                     {featuredArticle.date}
                   </p>
-                  <a
-                    href="#"
-                    className="inline-flex items-center gap-2 text-gray-900 font-semibold text-base lg:text-lg group hover:text-blue-600 transition-colors duration-300 w-fit px-1"
-                  >
+                  <div className="inline-flex items-center gap-2 text-gray-900 font-semibold text-base lg:text-lg group-hover:text-blue-600 transition-colors duration-300 w-fit">
                     <span>Read more</span>
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                  </a>
+                  </div>
                 </div>
               </div>
-            </div>
+            </a>
           </motion.div>
 
           {/* RIGHT COLUMN: Secondary Articles Feed (Scrollable) - Narrow secondary column (30-35% width) */}
@@ -303,7 +337,11 @@ const FromTheField = () => {
             initial={{ opacity: 0, x: 60 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9, delay: 0.1 }}
-            className="flex-1 flex flex-col h-full overflow-hidden min-w-0 bg-gray-50"
+            ref={rightColumnRef}
+            onMouseEnter={() => setIsRightHovered(true)}
+            onMouseLeave={() => setIsRightHovered(false)}
+            className="flex-1 flex flex-col overflow-hidden min-w-0 bg-gray-50 self-start"
+            style={rightColumnHeight ? { height: rightColumnHeight } : undefined}
           >
             <div
               ref={articlesContainerRef}
@@ -322,24 +360,26 @@ const FromTheField = () => {
               `}</style>
 
               {/* Secondary article feed - clear hierarchy and spacing */}
-              <div className="flex flex-col px-5 sm:px-6 lg:px-8 py-8 lg:py-10 gap-0">
+              <div ref={articlesListRef} className="flex flex-col px-5 sm:px-6 lg:px-8 py-6 lg:py-8 gap-0">
                 {articlesList.map((article, index) => (
-                  <motion.article
+                  <motion.a
                     key={article.id}
+                    ref={index === 0 ? firstArticleRef : undefined}
+                    href="/projects"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.05 }}
-                    className="group cursor-pointer pb-6 lg:pb-8 border-b border-gray-200 last:border-b-0 hover:bg-white/40 transition-colors duration-300 px-0"
+                    className="group cursor-pointer pb-5 lg:pb-6 border-b border-gray-200 last:border-b-0 hover:bg-white transition-all duration-300 px-0 block"
                   >
-                    <div className="flex flex-col gap-3 lg:gap-4">
+                    <div className="flex flex-col gap-2.5 lg:gap-3">
                       {/* Article Thumbnail - Proportional rectangular for secondary content */}
                       <div className="w-full flex-shrink-0">
-                        <div className="relative w-full overflow-hidden rounded-md group-hover:shadow-lg transition-all duration-300" style={{ aspectRatio: "3/2" }}>
+                        <div className="relative w-full overflow-hidden rounded-md group-hover:shadow-lg transition-all duration-300 group-hover:scale-105" style={{ aspectRatio: "16/9" }}>
                           <Image
                             src={article.image}
                             alt={article.headline}
                             fill
-                            className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                            className="object-cover transition-transform duration-700 ease-out"
                             sizes="100vw"
                             loading="lazy"
                           />
@@ -348,7 +388,7 @@ const FromTheField = () => {
 
                       {/* Article Content - Clearly secondary to featured */}
                       <div className="flex flex-col gap-2">
-                        <p className="text-xs font-semibold text-gray-500 uppercase tracking-widest">
+                        <p className="text-xs font-semibold text-gray-500 uppercase tracking-widest group-hover:text-blue-600 transition-colors duration-300">
                           {article.project}
                         </p>
 
@@ -356,7 +396,7 @@ const FromTheField = () => {
                           {article.headline}
                         </h4>
 
-                        <p className="text-xs lg:text-sm text-gray-600 leading-relaxed line-clamp-2 font-light">
+                        <p className="text-xs lg:text-sm text-gray-600 leading-relaxed line-clamp-2 font-light group-hover:text-gray-900 transition-colors duration-300">
                           {article.summary}
                         </p>
                       </div>
@@ -366,20 +406,17 @@ const FromTheField = () => {
                         <p className="text-xs text-gray-500 font-light">
                           {article.date}
                         </p>
-                        <a
-                          href="#"
-                          className="inline-flex items-center gap-1 text-gray-900 font-semibold text-xs group-hover:text-blue-700 transition-colors duration-300"
-                        >
+                        <div className="inline-flex items-center gap-1 text-gray-900 font-semibold text-xs group-hover:text-blue-700 transition-colors duration-300">
                           <span>Read</span>
                           <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-300" />
-                        </a>
+                        </div>
                       </div>
                     </div>
-                  </motion.article>
+                  </motion.a>
                 ))}
 
                 {/* End indicator - editorial style */}
-                <div className="py-8 lg:py-10 text-center">
+                <div className="py-6 lg:py-7 text-center">
                   <p className="text-xs text-gray-400 font-light tracking-wide">End of Latest Updates</p>
                 </div>
               </div>

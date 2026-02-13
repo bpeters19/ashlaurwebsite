@@ -102,19 +102,19 @@ const Hero = () => {
   }, [prefersReducedMotion]);
 
   return (
-    <section className="relative h-screen overflow-hidden">
+    <section className="relative h-screen overflow-hidden group cursor-pointer" onClick={() => window.location.href = '/gallery'}>
       {/* Full-width, full-height background video */}
       <video
         ref={videoRef}
-        className="absolute inset-0 w-full h-full object-cover z-0"
+        className="absolute inset-0 w-full h-full object-cover z-0 group-hover:brightness-110 transition-all duration-700"
         src="/video.mp4.webm"
         autoPlay
         muted
         loop
         playsInline
       />
-      {/* Dark overlay for readability */}
-      <div className="absolute inset-0 bg-black/40 z-10" />
+      {/* Dark overlay for readability - brighter on hover */}
+      <div className="absolute inset-0 bg-black/40 group-hover:bg-black/35 z-10 transition-colors duration-700" />
       
       {/* Content overlays - Skender-style left-aligned, large headline */}
       <div className="relative z-20 h-full flex flex-col items-start justify-end text-white pb-32">
@@ -124,11 +124,13 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h1 className="text-[4rem] sm:text-[6rem] lg:text-[8rem] xl:text-[11rem] 2xl:text-[15rem] font-black leading-none tracking-tight mb-8">
-              We build with intent.
-              <br />
-              We deliver with certainty.
-            </h1>
+            <Link href="/projects" className="group/headline inline-block">
+              <h1 className="text-[4rem] sm:text-[6rem] lg:text-[8rem] xl:text-[11rem] 2xl:text-[15rem] font-black leading-none tracking-tight mb-8 cursor-pointer hover:text-blue-300 transition-colors duration-500 hover:drop-shadow-lg">
+                We build with intent.
+                <br />
+                We deliver with certainty.
+              </h1>
+            </Link>
           </motion.div>
 
           <motion.div
@@ -139,13 +141,13 @@ const Hero = () => {
           >
             <Link
               href="/about"
-              className="group inline-flex items-center gap-2 text-lg font-semibold border-b-2 border-primary hover:border-blue-400 transition-all duration-300 hover:gap-3"
+              className="group inline-flex items-center gap-2 text-lg font-semibold border-b-2 border-white hover:border-blue-300 transition-all duration-300 hover:gap-3 cursor-pointer hover:text-blue-200"
             >
               Learn more <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link
               href="/gallery"
-              className="group inline-flex items-center gap-2 text-lg font-semibold border-b-2 border-primary hover:border-blue-400 transition-all duration-300 hover:gap-3"
+              className="group inline-flex items-center gap-2 text-lg font-semibold border-b-2 border-white hover:border-blue-300 transition-all duration-300 hover:gap-3 cursor-pointer hover:text-blue-200"
             >
               View Gallery <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>

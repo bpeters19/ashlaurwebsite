@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { CheckCircle, Loader2, Clock } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -139,28 +140,32 @@ const ProjectsCarousel = () => {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-surface rounded-lg shadow-sm overflow-hidden"
             >
-              <div className="relative h-64">
-                <Image
-                  src={project.image}
-                  alt={project.name}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="p-6">
-                <div className="flex items-center mb-2">
-                  <span className="bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">
-                    {project.category}
-                  </span>
+              <Link 
+                href="/projects"
+                className="group block bg-blue-50 rounded-lg shadow-sm overflow-hidden hover:shadow-xl hover:scale-105 transition-all duration-500 cursor-pointer"
+              >
+                <div className="relative h-64 overflow-hidden group-hover:brightness-110 transition-all duration-500">
+                  <Image
+                    src={project.image}
+                    alt={project.name}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
                 </div>
-                <h3 className="text-xl font-semibold text-secondary mb-2">{project.name}</h3>
-                <p className="text-muted mb-4">{project.description}</p>
-                <button className="text-primary hover:text-secondary font-medium">
-                  View Project →
-                </button>
-              </div>
+                <div className="p-6">
+                  <div className="flex items-center mb-2">
+                    <span className="bg-blue-700 group-hover:bg-blue-900 text-white px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300">
+                      {project.category}
+                    </span>
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-blue-700 transition-colors duration-300">{project.name}</h3>
+                  <p className="text-gray-600 mb-4 group-hover:text-gray-900 transition-colors duration-300">{project.description}</p>
+                  <div className="text-blue-700 group-hover:text-blue-900 font-medium transition-colors duration-300">
+                    View Project →
+                  </div>
+                </div>
+              </Link>
             </motion.div>
           ))}
         </div>
@@ -171,9 +176,12 @@ const ProjectsCarousel = () => {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="text-center mt-12"
         >
-          <button className="bg-primary hover:bg-secondary text-white font-bold py-4 px-8 rounded transition duration-300 transform hover:scale-105">
+          <Link 
+            href="/projects"
+            className="inline-block bg-blue-700 hover:bg-blue-900 text-white font-bold py-4 px-8 rounded transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer"
+          >
             SEE OUR PROJECTS
-          </button>
+          </Link>
         </motion.div>
       </div>
     </section>
