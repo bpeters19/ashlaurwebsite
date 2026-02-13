@@ -165,11 +165,15 @@ const Navbar = () => {
           <div className="flex justify-between h-20">
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <Link href="/" className="logo-link">
-                  <div className="logo-text-styled drop-shadow-lg">
-                    <span className="logo-ash text-blue-400">ASH</span>
-                    <span className="logo-laur text-white">LAUR</span>
-                  </div>
+                <Link href="/" className="logo-link hover:opacity-80 transition-opacity duration-300">
+                  <Image
+                    src="/logo.png"
+                    alt="Ashlaur Construction"
+                    width={180}
+                    height={50}
+                    className="h-10 md:h-12 w-auto drop-shadow-lg"
+                    priority
+                  />
                 </Link>
               </div>
             </div>
