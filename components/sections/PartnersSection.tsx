@@ -23,19 +23,14 @@ const PartnersSection = () => {
       href: "https://www.skender.com",
     },
     {
-      name: "Weis Builders",
-      logo: "/images/partners/weis-builders/partners-04%20weis.png",
-      href: "https://www.weisbuilders.com",
-    },
-    {
       name: "McHugh Construction",
       logo: "/images/partners/mchugh/partners-05%20mchugh.png",
       href: "https://www.mchughconstruction.com",
     },
     {
-      name: "Powers & Sons",
-      logo: "/images/partners/powers-sons/partners-06-1%20p%26s.png",
-      href: "https://www.powersandsons.com",
+      name: "Cook County",
+      logo: "/images/partners/cook-county/cook-county-logo.jpg",
+      href: "https://www.cookcountyil.gov",
     },
   ];
 

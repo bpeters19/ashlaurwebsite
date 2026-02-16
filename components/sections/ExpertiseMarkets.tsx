@@ -8,12 +8,10 @@ const ExpertiseMarkets = () => {
     "Affordable Housing",
     "Healthcare",
     "Hospitality",
-    "Industrial",
     "Education",
     "Multifamily",
     "Municipal",
     "Office",
-    "Retail",
     "Senior Living",
   ];
 

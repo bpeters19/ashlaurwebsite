@@ -1,10 +1,12 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Menu, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import SocialIcons from "./SocialIcons";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -59,28 +61,28 @@ const Navbar = () => {
         {
           heading: "Company",
           links: [
-            { name: "Who We Are", href: "/about" },
-            { name: "Leadership", href: "/leadership" },
+            { name: "Who We Are", href: "/about/who-we-are" },
+            { name: "Leadership", href: "/about/leadership" },
           ],
         },
         {
           heading: "Markets",
           links: [
-            { name: "Market Sectors", href: "/services" },
-            { name: "Locations", href: "/about#locations" },
+            { name: "Market Sectors", href: "/about/market-sectors" },
+            { name: "Locations", href: "/about/locations" },
           ],
         },
         {
           heading: "Culture",
           links: [
-            { name: "Culture", href: "/about#culture" },
-            { name: "Safety & Quality", href: "/services#safety" },
+            { name: "Culture", href: "/about/culture" },
+            { name: "Safety & Quality", href: "/about/safety-quality" },
           ],
         },
       ],
       feature: {
         title: "Become a Subcontractor",
-        href: "/contact",
+        href: "/about/become-a-subcontractor",
         image: "/images/about/about-bg.jpg",
         cta: "Learn How",
       },
@@ -150,6 +152,18 @@ const Navbar = () => {
     ? megaMenuContent[activeDropdown as keyof typeof megaMenuContent]
     : null;
 
+  const pathname = usePathname();
+
+  const handleLogoClick = () => {
+    if (pathname === "/") {
+      // On home page, scroll to top
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      // On other pages, navigate to home
+      window.location.href = "/";
+    }
+  };
+
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
       isScrolled 
@@ -165,7 +179,11 @@ const Navbar = () => {
           <div className="flex justify-between h-20">
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <Link href="/" className="logo-link hover:opacity-80 transition-opacity duration-300">
+                <button 
+                  onClick={handleLogoClick}
+                  className="logo-link hover:opacity-80 transition-opacity duration-300 bg-none border-none p-0 cursor-pointer"
+                  aria-label="Home"
+                >
                   <Image
                     src="/logo.png"
                     alt="Ashlaur Construction"
@@ -174,7 +192,7 @@ const Navbar = () => {
                     className="h-10 md:h-12 w-auto drop-shadow-lg"
                     priority
                   />
-                </Link>
+                </button>
               </div>
             </div>
 
@@ -217,7 +235,8 @@ const Navbar = () => {
               })}
             </div>
 
-          <div className="hidden md:flex items-center">
+          <div className="hidden md:flex items-center gap-8">
+            <SocialIcons size="sm" variant="light" />
             <Link href="/projects">
               <button className="bg-[#123563] hover:bg-[#1c3a66] text-white font-bold py-3 px-6 rounded transition duration-300 transform hover:scale-105 border border-white/25 shadow-lg">
                 SEE OUR PROJECTS

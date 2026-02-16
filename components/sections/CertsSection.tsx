@@ -57,7 +57,7 @@ const CertsSection = () => {
       y: 0,
       transition: {
         duration: 0.9,
-        ease: [0.34, 1.56, 0.64, 1], // Custom easing: slow start, momentum, soft settle
+        ease: [0.34, 1.56, 0.64, 1] as const, // Custom easing: slow start, momentum, soft settle
       },
     },
   };
@@ -65,11 +65,11 @@ const CertsSection = () => {
   const hoverVariants = {
     rest: {
       y: 0,
-      transition: { duration: 0.3, ease: "easeInOut" },
+      transition: { duration: 0.3 },
     },
     hover: {
       y: -8,
-      transition: { duration: 0.4, ease: "easeInOut" },
+      transition: { duration: 0.4 },
     },
   };
 

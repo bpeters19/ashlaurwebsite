@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import SocialIcons from "./SocialIcons";
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -17,11 +18,7 @@ const Footer = () => {
             <p className="text-gray-400 mb-6 leading-relaxed">
               Building Tomorrow, Today. Precision. Power. Performance. Where vision meets extraordinary execution.
             </p>
-            <div className="flex space-x-6">
-              <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors duration-300 cursor-pointer">LinkedIn</a>
-              <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors duration-300 cursor-pointer">Twitter</a>
-              <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors duration-300 cursor-pointer">Instagram</a>
-            </div>
+            <SocialIcons size="md" variant="light" />
           </div>
 
           {/* Services */}
