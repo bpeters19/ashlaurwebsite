@@ -3,37 +3,57 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+
+type Partner = {
+  name: string;
+  logo: string;
+  url: string;
+};
+
+const partners: Partner[] = [
+  {
+    name: "McShane Construction",
+    logo: "/images/partners/mcshane/partners-01%20mcshane.png",
+    url: "https://www.mcshaneconstruction.com",
+  },
+  {
+    name: "FHP Construction",
+    logo: "/images/partners/fhp/partners-02%20fhp.png",
+    url: "https://www.fhp-inc.com",
+  },
+  {
+    name: "Skender",
+    logo: "/images/partners/skender/partners-03%20skender.png",
+    url: "https://www.skender.com",
+  },
+  {
+    name: "McHugh Construction",
+    logo: "/images/partners/mchugh/partners-05%20mchugh.png",
+    url: "https://www.mchughconstruction.com",
+  },
+  {
+    name: "Cook County",
+    logo: "/images/partners/cook-county/cook-county-logo.jpg",
+    url: "https://www.cookcountyil.gov",
+  },
+  {
+    name: "Pepper Construction",
+    logo: "/partners/pepper%20construction%20image.png",
+    url: "https://www.pepperconstruction.com",
+  },
+  {
+    name: "Burling Builders",
+    logo: "/partners/burling_builders_inc_logo%20website.jpg",
+    url: "https://www.burlingbuilders.com",
+  },
+  {
+    name: "George Sollitt Construction",
+    logo: "/partners/sollitt.jpg",
+    url: "https://www.sollitt.com",
+  },
+];
 
 const PartnersSection = () => {
-  const partners = [
-    {
-      name: "McShane Construction",
-      logo: "/images/partners/mcshane/partners-01%20mcshane.png",
-      href: "https://www.mcshaneconstruction.com",
-    },
-    {
-      name: "FHP Construction",
-      logo: "/images/partners/fhp/partners-02%20fhp.png",
-      href: "https://www.fhp-inc.com",
-    },
-    {
-      name: "Skender",
-      logo: "/images/partners/skender/partners-03%20skender.png",
-      href: "https://www.skender.com",
-    },
-    {
-      name: "McHugh Construction",
-      logo: "/images/partners/mchugh/partners-05%20mchugh.png",
-      href: "https://www.mchughconstruction.com",
-    },
-    {
-      name: "Cook County",
-      logo: "/images/partners/cook-county/cook-county-logo.jpg",
-      href: "https://www.cookcountyil.gov",
-    },
-  ];
-
   return (
     <section className="pt-16 pb-20 lg:pt-20 lg:pb-24 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
@@ -68,15 +88,21 @@ const PartnersSection = () => {
         <div className="flex animate-infinite-scroll hover:pause-animation">
           {/* First Set of Logos */}
           <div className="flex items-center justify-around min-w-max gap-16 lg:gap-24 px-8 lg:px-12">
-            {partners.map((partner, index) => (
-              <PartnerLogo key={`original-${index}`} partner={partner} />
+            {partners.map((partner) => (
+              <PartnerLogo
+                key={`original-${partner.name}`}
+                partner={partner}
+              />
             ))}
           </div>
 
           {/* Duplicate Set for Seamless Loop */}
           <div className="flex items-center justify-around min-w-max gap-16 lg:gap-24 px-8 lg:px-12">
-            {partners.map((partner, index) => (
-              <PartnerLogo key={`duplicate-${index}`} partner={partner} />
+            {partners.map((partner) => (
+              <PartnerLogo
+                key={`duplicate-${partner.name}`}
+                partner={partner}
+              />
             ))}
           </div>
         </div>
@@ -100,24 +126,32 @@ const PartnersSection = () => {
 };
 
 // Individual Partner Logo Component
-const PartnerLogo = ({ partner }: { partner: { name: string; logo: string; href: string } }) => {
+const PartnerLogo = ({
+  partner,
+}: {
+  partner: Partner;
+}) => {
   return (
-    <Link
-      href={partner.href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group relative flex-shrink-0 transition-all duration-500 ease-out"
-    >
-      <div className="relative h-16 w-40 lg:h-20 lg:w-48 grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 ease-out">
-        <Image
-          src={partner.logo}
-          alt={partner.name}
-          fill
-          className="object-contain"
-          sizes="(max-width: 768px) 160px, 192px"
-        />
-      </div>
-    </Link>
+    <div className="group relative flex-shrink-0">
+      <Link
+        href={partner.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Visit ${partner.name} website (opens in a new tab)`}
+        className="block transition-all duration-500 ease-out"
+      >
+        <div className="relative h-16 w-40 lg:h-20 lg:w-48 grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 ease-out">
+          <Image
+            src={partner.logo}
+            alt={partner.name}
+            fill
+            className="object-contain"
+            sizes="(max-width: 768px) 160px, 192px"
+          />
+        </div>
+
+      </Link>
+    </div>
   );
 };
 

@@ -43,7 +43,7 @@ const SocialIcons = ({ size = "md", variant = "light" }: SocialIconsProps) => {
     },
     {
       name: "Instagram",
-      href: "https://www.instagram.com/ashlaur",
+      href: "https://www.instagram.com/ashlaur_construction/?hl=en",
       ariaLabel: "Visit Ashlaur on Instagram",
       icon: (
         <svg

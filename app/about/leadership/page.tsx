@@ -22,11 +22,39 @@ interface Executive {
 const executives: Executive[] = [
   {
     id: 1,
-    name: "Leadership Team",
-    title: "Executive Leadership",
+    name: "Executive Name",
+    title: "President / CEO",
     category: "Executive",
-    bio: "Ashlaur's leadership is built on decades of combined construction experience, operational discipline, and an unwavering commitment to safety, accountability, and partnership.",
-    image: "/leadership/executive-placeholder.jpg",
+    bio: "Seasoned construction executive focused on strategic growth, client partnerships, and organizational excellence. Leads company direction with a commitment to accountability and results-driven delivery.",
+    image: "/images/team/Artboard-1%20zollie.png",
+    linkedIn: "https://www.linkedin.com",
+  },
+  {
+    id: 2,
+    name: "Executive Name",
+    title: "Chief Financial Officer (CFO)",
+    category: "Executive",
+    bio: "Financial leader overseeing budgeting, forecasting, and risk management. Ensures long-term stability and disciplined growth across all construction and development initiatives.",
+    image: "/images/team/LM18386-scaled%20roosevelt.jpg",
+    linkedIn: "https://www.linkedin.com",
+  },
+  {
+    id: 3,
+    name: "Executive Name",
+    title: "Project Manager",
+    category: "Executive",
+    bio: "Project delivery specialist managing planning, coordination, and execution across complex builds. Aligns teams to maintain schedule, quality, and client expectations.",
+    image: "/images/team/Artboard-4%20rich.png",
+    linkedIn: "https://www.linkedin.com",
+  },
+  {
+    id: 4,
+    name: "Executive Name",
+    title: "Estimator",
+    category: "Executive",
+    bio: "Preconstruction expert delivering accurate cost models and value engineering insights. Drives informed decisions that protect budgets and maximize project performance.",
+    image: "/images/team/Artboard-3%20mohit.png",
+    linkedIn: "https://www.linkedin.com",
   },
 ];
 

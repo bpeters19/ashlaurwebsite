@@ -45,7 +45,10 @@ export default function Locations() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               <div className="space-y-8">
                 <div>
-                  <h3 className="text-4xl font-black text-gray-900 mb-4">Chicago, Illinois</h3>
+                  <h3 className="text-4xl font-black text-gray-900 mb-4">Calumet City, Illinois</h3>
+                  <p className="text-gray-600 text-base leading-relaxed mb-3">
+                    1595 Valencia Ct, Calumet City, IL 60409-5410, United States
+                  </p>
                   <p className="text-gray-600 text-lg leading-relaxed mb-6">
                     Our headquarters sits in the heart of Chicago's construction ecosystem. For over two decades, we've served as a trusted partner to Chicago's leading general contractors and owners.
                   </p>
@@ -62,9 +65,24 @@ export default function Locations() {
                   </ul>
                 </div>
               </div>
-              <div className="bg-gray-100 rounded-lg h-80 flex items-center justify-center">
-                <p className="text-gray-500 text-center">Map Region</p>
-              </div>
+              <a
+                href="https://maps.google.com/?q=1595%20Valencia%20Ct%2C%20Calumet%20City%2C%20IL%2060409-5410%2C%20United%20States"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative block bg-gray-100 rounded-lg h-80 overflow-hidden border border-gray-200"
+                aria-label="Open map for 1595 Valencia Ct, Calumet City, IL"
+              >
+                <iframe
+                  title="Calumet City Headquarters Map"
+                  src="https://maps.google.com/maps?q=1595%20Valencia%20Ct%2C%20Calumet%20City%2C%20IL%2060409-5410%2C%20United%20States&z=15&output=embed"
+                  className="w-full h-full"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+                <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="w-full h-full bg-black/10" />
+                </div>
+              </a>
             </div>
           </div>
         </section>
