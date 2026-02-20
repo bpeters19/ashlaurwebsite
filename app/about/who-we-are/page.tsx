@@ -1,6 +1,7 @@
 import Navbar from "../../../components/Navbar";
 import Footer from "../../../components/Footer";
 import { motion } from "framer-motion";
+import { markets } from "@/data/markets";
 
 export const metadata = {
   title: "Who We Are - Ashlaur Construction",
@@ -130,18 +131,9 @@ export default function WhoWeAre() {
               Industries We Serve
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {[
-                "Affordable Housing",
-                "Healthcare",
-                "Hospitality",
-                "Education",
-                "Multifamily",
-                "Municipal",
-                "Office",
-                "Senior Living",
-              ].map((industry) => (
-                <div key={industry} className="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
-                  <p className="text-xl font-bold text-gray-900">{industry}</p>
+              {markets.map((market) => (
+                <div key={market.slug} className="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+                  <p className="text-xl font-bold text-gray-900">{market.name}</p>
                 </div>
               ))}
             </div>

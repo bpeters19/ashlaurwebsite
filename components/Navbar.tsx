@@ -7,6 +7,7 @@ import { ChevronDown, Menu, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import SocialIcons from "./SocialIcons";
+import { markets } from "@/data/markets";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -51,6 +52,7 @@ const Navbar = () => {
     { name: "Process", href: "/process", hasDropdown: false },
     { name: "Contact", href: "/contact", hasDropdown: false },
   ];
+  const marketLinks = markets.map((market) => ({ name: market.name, href: market.path }));
   const megaMenuContent = {
     About: {
       title: "About Us",
@@ -96,16 +98,10 @@ const Navbar = () => {
         {
           heading: "Core Services",
           links: [
-            { name: "Preconstruction", href: "/services#preconstruction" },
-            { name: "General Contracting", href: "/services#general-contracting" },
-            { name: "Construction Management", href: "/services#construction" },
-          ],
-        },
-        {
-          heading: "Delivery",
-          links: [
-            { name: "Design-Build", href: "/services#design-build" },
-            { name: "Self-Perform Work", href: "/services#self-perform" },
+            { name: "General Contracting", href: "/services/general-contracting" },
+            { name: "Construction Management", href: "/services/construction-management" },
+            { name: "Design-Build", href: "/services/design-build" },
+            { name: "Architect Services", href: "/services/architect-services" },
           ],
         },
       ],
@@ -124,12 +120,7 @@ const Navbar = () => {
       columns: [
         {
           heading: "Market Sectors",
-          links: [
-            { name: "Healthcare", href: "/projects" },
-            { name: "Commercial", href: "/projects" },
-            { name: "Industrial", href: "/projects" },
-            { name: "Education", href: "/projects" },
-          ],
+          links: marketLinks,
         },
         {
           heading: "Highlights",
@@ -153,6 +144,7 @@ const Navbar = () => {
     : null;
 
   const pathname = usePathname();
+  const isHomePage = pathname === "/";
 
   const handleLogoClick = () => {
     if (pathname === "/") {
@@ -164,12 +156,20 @@ const Navbar = () => {
     }
   };
 
+  // Determine navbar background based on route and scroll state
+  const getNavbarClasses = () => {
+    if (!isHomePage) {
+      // All non-home pages: always blue
+      return 'bg-[#0B1F3B] border-b border-white/10';
+    }
+    // Home page: responsive to scroll
+    return isScrolled 
+      ? 'bg-[#0B1F3B] shadow-lg border-b border-white/10' 
+      : 'bg-transparent border-b border-transparent';
+  };
+
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-      isScrolled 
-        ? 'bg-[#0B1F3B] shadow-lg border-b border-white/10' 
-        : 'bg-transparent border-b border-transparent'
-    }`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ease-in-out ${getNavbarClasses()}`}>
       <div
         ref={navWrapperRef}
         className="relative"

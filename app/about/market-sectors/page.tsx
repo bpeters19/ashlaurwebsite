@@ -1,53 +1,11 @@
 import Navbar from "../../../components/Navbar";
 import Footer from "../../../components/Footer";
+import { markets } from "@/data/markets";
 
 export const metadata = {
   title: "Market Sectors - Ashlaur Construction",
   description: "Explore the diverse markets and industries where Ashlaur delivers construction excellence.",
 };
-
-const markets = [
-  {
-    title: "Affordable Housing",
-    description: "Delivering quality housing solutions that serve Chicago's most critical need. Our expertise spans new construction, adaptive reuse, and renovation projects designed to maximize value and community impact.",
-    capabilities: ["New Construction", "Adaptive Reuse", "Mixed-Use Development", "Community Engagement"],
-  },
-  {
-    title: "Healthcare",
-    description: "Complex medical facilities require precision, safety, and coordination. We specialize in hospitals, clinics, surgical centers, and medical office buildings designed for operational excellence.",
-    capabilities: ["Hospital Construction", "Surgical Centers", "Medical Offices", "Regulatory Compliance"],
-  },
-  {
-    title: "Hospitality",
-    description: "Hotels, restaurants, and hospitality venues demand flawless execution and schedule precision. Our teams deliver turnkey hospitality projects from preconstruction through opening.",
-    capabilities: ["Hotel Construction", "Restaurant Build-outs", "Renovation & Upgrades", "Brand Standards Compliance"],
-  },
-  {
-    title: "Education",
-    description: "Schools, universities, and educational facilities require specialized knowledge of academic environments. We deliver learning spaces that inspire and stand the test of time.",
-    capabilities: ["K-12 Construction", "University Facilities", "Laboratory Spaces", "Technology-Integrated Design"],
-  },
-  {
-    title: "Multifamily",
-    description: "From mid-rise to high-rise, we deliver residential projects that balance quality, schedule, and budget. Our multifamily expertise spans new development to renovation.",
-    capabilities: ["New Development", "High-Rise Construction", "Renovation Projects", "Unit Turnover Efficiency"],
-  },
-  {
-    title: "Municipal",
-    description: "Public works and municipal infrastructure require accountability, compliance, and community perspective. We serve cities and municipalities with integrity and precision.",
-    capabilities: ["Public Works", "Infrastructure", "Civic Buildings", "Regulatory Compliance"],
-  },
-  {
-    title: "Office",
-    description: "Corporate headquarters, office parks, and commercial spaces built for productivity and performance. Our office projects reflect brand strength and operational excellence.",
-    capabilities: ["Corporate HQ", "Office Parks", "Office Renovation", "Tenant Improvement"],
-  },
-  {
-    title: "Senior Living",
-    description: "Senior living facilities demand specialized design, safety systems, and operational planning. We build communities where seniors thrive with dignity and independence.",
-    capabilities: ["Assisted Living", "Memory Care", "Independent Living", "Regulatory Expertise"],
-  },
-];
 
 export default function MarketSectors() {
   return (
@@ -75,7 +33,7 @@ export default function MarketSectors() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               {markets.map((market, index) => (
                 <div key={index} className="space-y-6 pb-8 border-b border-gray-200 lg:border-b-0">
-                  <h2 className="text-3xl sm:text-4xl font-black text-gray-900">{market.title}</h2>
+                  <h2 className="text-3xl sm:text-4xl font-black text-gray-900">{market.name}</h2>
                   <p className="text-gray-600 text-lg leading-relaxed">{market.description}</p>
                   <div className="space-y-3">
                     <p className="text-sm font-semibold text-gray-700 uppercase tracking-wide">Key Capabilities</p>

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { CheckCircle, Loader2, Clock } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { markets } from "@/data/markets";
 
 const ProjectsCarousel = () => {
   const projects = [
@@ -168,6 +169,28 @@ const ProjectsCarousel = () => {
               </Link>
             </motion.div>
           ))}
+        </div>
+
+        <div className="mt-16">
+          <div className="mb-8">
+            <h3 className="text-3xl font-bold text-secondary mb-3">Market Sectors</h3>
+            <p className="text-lg text-muted max-w-3xl">
+              Explore the markets where Ashlaur delivers focused expertise and disciplined coordination.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {markets.map((market) => (
+              <Link
+                key={market.slug}
+                href={market.path}
+                className="group border-b border-gray-200 pb-3 text-lg font-semibold text-gray-900 transition-colors duration-300 hover:border-gray-900 hover:text-blue-700"
+              >
+                <span className="inline-block group-hover:underline underline-offset-4">
+                  {market.name}
+                </span>
+              </Link>
+            ))}
+          </div>
         </div>
 
         <motion.div

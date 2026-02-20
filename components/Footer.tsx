@@ -47,9 +47,8 @@ const Footer = () => {
           <div>
             <h4 className="text-xl font-bold text-white mb-6 uppercase tracking-wide">Get In Touch</h4>
             <div className="space-y-4 text-gray-400 mb-6">
-              <p>123 Construction Ave</p>
-              <p>Building City, ST 12345</p>
-              <p className="hover:text-blue-400 transition-colors duration-300 cursor-pointer">Phone: (555) 123-4567</p>
+              <p>1595 Valencia Ct Calumet City, IL 60409-5410 United States</p>
+              <p className="hover:text-blue-400 transition-colors duration-300 cursor-pointer">Phone: (773) 651-1900</p>
               <p className="hover:text-blue-400 transition-colors duration-300 cursor-pointer">Email: info@ashlaur.com</p>
             </div>
             <Link href="/contact" className="inline-block bg-blue-700 hover:bg-blue-900 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 hover:shadow-lg">
