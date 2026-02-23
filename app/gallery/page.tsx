@@ -20,9 +20,9 @@ const galleryImages = [
   { src: "/images/projects/research-lab/1.jpg", category: "education", title: "Research Lab", subtitle: "Education" },
   { src: "/images/projects/townhouse-community/1.jpg", category: "residential", title: "Townhouse Community", subtitle: "Residential" },
   { src: "/images/projects/indiana-university-raintree/1.jpg", category: "education", title: "Raintree Hall", subtitle: "Education" },
-  { src: "/images/projects/near-west-cps/1.jpg", category: "education", title: "CPS Offices", subtitle: "Education" },
-  { src: "/images/projects/foglia-residences/1.jpg", category: "residential", title: "Foglia Residences", subtitle: "Residential" },
-  { src: "/images/projects/westhaven-park/1.jpg", category: "hospitality", title: "Westhaven Park", subtitle: "Hospitality" },
+  { src: "/markets/education/projects/CPS-Near-West-Offices-1.jpg", category: "education", title: "CPS Offices", subtitle: "Education" },
+  { src: "/markets/affordable-housing/foglia-residences.jpg", category: "residential", title: "Foglia Residences", subtitle: "Residential" },
+  { src: "/markets/affordable-housing/westhaven-park.jpg", category: "hospitality", title: "Westhaven Park", subtitle: "Hospitality" },
 ];
 
 export default function Gallery() {
