@@ -38,7 +38,8 @@ const Hero = () => {
         progressLineRef.current.style.transform = `translateX(${clamped - 100}%)`;
       }
       if (excavatorRef.current) {
-        excavatorRef.current.style.transform = `translateX(calc(${clamped}vw - 50%))`;
+        excavatorRef.current.style.left = `${clamped}%`;
+        excavatorRef.current.style.transform = "translateX(-50%)";
       }
     };
 
@@ -102,7 +103,7 @@ const Hero = () => {
   }, [prefersReducedMotion]);
 
   return (
-    <section className="relative h-screen overflow-hidden group cursor-pointer" onClick={() => window.location.href = '/gallery'}>
+    <section className="relative h-screen w-full overflow-hidden group cursor-pointer" onClick={() => window.location.href = '/gallery'}>
       {/* Full-width, full-height background video */}
       <video
         ref={videoRef}
@@ -173,9 +174,9 @@ const Hero = () => {
         <div
           ref={excavatorRef}
           className="absolute -top-7 -translate-x-1/2 will-change-transform"
-          style={{ 
-            transform: 'translateX(-50%)',
-            left: 0
+          style={{
+            transform: "translateX(-50%)",
+            left: "0%",
           }}
         >
           {/* Highly detailed excavator */}

@@ -297,7 +297,7 @@ const FromTheField = () => {
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out"
                   priority
-                  sizes="100vw"
+                  sizes="100%"
                 />
               </div>
 
@@ -380,7 +380,7 @@ const FromTheField = () => {
                             alt={article.headline}
                             fill
                             className="object-cover transition-transform duration-700 ease-out"
-                            sizes="100vw"
+                            sizes="100%"
                             loading="lazy"
                           />
                         </div>

@@ -25,7 +25,7 @@ const ProjectGrid = ({ projects }: ProjectGridProps) => {
               alt={project.name}
               fill
               className="object-cover transition-transform duration-300 ease-in-out group-hover:scale-[1.02]"
-              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              sizes="(max-width: 768px) 100%, (max-width: 1024px) 50%, 33%"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100" />
             <div className="absolute inset-x-0 bottom-0 p-6 text-white opacity-0 translate-y-3 transition-all duration-300 ease-in-out group-hover:opacity-100 group-hover:translate-y-0">

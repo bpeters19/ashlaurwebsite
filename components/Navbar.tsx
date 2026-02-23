@@ -107,7 +107,7 @@ const Navbar = () => {
       ],
       feature: {
         title: "Safety & Quality Planning",
-        href: "/services#safety",
+        href: "/safety-quality-planning",
         image: "/images/about/about-bg.jpg",
         cta: "View Safety Approach",
       },
@@ -265,7 +265,7 @@ const Navbar = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 16 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
-              className="mega-menu fixed left-0 right-0 top-20 w-screen bg-white border-t border-blue-100 shadow-2xl z-40 min-h-[320px] overflow-hidden"
+              className="mega-menu fixed left-0 right-0 top-20 w-full bg-white border-t border-blue-100 shadow-2xl z-40 min-h-[320px] overflow-hidden"
               role="menu"
               aria-label={`${menuContent.title} Mega Menu`}
               tabIndex={-1}

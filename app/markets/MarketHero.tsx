@@ -15,7 +15,7 @@ const MarketHero = ({ title, subtitle, backgroundImage }: MarketHeroProps) => {
         fill
         priority
         className="object-cover object-center"
-        sizes="100vw"
+        sizes="100%"
       />
 
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/65" />
