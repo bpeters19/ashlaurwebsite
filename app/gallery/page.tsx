@@ -193,15 +193,18 @@ export default function Gallery() {
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-300"
                 />
-                {/* Dark Overlay */}
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-colors duration-300" />
 
-                {/* Text Overlay - Only on Hover */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <h3 className="text-white text-lg md:text-xl font-bold text-center px-4">
+                {/* Gradient Overlay - Always visible, darkens on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent group-hover:from-black/80 group-hover:via-black/40 transition-colors duration-300" />
+
+                {/* Text - Always visible, positioned bottom-left */}
+                <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 text-white">
+                  <h3 className="text-white text-base md:text-lg font-semibold leading-tight">
                     {image.title}
                   </h3>
-                  <p className="text-white/80 text-sm mt-2">{image.subtitle}</p>
+                  <p className="text-white/70 text-xs md:text-sm mt-2 tracking-wide uppercase">
+                    {image.subtitle}
+                  </p>
                 </div>
               </div>
             ))}
