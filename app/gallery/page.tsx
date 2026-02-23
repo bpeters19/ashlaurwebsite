@@ -168,23 +168,23 @@ export default function Gallery() {
       </aside>
 
       {/* Main Gallery Content */}
-      <main className="ml-64 flex-1 overflow-y-auto bg-white">
+      <main className="ml-64 flex-1 overflow-y-auto bg-black">
         <div className="p-8 lg:p-12">
           <div className="mb-8">
-            <h1 className="text-4xl md:text-5xl font-black text-gray-900 mb-2">
+            <h1 className="text-4xl md:text-5xl font-black text-white mb-2">
               Portfolio
             </h1>
-            <p className="text-lg text-gray-600">
+            <p className="text-lg text-gray-400">
               {filteredImages.length} {selectedCategory === "all" ? "projects" : `${selectedCategory} projects`}
             </p>
           </div>
 
-          {/* Masonry Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 auto-rows-max">
+          {/* Masonry Grid - Edge-to-Edge */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-0 auto-rows-max">
             {filteredImages.map((image, index) => (
               <div
                 key={index}
-                className="group relative overflow-hidden cursor-pointer bg-gray-200 aspect-square"
+                className="group relative overflow-hidden cursor-pointer w-full aspect-square"
                 onClick={() => setSelectedImage(image.src)}
               >
                 <Image
