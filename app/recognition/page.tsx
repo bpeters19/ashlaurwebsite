@@ -260,14 +260,14 @@ export default function Recognition() {
             </div>
 
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              <div className="p-6 rounded-xl bg-white border border-white/20 shadow-md hover:shadow-lg transition-all group">
+              <a href="https://www.fhpaschen.com/" target="_blank" rel="noopener noreferrer" className="p-6 rounded-xl bg-white border border-white/20 shadow-md hover:shadow-lg transition-all group">
                 <div className="flex flex-col items-center text-center space-y-3">
                   <div className="w-full h-24 flex items-center justify-center">
                     <img src="/images/partners/fhp/partners-02%20fhp.png" alt="FHP" className="max-w-full max-h-full object-contain" />
                   </div>
                   <h3 className="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">FHP</h3>
                 </div>
-              </div>
+              </a>
 
               <div className="p-6 rounded-xl bg-white border border-white/20 shadow-md hover:shadow-lg transition-all group">
                 <div className="flex flex-col items-center text-center space-y-3">

@@ -6,54 +6,9 @@ import { CheckCircle, Loader2, Clock } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { markets } from "@/data/markets";
+import { projects } from "@/data/projects";
 
 const ProjectsCarousel = () => {
-  const projects = [
-    {
-      name: "Westhaven Park Station – Mixed-Income Apartments",
-      description: "12-story mixed-income residential building with 96 apartment units and retail space. Built as part of the redevelopment of the former Henry Horner Homes site.",
-      image: "https://picsum.photos/400/300?random=40",
-      category: "Residential",
-      status: "completed"
-    },
-    {
-      name: "The Foglia Residences – Affordable Housing",
-      description: "76 affordable apartments for blind, visually impaired, disabled, and veterans. Nation's first LIHTC building designed for the blind community.",
-      image: "https://picsum.photos/400/300?random=41",
-      category: "Residential",
-      status: "completed"
-    },
-    {
-      name: "Downtown Office Complex",
-      description: "Modern 25-story office building with sustainable design features",
-      image: "https://picsum.photos/400/300?random=42",
-      category: "Commercial",
-      status: "ongoing"
-    },
-    {
-      name: "Highway Infrastructure Project",
-      description: "Major highway expansion and bridge construction",
-      image: "https://picsum.photos/400/300?random=43",
-      category: "Infrastructure",
-      status: "ongoing"
-    },
-    {
-      name: "Medical Center Expansion",
-      description: "State-of-the-art hospital wing with advanced medical facilities",
-      image: "https://picsum.photos/400/300?random=44",
-      category: "Healthcare",
-      status: "upcoming"
-    },
-    {
-      name: "University Campus Development",
-      description: "New academic buildings and student housing complex",
-      image: "https://picsum.photos/400/300?random=45",
-      category: "Education",
-      status: "upcoming"
-    }
-  ];
-
-
   const [selectedStatus, setSelectedStatus] = React.useState("completed");
   const [dropdownOpen, setDropdownOpen] = React.useState(false);
 
@@ -137,7 +92,7 @@ const ProjectsCarousel = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project, index) => (
             <motion.div
-              key={index}
+              key={project.slug}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
@@ -149,7 +104,7 @@ const ProjectsCarousel = () => {
                 <div className="relative h-64 overflow-hidden group-hover:brightness-110 transition-all duration-500">
                   <Image
                     src={project.image}
-                    alt={project.name}
+                    alt={project.title}
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-700"
                   />
@@ -160,7 +115,7 @@ const ProjectsCarousel = () => {
                       {project.category}
                     </span>
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-blue-700 transition-colors duration-300">{project.name}</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-blue-700 transition-colors duration-300">{project.title}</h3>
                   <p className="text-gray-600 mb-4 group-hover:text-gray-900 transition-colors duration-300">{project.description}</p>
                   <div className="text-blue-700 group-hover:text-blue-900 font-medium transition-colors duration-300">
                     View Project →

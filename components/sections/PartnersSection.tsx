@@ -19,7 +19,7 @@ const partners: Partner[] = [
   {
     name: "FHP Construction",
     logo: "/images/partners/fhp/partners-02%20fhp.png",
-    url: "https://www.fhp-inc.com",
+    url: "https://www.fhpaschen.com/",
   },
   {
     name: "Skender",

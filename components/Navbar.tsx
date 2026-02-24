@@ -126,7 +126,7 @@ const Navbar = () => {
           heading: "Highlights",
           links: [
             { name: "Featured Projects", href: "/projects" },
-            { name: "Project Map", href: "/gallery" },
+            { name: "Project Map", href: "/projects/map" },
           ],
         },
       ],
