@@ -38,22 +38,27 @@ const ProjectsCarousel = () => {
   );
 
   return (
-    <section className="py-20 bg-surface">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="bg-neutral-100 py-20">
+      <div className="max-w-6xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="mb-10"
         >
-          <h2 className="text-4xl font-bold text-secondary mb-4">Featured Projects</h2>
-          <p className="text-xl text-muted max-w-3xl mx-auto">
-            Discover our portfolio of award-winning construction projects.
-          </p>
-          <div className="mt-8 flex justify-center">
+          <div className="flex justify-between items-center mb-10">
+            <div>
+              <h2 className="text-4xl font-bold text-gray-900 mb-2">Featured Projects</h2>
+              <p className="text-lg text-gray-600 max-w-3xl">
+                Discover our portfolio of award-winning construction projects.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex justify-center mb-0">
             <div className="relative w-72">
               <button
-                className={`w-full flex items-center justify-between px-5 py-3 rounded-xl shadow-lg border border-blue-200 bg-surface text-lg font-semibold transition focus:outline-none ${statusOptions.find(o => o.value === selectedStatus)?.color}`}
+                className={`w-full flex items-center justify-between px-5 py-3 rounded-xl shadow-lg border border-blue-200 bg-white text-lg font-semibold transition focus:outline-none ${statusOptions.find(o => o.value === selectedStatus)?.color}`}
                 onClick={() => setDropdownOpen((open) => !open)}
                 type="button"
               >
@@ -68,12 +73,12 @@ const ProjectsCarousel = () => {
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  className="absolute left-0 right-0 mt-2 bg-surface border border-blue-200 rounded-xl shadow-xl z-10 overflow-hidden"
+                  className="absolute left-0 right-0 mt-2 bg-white border border-blue-200 rounded-xl shadow-xl z-10 overflow-hidden"
                 >
                   {statusOptions.map((option) => (
                     <li
                       key={option.value}
-                      className={`flex items-center px-5 py-3 cursor-pointer hover:bg-accent text-lg font-medium transition ${option.value === selectedStatus ? option.color + ' font-bold' : ''}`}
+                      className={`flex items-center px-5 py-3 cursor-pointer hover:bg-blue-50 text-lg font-medium transition ${option.value === selectedStatus ? option.color + ' font-bold' : ''}`}
                       onClick={() => {
                         setSelectedStatus(option.value);
                         setDropdownOpen(false);
@@ -89,47 +94,70 @@ const ProjectsCarousel = () => {
           </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project, index) => (
+        {/* Featured Projects Grid Layout - Skender style */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+          {/* Left: Large Featured Project */}
+          {filteredProjects.length > 0 && (
             <motion.div
-              key={project.slug}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="lg:col-span-2"
             >
               <Link 
                 href="/projects"
-                className="group block bg-blue-50 rounded-lg shadow-sm overflow-hidden hover:shadow-xl hover:scale-105 transition-all duration-500 cursor-pointer"
+                className="group block overflow-hidden hover:opacity-90 transition-all duration-500 cursor-pointer"
               >
-                <div className="relative h-64 overflow-hidden group-hover:brightness-110 transition-all duration-500">
+                <div className="relative w-full h-[520px] overflow-hidden rounded-lg shadow-lg">
                   <Image
-                    src={project.image}
-                    alt={project.title}
+                    src={filteredProjects[0].image}
+                    alt={filteredProjects[0].title}
                     fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-700"
+                    className="object-cover transition-transform duration-500 hover:scale-105"
                   />
-                </div>
-                <div className="p-6">
-                  <div className="flex items-center mb-2">
-                    <span className="bg-blue-700 group-hover:bg-blue-900 text-white px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300">
-                      {project.category}
-                    </span>
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-blue-700 transition-colors duration-300">{project.title}</h3>
-                  <p className="text-gray-600 mb-4 group-hover:text-gray-900 transition-colors duration-300">{project.description}</p>
-                  <div className="text-blue-700 group-hover:text-blue-900 font-medium transition-colors duration-300">
-                    View Project →
+                  <div className="absolute inset-0 bg-black/30" />
+                  <div className="absolute bottom-6 left-6 text-white text-2xl font-semibold">
+                    {filteredProjects[0].title}
                   </div>
                 </div>
               </Link>
             </motion.div>
-          ))}
+          )}
+
+          {/* Right: Stacked Secondary Projects */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="lg:col-span-1 flex flex-col gap-6"
+          >
+            {filteredProjects.slice(1, 3).map((project, index) => (
+              <Link 
+                key={project.slug}
+                href="/projects"
+                className="group block overflow-hidden hover:opacity-90 transition-all duration-500 cursor-pointer"
+              >
+                <div className="relative w-full h-[250px] overflow-hidden rounded-lg shadow-lg">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover transition-transform duration-500 hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-black/30" />
+                  <div className="absolute bottom-4 left-4 text-white text-lg font-semibold">
+                    {project.title}
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </motion.div>
         </div>
 
-        <div className="mt-16">
+        <div className="mt-12">
           <div className="mb-8">
-            <h3 className="text-3xl font-bold text-secondary mb-3">Market Sectors</h3>
-            <p className="text-lg text-muted max-w-3xl">
+            <h3 className="text-3xl font-bold text-gray-900 mb-2">Market Sectors</h3>
+            <p className="text-lg text-gray-600 max-w-3xl">
               Explore the markets where Ashlaur delivers focused expertise and disciplined coordination.
             </p>
           </div>
@@ -152,11 +180,11 @@ const ProjectsCarousel = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-center mt-12"
+          className="text-center mt-14"
         >
           <Link 
             href="/projects"
-            className="inline-block bg-blue-700 hover:bg-blue-900 text-white font-bold py-4 px-8 rounded transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer"
+            className="inline-block bg-blue-700 hover:bg-blue-900 text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer"
           >
             SEE OUR PROJECTS
           </Link>
