@@ -23,14 +23,14 @@ export default function ProjectMap({ height = "500px" }: ProjectMapProps) {
   return <ProjectMapClient height={height} />;
 }
 
-function ProjectMapClient({ height }) {
+function ProjectMapClient({ height }: { height: string }) {
   const router = useRouter();
-  const [MapContainer, setMapContainer] = useState(null);
-  const [TileLayer, setTileLayer] = useState(null);
-  const [Marker, setMarker] = useState(null);
-  const [Popup, setPopup] = useState(null);
-  const [L, setL] = useState(null);
-  const [hoveredProject, setHoveredProject] = useState(null);
+  const [MapContainer, setMapContainer] = useState<any>(null);
+  const [TileLayer, setTileLayer] = useState<any>(null);
+  const [Marker, setMarker] = useState<any>(null);
+  const [Popup, setPopup] = useState<any>(null);
+  const [L, setL] = useState<any>(null);
+  const [hoveredProject, setHoveredProject] = useState<any>(null);
 
   useEffect(() => {
     const loadLeaflet = async () => {
@@ -87,11 +87,11 @@ function ProjectMapClient({ height }) {
               click: () => {
                 router.push(`/gallery?openProject=${project.slug}`);
               },
-              mouseover: (e) => {
+              mouseover: (e: any) => {
                 setHoveredProject(project);
                 e.target.openPopup();
               },
-              mouseout: (e) => {
+              mouseout: (e: any) => {
                 setTimeout(() => {
                   e.target.closePopup();
                   setHoveredProject(null);
