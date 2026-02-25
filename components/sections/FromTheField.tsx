@@ -2,105 +2,51 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
 import { useRef, useEffect, useState } from "react";
 
 const FromTheField = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
   const articlesContainerRef = useRef<HTMLDivElement>(null);
-  const scrollVelocityRef = useRef(0);
   const scrollAnimationRef = useRef<number | null>(null);
-  const [isScrollable, setIsScrollable] = useState(false);
-  const [isAtEnd, setIsAtEnd] = useState(false);
-  const [isSectionActive, setIsSectionActive] = useState(false);
   const [isRightHovered, setIsRightHovered] = useState(false);
-  const [rightColumnHeight, setRightColumnHeight] = useState<number | null>(null);
-  const [featuredMinHeight, setFeaturedMinHeight] = useState<number | null>(null);
-  const featuredColumnRef = useRef<HTMLDivElement>(null);
-  const rightColumnRef = useRef<HTMLDivElement>(null);
-  const articlesListRef = useRef<HTMLDivElement>(null);
-  const firstArticleRef = useRef<HTMLAnchorElement>(null);
 
-  // Featured article displayed on the left
+  // Featured article on left
   const featuredArticle = {
     id: 1,
-    project: "Stroger Hospital",
-    headline: "Doors and Hardware Replacement Progresses Through Upper Floors",
-    summary: "Phase two installation reaches the 8th floor with precision scheduling keeping the project on track amid ongoing hospital operations.",
-    date: "February 3, 2026",
+    title: "Stroger Hospital - Doors and Hardware Replacement",
     image: "https://picsum.photos/seed/construction-site-field/1200/800",
   };
 
-  // Articles for the right-side stacked list
-  const articlesList = [
+  // Articles for right column (exactly 2)
+  const articles = [
     {
       id: 2,
-      project: "Friend Health Woodlawn",
-      headline: "Foundation and Structural Frame Complete",
-      summary: "Structural work wrapped ahead of schedule. Interior buildout begins next phase with MEP systems coordinated for installation.",
-      date: "January 28, 2026",
+      title: "Friend Health Woodlawn - Foundation Complete",
       image: "https://picsum.photos/seed/construction-site-2/1200/800",
     },
     {
       id: 3,
-      project: "Wicker Park Hyatt",
-      headline: "Interior Buildout Begins on Guest Room Floors",
-      summary: "Construction teams mobilize with finishes installation starting on floors 4-7. Project tracking ahead of milestone dates.",
-      date: "January 22, 2026",
+      title: "Wicker Park Hyatt - Interior Buildout Begins",
       image: "https://picsum.photos/seed/construction-site-3/1200/800",
-    },
-    {
-      id: 4,
-      project: "Cook County Health – Belmont Cragin",
-      headline: "MEP Rough-In Coordinated Completion Achieved",
-      summary: "Mechanical, electrical, and plumbing systems coordinated for seamless integration. Rough-in phase completed on schedule.",
-      date: "January 15, 2026",
-      image: "https://picsum.photos/seed/construction-site-4/1200/800",
-    },
-    {
-      id: 5,
-      project: "Lincoln Park Research Facility",
-      headline: "Steel Framing Reaches Full Height",
-      summary: "Structural steel erection milestone reached ahead of schedule. Concrete decking installation commences next week.",
-      date: "January 8, 2026",
-      image: "https://picsum.photos/seed/construction-site-5/1200/800",
-    },
-    {
-      id: 6,
-      project: "Downtown Office Complex",
-      headline: "Exterior Facade Installation Underway",
-      summary: "Curtain wall installation progressing across all 12 floors. High-performance glazing system meets sustainability targets.",
-      date: "December 28, 2025",
-      image: "https://picsum.photos/seed/construction-site-6/1200/800",
     },
   ];
 
-  // Smooth scroll with momentum and easing (premium physics)
+  // Smooth scroll with momentum and easing
   const applyScrollMomentum = (container: HTMLDivElement, initialDelta: number) => {
     if (scrollAnimationRef.current !== null) {
       cancelAnimationFrame(scrollAnimationRef.current);
     }
 
-    // Ultra-aggressive normalization for editorial reading pace
-    // Heavily reduces initial velocity to prevent any rapid movement
-    // Mouse wheel (120) → ~9.6 pixels; Fast mouse (200) → ~16 pixels (clamped)
-    // Trackpad (10) → ~0.8 pixels; Fast trackpad (80) → ~6.4 pixels
-    // Result: All inputs feel extremely controlled, intentional, editorial
     const normalizedDelta = Math.max(-16, Math.min(16, initialDelta * 0.08));
-    
-    // Ultra-heavy damping for premium editorial scroll feel
     let velocity = normalizedDelta;
-    const friction = 0.96; // Ultra-heavy friction (4% decay per frame) = slow, intentional, premium motion
-    const minVelocity = 0.02; // Very low threshold for ultra-smooth final deceleration
+    const friction = 0.96;
+    const minVelocity = 0.02;
     
-    // Easing acceleration: gradually accelerate to full velocity
     let frame = 0;
-    const easeInFrames = 2; // Smooth acceleration over 2 frames
+    const easeInFrames = 2;
     let easeMultiplier = 1;
     
     const animate = () => {
       if (Math.abs(velocity) > minVelocity) {
-        // Easing: gradually increase velocity in first few frames
         if (frame < easeInFrames) {
           easeMultiplier = (frame + 1) / easeInFrames;
           frame++;
@@ -110,12 +56,9 @@ const FromTheField = () => {
         const easedVelocity = velocity * easeMultiplier;
         const newScroll = currentScroll + easedVelocity;
         
-        // Clamp to container bounds (no overshoot)
         const maxScroll = container.scrollHeight - container.clientHeight;
         container.scrollTop = Math.max(0, Math.min(newScroll, maxScroll));
         
-        // Apply heavy friction for smooth, controlled deceleration
-        // This creates an ease-out curve that feels weighted and intentional
         velocity *= friction;
         
         scrollAnimationRef.current = requestAnimationFrame(animate);
@@ -127,82 +70,26 @@ const FromTheField = () => {
     animate();
   };
 
-  // Check if articles container can scroll
-  useEffect(() => {
-    const container = articlesContainerRef.current;
-    const section = sectionRef.current;
-    if (!container) return;
-
-    const checkScrollability = () => {
-      const canScroll = container.scrollHeight > container.clientHeight;
-      setIsScrollable(canScroll);
-      
-      // Check if at end
-      const isAtBottom = Math.abs(
-        container.scrollHeight - container.clientHeight - container.scrollTop
-      ) < 50;
-      setIsAtEnd(isAtBottom);
-    };
-
-    checkScrollability();
-    window.addEventListener("resize", checkScrollability);
-
-    // Monitor scroll position
-    const handleScroll = () => {
-      const isAtBottom = Math.abs(
-        container.scrollHeight - container.clientHeight - container.scrollTop
-      ) < 50;
-      setIsAtEnd(isAtBottom);
-    };
-
-    container.addEventListener("scroll", handleScroll);
-
-    // Intersection Observer to detect when section is in viewport
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsSectionActive(entry.isIntersecting);
-      },
-      { threshold: 0.1 }
-    );
-
-    if (section) {
-      observer.observe(section);
-    }
-
-    return () => {
-      window.removeEventListener("resize", checkScrollability);
-      container.removeEventListener("scroll", handleScroll);
-      observer.disconnect();
-    };
-  }, []);
-
-  // Scroll behavior scoped to right column only (hover required)
+  // Scroll behavior scoped to right column only
   useEffect(() => {
     const container = articlesContainerRef.current;
     if (!container) return;
 
-    // Disable scroll lock on mobile
     const isDesktop = window.innerWidth >= 1024;
     if (!isDesktop) return;
 
     const handleWheel = (e: WheelEvent) => {
-      if (!isRightHovered || !isScrollable) return;
+      if (!isRightHovered) return;
 
-      // Check if we're at the boundaries
       const atTop = container.scrollTop === 0;
       const atBottom = Math.abs(
         container.scrollHeight - container.clientHeight - container.scrollTop
       ) < 50;
 
-      // Prevent default scroll if in middle of list
       if (!atTop && !atBottom) {
         e.preventDefault();
-        // Apply smooth momentum-based scroll
         applyScrollMomentum(container, e.deltaY);
-      }
-      // Allow natural scroll if at top (scroll up) or at bottom (scroll down to next section)
-      else if ((atTop && e.deltaY < 0) || (atBottom && e.deltaY > 0)) {
-        // Allow default behavior
+      } else if ((atTop && e.deltaY < 0) || (atBottom && e.deltaY > 0)) {
         return;
       } else {
         e.preventDefault();
@@ -218,237 +105,89 @@ const FromTheField = () => {
         cancelAnimationFrame(scrollAnimationRef.current);
       }
     };
-  }, [isRightHovered, isScrollable, isAtEnd]);
-
-  // Lock visible count to 2 full sub-articles and align heights
-  useEffect(() => {
-    const featuredCol = featuredColumnRef.current;
-    const listEl = articlesListRef.current;
-    const firstArticleEl = firstArticleRef.current;
-    if (!featuredCol || !listEl || !firstArticleEl) return;
-
-    const updateHeights = () => {
-      const articleHeight = firstArticleEl.getBoundingClientRect().height;
-      if (!articleHeight) return;
-
-      const listStyles = window.getComputedStyle(listEl);
-      const paddingTop = parseFloat(listStyles.paddingTop || "0");
-      const paddingBottom = parseFloat(listStyles.paddingBottom || "0");
-      const baseHeight = Math.ceil(articleHeight * 2 + paddingTop + paddingBottom);
-
-      setFeaturedMinHeight(baseHeight);
-
-      const featuredHeight = featuredCol.getBoundingClientRect().height;
-      const alignedHeight = Math.ceil(Math.max(featuredHeight, baseHeight));
-      setRightColumnHeight(alignedHeight);
-    };
-
-    updateHeights();
-    const observer = new ResizeObserver(updateHeights);
-    observer.observe(featuredCol);
-    observer.observe(firstArticleEl);
-    observer.observe(listEl);
-
-    window.addEventListener("resize", updateHeights);
-    return () => {
-      window.removeEventListener("resize", updateHeights);
-      observer.disconnect();
-    };
-  }, []);
+  }, [isRightHovered]);
 
   return (
-    <section
-      ref={sectionRef}
-      className="w-full bg-white relative py-12 lg:py-14"
-    >
-      <div className="max-w-6xl mx-auto px-6 lg:px-8">
-        {/* Section Header - Corporate editorial style */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-10 lg:mb-12 flex-shrink-0 pb-6 lg:pb-8 border-b border-gray-100"
-        >
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-3 lg:mb-4 tracking-tight">
+    <section className="bg-neutral-100 py-16">
+      <div className="max-w-6xl mx-auto px-6">
+        
+        {/* Header */}
+        <div className="flex justify-between items-center mb-8">
+          <h2 className="text-5xl font-bold tracking-tight text-gray-900">
             From the Field
           </h2>
-          <p className="text-base lg:text-lg text-gray-600 max-w-3xl leading-relaxed font-light">
-            Project updates, milestones, and progress from our active jobsites.
-          </p>
-        </motion.div>
+        </div>
 
-        {/* Grid Layout - 3 columns (featured spans 2, sidebar spans 1) */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 items-start">
-          {/* LEFT COLUMN: Featured Article (Static) - Primary Content (2 columns) */}
-          <motion.div
-            initial={{ opacity: 0, x: -60 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.9 }}
-            ref={featuredColumnRef}
-            className="lg:col-span-2 flex flex-col"
-            style={featuredMinHeight ? { minHeight: featuredMinHeight } : undefined}
-          >
-            <a href="/projects" className="flex flex-col cursor-pointer group">
-              {/* Featured Image - Controlled height for balanced proportions */}
-              <div className="relative w-full h-[340px] lg:h-[360px] flex-shrink-0 overflow-hidden rounded-xl mb-6 lg:mb-8 shadow-xl group-hover:shadow-2xl transition-all duration-500">
-                <Image
-                  src={featuredArticle.image}
-                  alt={featuredArticle.headline}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out"
-                  priority
-                  sizes="100%"
-                />
-              </div>
+        {/* Grid Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 items-start">
 
-              {/* Featured Content - Large, prominent editorial styling */}
-              <div className="flex flex-col flex-shrink-0 max-w-full">
-                {/* Eyebrow label */}
-                <p className="text-xs lg:text-sm font-semibold text-gray-500 uppercase tracking-widest mb-3 lg:mb-4 group-hover:text-blue-600 transition-colors duration-300">
-                  {featuredArticle.project}
-                </p>
-
-                {/* Headline - DOMINANT, corporate editorial scale, fully clickable */}
-                <h3 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-3 lg:mb-4 leading-tight tracking-tight group-hover:text-blue-700 transition-colors duration-300">
-                  {featuredArticle.headline}
-                </h3>
-
-                {/* Summary - Larger, more readable, editorial weight */}
-                <p className="text-base lg:text-lg text-gray-700 mb-4 lg:mb-5 leading-relaxed font-light max-w-2xl group-hover:text-gray-900 transition-colors duration-300">
-                  {featuredArticle.summary}
-                </p>
-
-                {/* Metadata and CTA */}
-                <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 lg:gap-5">
-                  <p className="text-sm lg:text-base text-gray-500 font-light">
-                    {featuredArticle.date}
-                  </p>
-                  <div className="inline-flex items-center gap-2 text-gray-900 font-semibold text-base lg:text-lg group-hover:text-blue-600 transition-colors duration-300 w-fit">
-                    <span>Read more</span>
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                  </div>
-                </div>
-              </div>
-            </a>
-          </motion.div>
-
-          {/* RIGHT COLUMN: Secondary Articles Feed (Scrollable) - Narrow secondary column (30-35% width) */}
-          <motion.div
-            initial={{ opacity: 0, x: 60 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.9, delay: 0.1 }}
-            ref={rightColumnRef}
-            onMouseEnter={() => setIsRightHovered(true)}
-            onMouseLeave={() => setIsRightHovered(false)}
-            className="lg:col-span-1 flex flex-col overflow-hidden min-w-0 bg-gray-50 rounded-lg self-start w-full"
-            style={rightColumnHeight ? { height: rightColumnHeight } : undefined}
-          >
-            <div
-              ref={articlesContainerRef}
-              className="flex-1 overflow-y-scroll overflow-x-hidden"
-              style={{
-                WebkitOverflowScrolling: "touch",
-                msOverflowStyle: "none", // Hide scrollbar in IE/Edge
-                scrollbarWidth: "none", // Hide scrollbar in Firefox
-              }}
-            >
-              {/* Hide scrollbar CSS via style tag */}
-              <style>{`
-                div::-webkit-scrollbar {
-                  display: none;
-                }
-              `}</style>
-
-              {/* Secondary article feed - clear hierarchy and spacing */}
-              <div ref={articlesListRef} className="flex flex-col px-5 sm:px-6 lg:px-8 py-4 lg:py-6 gap-0">
-                {articlesList.map((article, index) => (
-                  <motion.a
-                    key={article.id}
-                    ref={index === 0 ? firstArticleRef : undefined}
-                    href="/projects"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.05 }}
-                    className="group cursor-pointer pb-4 lg:pb-5 border-b border-gray-200 last:border-b-0 hover:bg-white transition-all duration-300 px-0 block"
-                  >
-                    <div className="flex flex-col gap-2 lg:gap-2.5">
-                      {/* Article Thumbnail - Reduced height for secondary content */}
-                      <div className="w-full flex-shrink-0">
-                        <div className="relative w-full h-[140px] lg:h-[160px] overflow-hidden rounded-md group-hover:shadow-lg transition-all duration-300 group-hover:scale-105">
-                          <Image
-                            src={article.image}
-                            alt={article.headline}
-                            fill
-                            className="object-cover transition-transform duration-700 ease-out"
-                            sizes="100%"
-                            loading="lazy"
-                          />
-                        </div>
-                      </div>
-
-                      {/* Article Content - Clearly secondary to featured */}
-                      <div className="flex flex-col gap-2">
-                        <p className="text-xs font-semibold text-gray-500 uppercase tracking-widest group-hover:text-blue-600 transition-colors duration-300">
-                          {article.project}
-                        </p>
-
-                        <h4 className="text-sm lg:text-base font-bold text-gray-900 leading-snug group-hover:text-blue-700 transition-colors duration-300">
-                          {article.headline}
-                        </h4>
-
-                        <p className="text-xs lg:text-sm text-gray-600 leading-relaxed line-clamp-2 font-light group-hover:text-gray-900 transition-colors duration-300">
-                          {article.summary}
-                        </p>
-                      </div>
-
-                      {/* Metadata with CTA */}
-                      <div className="flex items-center justify-between mt-1">
-                        <p className="text-xs text-gray-500 font-light">
-                          {article.date}
-                        </p>
-                        <div className="inline-flex items-center gap-1 text-gray-900 font-semibold text-xs group-hover:text-blue-700 transition-colors duration-300">
-                          <span>Read</span>
-                          <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-300" />
-                        </div>
-                      </div>
-                    </div>
-                  </motion.a>
-                ))}
-
-                {/* End indicator - editorial style */}
-                <div className="py-4 lg:py-5 text-center">
-                  <p className="text-xs text-gray-400 font-light tracking-wide">End of Latest Updates</p>
-                </div>
+          {/* LEFT: Large Featured Card (2 columns) */}
+          <div className="lg:col-span-2">
+            <div className="relative w-full h-[500px] overflow-hidden group">
+              <Image
+                src={featuredArticle.image}
+                alt={featuredArticle.title}
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-black/30" />
+              <div className="absolute bottom-5 left-5 text-white text-lg font-semibold">
+                {featuredArticle.title}
               </div>
             </div>
-          </motion.div>
-        </div>
-      </div>
+          </div>
 
-      {/* Scroll indicator (desktop only, when there's content to scroll) */}
-      {isScrollable && !isAtEnd && isSectionActive && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 1 }}
-          className="absolute bottom-12 left-1/2 transform -translate-x-1/2 hidden lg:flex flex-col items-center gap-2 pointer-events-none"
-        >
-          <p className="text-xs text-gray-400 font-medium">Scroll to continue</p>
-          <svg
-            className="w-5 h-5 text-gray-400 animate-bounce"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+          {/* RIGHT: Two Stacked Cards with Scroll (1 column) */}
+          <div 
+            ref={articlesContainerRef}
+            onMouseEnter={() => setIsRightHovered(true)}
+            onMouseLeave={() => setIsRightHovered(false)}
+            className="flex flex-col gap-5 overflow-y-auto overflow-x-hidden h-[520px] lg:col-span-1"
+            style={{
+              WebkitOverflowScrolling: "touch",
+              msOverflowStyle: "none",
+              scrollbarWidth: "none",
+            }}
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 14l-7 7m0 0l-7-7m7 7V3"
-            />
-          </svg>
-        </motion.div>
-      )}
+            <style>{`
+              div::-webkit-scrollbar {
+                display: none;
+              }
+            `}</style>
+            
+            {/* Card 1 */}
+            <div className="relative w-full h-[240px] overflow-hidden group flex-shrink-0">
+              <Image
+                src={articles[0].image}
+                alt={articles[0].title}
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-black/30" />
+              <div className="absolute bottom-5 left-5 text-white text-lg font-semibold">
+                {articles[0].title}
+              </div>
+            </div>
+
+            {/* Card 2 */}
+            <div className="relative w-full h-[240px] overflow-hidden group flex-shrink-0">
+              <Image
+                src={articles[1].image}
+                alt={articles[1].title}
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-black/30" />
+              <div className="absolute bottom-5 left-5 text-white text-lg font-semibold">
+                {articles[1].title}
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
     </section>
   );
 };
