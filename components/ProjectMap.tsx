@@ -72,7 +72,7 @@ function ProjectMapClient({ height }) {
   }
 
   return (
-    <div style={{ width: "100%", height }}>
+    <div style={{ width: "100%", height, position: "relative", zIndex: 0 }}>
       <MapContainer center={center} zoom={11} style={{ height: "100%", width: "100%" }} scrollWheelZoom={true}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "embla-carousel-react": "^8.6.0",
-    "framer-motion": "^12.28.1",
+    "framer-motion": "^12.34.3",
     "leaflet": "^1.9.4",
     "lucide-react": "^0.562.0",
     "next": "16.1.4",

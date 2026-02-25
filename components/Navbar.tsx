@@ -85,7 +85,7 @@ const Navbar = () => {
       feature: {
         title: "Become a Subcontractor",
         href: "/about/become-a-subcontractor",
-        image: "/images/about/about-bg.jpg",
+        image: "/images/about/subcontractor-bg.png",
         cta: "Learn How",
       },
     },
@@ -108,7 +108,7 @@ const Navbar = () => {
       feature: {
         title: "Safety & Quality Planning",
         href: "/safety-quality-planning",
-        image: "/images/about/about-bg.jpg",
+        image: "/images/about/safety-quality-bg.png",
         cta: "View Safety Approach",
       },
     },
@@ -133,7 +133,7 @@ const Navbar = () => {
       feature: {
         title: "Project Gallery",
         href: "/gallery",
-        image: "/images/about/about-bg.jpg",
+        image: "/images/about/project-gallery-bg.png",
         cta: "View Gallery",
       },
     },
