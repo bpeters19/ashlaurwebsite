@@ -13,6 +13,7 @@ const FromTheField = () => {
   const featuredArticle = {
     id: 1,
     title: "Stroger Hospital - Doors and Hardware Replacement",
+    summary: "Phase two installation reaches the 8th floor with precision scheduling keeping the project on track amid ongoing hospital operations.",
     image: "https://picsum.photos/seed/construction-site-field/1200/800",
   };
 
@@ -21,11 +22,13 @@ const FromTheField = () => {
     {
       id: 2,
       title: "Friend Health Woodlawn - Foundation Complete",
+      summary: "Structural work wrapped ahead of schedule. Interior buildout begins next phase.",
       image: "https://picsum.photos/seed/construction-site-2/1200/800",
     },
     {
       id: 3,
       title: "Wicker Park Hyatt - Interior Buildout Begins",
+      summary: "Construction teams mobilize with finishes installation starting on floors 4-7.",
       image: "https://picsum.photos/seed/construction-site-3/1200/800",
     },
   ];
@@ -123,18 +126,20 @@ const FromTheField = () => {
 
           {/* LEFT: Large Featured Card (2 columns) */}
           <div className="lg:col-span-2">
-            <div className="relative w-full h-[500px] overflow-hidden group">
+            <div className="relative w-full h-[500px] overflow-hidden group rounded-lg">
               <Image
                 src={featuredArticle.image}
                 alt={featuredArticle.title}
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-black/30" />
-              <div className="absolute bottom-5 left-5 text-white text-lg font-semibold">
-                {featuredArticle.title}
-              </div>
             </div>
+            <h3 className="text-2xl font-bold text-gray-900 mt-5 mb-3">
+              {featuredArticle.title}
+            </h3>
+            <p className="text-base text-gray-600 leading-relaxed">
+              {featuredArticle.summary}
+            </p>
           </div>
 
           {/* RIGHT: Two Stacked Cards with Scroll (1 column) */}
@@ -142,7 +147,7 @@ const FromTheField = () => {
             ref={articlesContainerRef}
             onMouseEnter={() => setIsRightHovered(true)}
             onMouseLeave={() => setIsRightHovered(false)}
-            className="flex flex-col gap-5 overflow-y-auto overflow-x-hidden h-[520px] lg:col-span-1"
+            className="flex flex-col gap-5 overflow-y-auto overflow-x-hidden h-[600px] lg:col-span-1 pr-2"
             style={{
               WebkitOverflowScrolling: "touch",
               msOverflowStyle: "none",
@@ -155,34 +160,24 @@ const FromTheField = () => {
               }
             `}</style>
             
-            {/* Card 1 */}
-            <div className="relative w-full h-[240px] overflow-hidden group flex-shrink-0">
-              <Image
-                src={articles[0].image}
-                alt={articles[0].title}
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-black/30" />
-              <div className="absolute bottom-5 left-5 text-white text-lg font-semibold">
-                {articles[0].title}
+            {articles.map((article) => (
+              <div key={article.id} className="flex-shrink-0">
+                <div className="relative w-full h-[240px] overflow-hidden group rounded-lg">
+                  <Image
+                    src={article.image}
+                    alt={article.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                </div>
+                <h4 className="text-lg font-bold text-gray-900 mt-3 mb-2">
+                  {article.title}
+                </h4>
+                <p className="text-sm text-gray-600 leading-relaxed line-clamp-2">
+                  {article.summary}
+                </p>
               </div>
-            </div>
-
-            {/* Card 2 */}
-            <div className="relative w-full h-[240px] overflow-hidden group flex-shrink-0">
-              <Image
-                src={articles[1].image}
-                alt={articles[1].title}
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-black/30" />
-              <div className="absolute bottom-5 left-5 text-white text-lg font-semibold">
-                {articles[1].title}
-              </div>
-            </div>
-
+            ))}
           </div>
 
         </div>
