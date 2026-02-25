@@ -259,17 +259,17 @@ const FromTheField = () => {
   return (
     <section
       ref={sectionRef}
-      className="w-full bg-white relative"
+      className="w-full bg-white relative py-12 lg:py-14"
     >
-      <div className="flex flex-col">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8">
         {/* Section Header - Corporate editorial style */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="px-6 sm:px-8 lg:px-12 pt-12 lg:pt-16 pb-8 lg:pb-10 flex-shrink-0 border-b border-gray-100"
+          className="mb-10 lg:mb-12 flex-shrink-0 pb-6 lg:pb-8 border-b border-gray-100"
         >
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-4 lg:mb-5 tracking-tight">
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-3 lg:mb-4 tracking-tight">
             From the Field
           </h2>
           <p className="text-base lg:text-lg text-gray-600 max-w-3xl leading-relaxed font-light">
@@ -277,20 +277,20 @@ const FromTheField = () => {
           </p>
         </motion.div>
 
-        {/* Two-Column Layout - Turner Construction style (65-70% left, narrower right) */}
-        <div className="flex-1 flex gap-0 items-start">
-          {/* LEFT COLUMN: Featured Article (Static) - Primary Content (65-70% width) */}
+        {/* Grid Layout - 3 columns (featured spans 2, sidebar spans 1) */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 items-start">
+          {/* LEFT COLUMN: Featured Article (Static) - Primary Content (2 columns) */}
           <motion.div
             initial={{ opacity: 0, x: -60 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9 }}
             ref={featuredColumnRef}
-            className="w-2/3 flex flex-col px-6 sm:px-8 lg:px-12 py-6 lg:py-8 border-r border-gray-100"
+            className="lg:col-span-2 flex flex-col"
             style={featuredMinHeight ? { minHeight: featuredMinHeight } : undefined}
           >
             <a href="/projects" className="flex flex-col cursor-pointer group">
-              {/* Featured Image - Large hero image with generous aspect ratio */}
-              <div className="relative w-full flex-shrink-0 overflow-hidden rounded-xl mb-8 lg:mb-10 shadow-xl group-hover:shadow-2xl transition-all duration-500" style={{ aspectRatio: "16/9" }}>
+              {/* Featured Image - Controlled height for balanced proportions */}
+              <div className="relative w-full h-[340px] lg:h-[360px] flex-shrink-0 overflow-hidden rounded-xl mb-6 lg:mb-8 shadow-xl group-hover:shadow-2xl transition-all duration-500">
                 <Image
                   src={featuredArticle.image}
                   alt={featuredArticle.headline}
@@ -309,12 +309,12 @@ const FromTheField = () => {
                 </p>
 
                 {/* Headline - DOMINANT, corporate editorial scale, fully clickable */}
-                <h3 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-5 lg:mb-6 leading-tight tracking-tight group-hover:text-blue-700 transition-colors duration-300">
+                <h3 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-3 lg:mb-4 leading-tight tracking-tight group-hover:text-blue-700 transition-colors duration-300">
                   {featuredArticle.headline}
                 </h3>
 
                 {/* Summary - Larger, more readable, editorial weight */}
-                <p className="text-base lg:text-xl text-gray-700 mb-5 lg:mb-7 leading-relaxed font-light max-w-2xl group-hover:text-gray-900 transition-colors duration-300">
+                <p className="text-base lg:text-lg text-gray-700 mb-4 lg:mb-5 leading-relaxed font-light max-w-2xl group-hover:text-gray-900 transition-colors duration-300">
                   {featuredArticle.summary}
                 </p>
 
@@ -340,7 +340,7 @@ const FromTheField = () => {
             ref={rightColumnRef}
             onMouseEnter={() => setIsRightHovered(true)}
             onMouseLeave={() => setIsRightHovered(false)}
-            className="flex-1 flex flex-col overflow-hidden min-w-0 bg-gray-50 self-start"
+            className="lg:col-span-1 flex flex-col overflow-hidden min-w-0 bg-gray-50 rounded-lg self-start w-full"
             style={rightColumnHeight ? { height: rightColumnHeight } : undefined}
           >
             <div
@@ -360,7 +360,7 @@ const FromTheField = () => {
               `}</style>
 
               {/* Secondary article feed - clear hierarchy and spacing */}
-              <div ref={articlesListRef} className="flex flex-col px-5 sm:px-6 lg:px-8 py-6 lg:py-8 gap-0">
+              <div ref={articlesListRef} className="flex flex-col px-5 sm:px-6 lg:px-8 py-4 lg:py-6 gap-0">
                 {articlesList.map((article, index) => (
                   <motion.a
                     key={article.id}
@@ -369,12 +369,12 @@ const FromTheField = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.05 }}
-                    className="group cursor-pointer pb-5 lg:pb-6 border-b border-gray-200 last:border-b-0 hover:bg-white transition-all duration-300 px-0 block"
+                    className="group cursor-pointer pb-4 lg:pb-5 border-b border-gray-200 last:border-b-0 hover:bg-white transition-all duration-300 px-0 block"
                   >
-                    <div className="flex flex-col gap-2.5 lg:gap-3">
-                      {/* Article Thumbnail - Proportional rectangular for secondary content */}
+                    <div className="flex flex-col gap-2 lg:gap-2.5">
+                      {/* Article Thumbnail - Reduced height for secondary content */}
                       <div className="w-full flex-shrink-0">
-                        <div className="relative w-full overflow-hidden rounded-md group-hover:shadow-lg transition-all duration-300 group-hover:scale-105" style={{ aspectRatio: "16/9" }}>
+                        <div className="relative w-full h-[140px] lg:h-[160px] overflow-hidden rounded-md group-hover:shadow-lg transition-all duration-300 group-hover:scale-105">
                           <Image
                             src={article.image}
                             alt={article.headline}
@@ -416,7 +416,7 @@ const FromTheField = () => {
                 ))}
 
                 {/* End indicator - editorial style */}
-                <div className="py-6 lg:py-7 text-center">
+                <div className="py-4 lg:py-5 text-center">
                   <p className="text-xs text-gray-400 font-light tracking-wide">End of Latest Updates</p>
                 </div>
               </div>
