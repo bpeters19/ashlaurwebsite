@@ -17,7 +17,7 @@ const FromTheField = () => {
     image: "https://picsum.photos/seed/construction-site-field/1200/800",
   };
 
-  // Articles for right column (exactly 2)
+  // Articles for right column (exactly 4 with scroll)
   const articles = [
     {
       id: 2,
@@ -30,6 +30,18 @@ const FromTheField = () => {
       title: "Wicker Park Hyatt - Interior Buildout Begins",
       summary: "Construction teams mobilize with finishes installation starting on floors 4-7.",
       image: "https://picsum.photos/seed/construction-site-3/1200/800",
+    },
+    {
+      id: 4,
+      title: "Cook County Health - MEP Coordination Complete",
+      summary: "Mechanical, electrical, and plumbing systems coordinated for seamless integration.",
+      image: "https://picsum.photos/seed/construction-site-4/1200/800",
+    },
+    {
+      id: 5,
+      title: "Lincoln Park Research Facility - Steel Framing",
+      summary: "Structural steel erection milestone reached ahead of schedule.",
+      image: "https://picsum.photos/seed/construction-site-5/1200/800",
     },
   ];
 
@@ -147,7 +159,7 @@ const FromTheField = () => {
             ref={articlesContainerRef}
             onMouseEnter={() => setIsRightHovered(true)}
             onMouseLeave={() => setIsRightHovered(false)}
-            className="flex flex-col gap-5 overflow-y-auto overflow-x-hidden h-[600px] lg:col-span-1 pr-2"
+            className="flex flex-col gap-5 overflow-y-auto overflow-x-hidden h-[540px] lg:col-span-1 pr-2"
             style={{
               WebkitOverflowScrolling: "touch",
               msOverflowStyle: "none",
@@ -162,7 +174,7 @@ const FromTheField = () => {
             
             {articles.map((article) => (
               <div key={article.id} className="flex-shrink-0">
-                <div className="relative w-full h-[240px] overflow-hidden group rounded-lg">
+                <div className="relative w-full h-[200px] overflow-hidden group rounded-lg">
                   <Image
                     src={article.image}
                     alt={article.title}
@@ -170,7 +182,7 @@ const FromTheField = () => {
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
-                <h4 className="text-lg font-bold text-gray-900 mt-3 mb-2">
+                <h4 className="text-base font-bold text-gray-900 mt-3 mb-2">
                   {article.title}
                 </h4>
                 <p className="text-sm text-gray-600 leading-relaxed line-clamp-2">
