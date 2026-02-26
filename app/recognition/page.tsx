@@ -159,7 +159,7 @@ export default function Recognition() {
               <div className="p-6 rounded-xl bg-white/10 border border-white/20 shadow-md space-y-4 hover:bg-white/15 transition-colors">
                 <div className="flex items-center gap-4">
                   <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center flex-shrink-0">
-                    <img src="/images/certs/CHA+logo%20cert.png" alt="CHA Logo" className="w-full h-full object-contain p-2" />
+                    <img src="/images/certs/cha-logo-cert.png" alt="CHA Logo" className="w-full h-full object-contain p-2" />
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-secondary">CHA Certified</h3>
@@ -174,7 +174,7 @@ export default function Recognition() {
               <div className="p-6 rounded-xl bg-white/10 border border-white/20 shadow-md space-y-4 hover:bg-white/15 transition-colors">
                 <div className="flex items-center gap-4">
                   <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center flex-shrink-0">
-                    <img src="/images/certs/CMS+logo%20cert.jpg" alt="CMS Logo" className="w-full h-full object-contain p-2" />
+                    <img src="/images/certs/cms-logo-cert.jpg" alt="CMS Logo" className="w-full h-full object-contain p-2" />
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-secondary">CMS Certified</h3>
@@ -189,7 +189,7 @@ export default function Recognition() {
               <div className="p-6 rounded-xl bg-white/10 border border-white/20 shadow-md space-y-4 hover:bg-white/15 transition-colors">
                 <div className="flex items-center gap-4">
                   <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center flex-shrink-0">
-                    <img src="/images/certs/MBE+logo%20cert.png" alt="MBE Logo" className="w-full h-full object-contain p-2" />
+                    <img src="/images/certs/mbe-logo-cert.png" alt="MBE Logo" className="w-full h-full object-contain p-2" />
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-secondary">MBE Certified</h3>
@@ -204,7 +204,7 @@ export default function Recognition() {
               <div className="p-6 rounded-xl bg-white/10 border border-white/20 shadow-md space-y-4 hover:bg-white/15 transition-colors">
                 <div className="flex items-center gap-4">
                   <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center flex-shrink-0">
-                    <img src="/images/certs/DBE+logo%20cert.png" alt="DBE Logo" className="w-full h-full object-contain p-2" />
+                    <img src="/images/certs/dbe-logo-cert.png" alt="DBE Logo" className="w-full h-full object-contain p-2" />
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-secondary">DBE Certified</h3>
@@ -219,7 +219,7 @@ export default function Recognition() {
               <div className="p-6 rounded-xl bg-white/10 border border-white/20 shadow-md space-y-4 hover:bg-white/15 transition-colors">
                 <div className="flex items-center gap-4">
                   <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center flex-shrink-0">
-                    <img src="/images/certs/CDOT-Logo%20cert.png" alt="CDOT Logo" className="w-full h-full object-contain p-2" />
+                    <img src="/images/certs/cdot-logo-cert.png" alt="CDOT Logo" className="w-full h-full object-contain p-2" />
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-secondary">CDOT Approved</h3>

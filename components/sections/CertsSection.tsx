@@ -8,31 +8,31 @@ const CertsSection = () => {
   const certifications = [
     {
       name: "Chicago Housing Authority",
-      image: "/images/certs/CHA+logo%20cert.png",
+      image: "/images/certs/cha-logo-cert.png",
       description: "Chicago Housing Authority",
       href: "/certifications#cha"
     },
     {
       name: "CMS Certified",
-      image: "/images/certs/CMS+logo%20cert.jpg",
+      image: "/images/certs/cms-logo-cert.jpg",
       description: "Central Management Services",
       href: "/certifications#cms"
     },
     {
       name: "MBE Certified",
-      image: "/images/certs/MBE+logo%20cert.png",
+      image: "/images/certs/mbe-logo-cert.png",
       description: "Minority Business Enterprise",
       href: "/certifications#mbe"
     },
     {
       name: "DBE Certified",
-      image: "/images/certs/DBE+logo%20cert.png",
+      image: "/images/certs/dbe-logo-cert.png",
       description: "Disadvantaged Business Enterprise",
       href: "/certifications#dbe"
     },
     {
       name: "CDOT Approved",
-      image: "/images/certs/CDOT-Logo%20cert.png",
+      image: "/images/certs/cdot-logo-cert.png",
       description: "Chicago Department of Transportation",
       href: "/certifications#cdot"
     }
