@@ -147,7 +147,7 @@ const Hero = () => {
               Learn more <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link
-              href="/gallery"
+              href="/projects"
               className="group inline-flex items-center gap-2 text-lg font-semibold border-b-2 border-white hover:border-blue-300 transition-all duration-300 hover:gap-3 cursor-pointer hover:text-blue-200"
             >
               View Gallery <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
