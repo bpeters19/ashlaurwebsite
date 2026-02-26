@@ -1,62 +1,58 @@
-"use client";
-
-import { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
 import Navbar from "../../components/Navbar";
-import ProjectsCarousel from "../../components/sections/ProjectsCarousel";
-import ProjectMap from "../../components/ProjectMap";
 import Footer from "../../components/Footer";
+import { projects } from "@/data/projects";
+
+const tileSizes = [
+  "col-span-2 row-span-2",
+  "row-span-2",
+  "col-span-1 row-span-1",
+  "col-span-2 row-span-1",
+  "col-span-1 row-span-1",
+  "row-span-2",
+  "col-span-1 row-span-1",
+  "col-span-2 row-span-2",
+] as const;
+
+function getTileSizeClass(index: number, slug: string) {
+  const seed = (index + slug.length) % tileSizes.length;
+  return tileSizes[seed];
+}
 
 export default function Projects() {
-  const [mapOpen, setMapOpen] = useState(false);
+  const fillerCount = 6;
+  const fillerProjects = Array.from({ length: fillerCount }, (_, index) => projects[index % projects.length]);
+  const displayProjects = [...projects, ...fillerProjects];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-white">
       <Navbar />
-      <ProjectsCarousel />
-      
-      {/* Project Map Section - Clickable */}
-      <section className="bg-white border-t border-gray-200 py-20 cursor-pointer hover:bg-gray-50 transition" onClick={() => setMapOpen(true)}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="space-y-6">
-            <div>
-              <p className="text-sm font-semibold tracking-wide text-blue-600 uppercase mb-2">
-                Project Locations
-              </p>
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                Our work across the region
-              </h2>
-              <p className="text-lg text-gray-600 max-w-2xl">
-                Click to explore the geographic distribution of our completed projects throughout the Chicago area.
-              </p>
-            </div>
-            <button
-              className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition"
-            >
-              View Map
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* Map Modal */}
-      {mapOpen && (
-        <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-lg shadow-2xl w-full h-[90vh] max-w-6xl flex flex-col">
-            <div className="flex justify-between items-center p-6 border-b border-gray-200">
-              <h2 className="text-2xl font-bold text-gray-900">Project Locations</h2>
-              <button
-                onClick={() => setMapOpen(false)}
-                className="text-4xl text-gray-600 hover:text-gray-900 transition"
+      <main className="pt-20">
+        <section className="w-full">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-[250px] gap-2 grid-flow-dense">
+            {displayProjects.map((project, index) => (
+              <Link
+                key={`${project.slug}-${index}`}
+                href={`/projects/${project.slug}`}
+                className={`relative group overflow-hidden ${getTileSizeClass(index, project.slug)}`}
               >
-                ×
-              </button>
-            </div>
-            <div className="flex-1 overflow-hidden">
-              <ProjectMap height="100%" />
-            </div>
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                />
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition" />
+                <div className="absolute bottom-4 left-4 text-white font-semibold text-lg pr-4">
+                  {project.title}
+                </div>
+              </Link>
+            ))}
           </div>
-        </div>
-      )}
+        </section>
+      </main>
       
       <Footer />
     </div>
