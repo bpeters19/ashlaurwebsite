@@ -12,36 +12,36 @@ const FromTheField = () => {
   // Featured article on left
   const featuredArticle = {
     id: 1,
-    title: "Stroger Hospital - Doors and Hardware Replacement",
+    title: "JTDC Bathroom Renovations",
     summary: "Phase two installation reaches the 8th floor with precision scheduling keeping the project on track amid ongoing hospital operations.",
-    image: "https://picsum.photos/seed/construction-site-field/1200/800",
+    image: "/images/from-the-field/ccjc.jpg",
   };
 
   // Articles for right column (exactly 4 with scroll)
   const articles = [
     {
       id: 2,
-      title: "Friend Health Woodlawn - Foundation Complete",
+      title: "Park Forest Indianwood/Blackhawk Plaza",
       summary: "Structural work wrapped ahead of schedule. Interior buildout begins next phase.",
-      image: "https://picsum.photos/seed/construction-site-2/1200/800",
+      image: "/images/from-the-field/parkforest.jpg",
     },
     {
       id: 3,
-      title: "Wicker Park Hyatt - Interior Buildout Begins",
+      title: "Cook County Health – Buildings and Grounds Storage Trailer site developement",
       summary: "Construction teams mobilize with finishes installation starting on floors 4-7.",
-      image: "https://picsum.photos/seed/construction-site-3/1200/800",
+      image: "/images/from-the-field/cook-county-health-building.jpg",
     },
     {
       id: 4,
-      title: "Cook County Health - MEP Coordination Complete",
+      title: "Skokie Courthouse Project",
       summary: "Mechanical, electrical, and plumbing systems coordinated for seamless integration.",
-      image: "https://picsum.photos/seed/construction-site-4/1200/800",
+      image: "/images/from-the-field/skokie-court-house.jpg",
     },
     {
       id: 5,
-      title: "Lincoln Park Research Facility - Steel Framing",
+      title: "CCAB 1st Floor Toilet Project",
       summary: "Structural steel erection milestone reached ahead of schedule.",
-      image: "https://picsum.photos/seed/construction-site-5/1200/800",
+      image: "/images/from-the-field/cook-county-courthouse.jpg",
     },
   ];
 
@@ -143,6 +143,9 @@ const FromTheField = () => {
                 src={featuredArticle.image}
                 alt={featuredArticle.title}
                 fill
+                sizes="(min-width: 1024px) 66vw, 100vw"
+                quality={100}
+                priority
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
             </div>
