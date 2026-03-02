@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Image from "next/image";
 import { useRef, useEffect, useState } from "react";
 
@@ -9,43 +8,35 @@ const FromTheField = () => {
   const scrollAnimationRef = useRef<number | null>(null);
   const [isRightHovered, setIsRightHovered] = useState(false);
 
-  // Featured article on left
   const featuredArticle = {
     id: 1,
     title: "JTDC Bathroom Renovations",
-    summary: "Phase two installation reaches the 8th floor with precision scheduling keeping the project on track amid ongoing hospital operations.",
     image: "/images/from-the-field/ccjc.jpg",
   };
 
-  // Articles for right column (exactly 4 with scroll)
   const articles = [
     {
       id: 2,
       title: "Park Forest Indianwood/Blackhawk Plaza",
-      summary: "Structural work wrapped ahead of schedule. Interior buildout begins next phase.",
       image: "/images/from-the-field/parkforest.jpg",
     },
     {
       id: 3,
       title: "Cook County Health – Buildings and Grounds Storage Trailer site developement",
-      summary: "Construction teams mobilize with finishes installation starting on floors 4-7.",
       image: "/images/from-the-field/cook-county-health-building.jpg",
     },
     {
       id: 4,
       title: "Skokie Courthouse Project",
-      summary: "Mechanical, electrical, and plumbing systems coordinated for seamless integration.",
       image: "/images/from-the-field/skokie-court-house.jpg",
     },
     {
       id: 5,
       title: "CCAB 1st Floor Toilet Project",
-      summary: "Structural steel erection milestone reached ahead of schedule.",
       image: "/images/from-the-field/cook-county-courthouse.jpg",
     },
   ];
 
-  // Smooth scroll with momentum and easing
   const applyScrollMomentum = (container: HTMLDivElement, initialDelta: number) => {
     if (scrollAnimationRef.current !== null) {
       cancelAnimationFrame(scrollAnimationRef.current);
@@ -55,37 +46,36 @@ const FromTheField = () => {
     let velocity = normalizedDelta;
     const friction = 0.96;
     const minVelocity = 0.02;
-    
+
     let frame = 0;
     const easeInFrames = 2;
     let easeMultiplier = 1;
-    
+
     const animate = () => {
       if (Math.abs(velocity) > minVelocity) {
         if (frame < easeInFrames) {
           easeMultiplier = (frame + 1) / easeInFrames;
           frame++;
         }
-        
+
         const currentScroll = container.scrollTop;
         const easedVelocity = velocity * easeMultiplier;
         const newScroll = currentScroll + easedVelocity;
-        
+
         const maxScroll = container.scrollHeight - container.clientHeight;
         container.scrollTop = Math.max(0, Math.min(newScroll, maxScroll));
-        
+
         velocity *= friction;
-        
+
         scrollAnimationRef.current = requestAnimationFrame(animate);
       } else {
         scrollAnimationRef.current = null;
       }
     };
-    
+
     animate();
   };
 
-  // Scroll behavior scoped to right column only
   useEffect(() => {
     const container = articlesContainerRef.current;
     if (!container) return;
@@ -97,9 +87,8 @@ const FromTheField = () => {
       if (!isRightHovered) return;
 
       const atTop = container.scrollTop === 0;
-      const atBottom = Math.abs(
-        container.scrollHeight - container.clientHeight - container.scrollTop
-      ) < 50;
+      const atBottom =
+        Math.abs(container.scrollHeight - container.clientHeight - container.scrollTop) < 50;
 
       if (!atTop && !atBottom) {
         e.preventDefault();
@@ -123,22 +112,15 @@ const FromTheField = () => {
   }, [isRightHovered]);
 
   return (
-    <section className="bg-neutral-100 py-16">
-      <div className="max-w-6xl mx-auto px-6">
-        
-        {/* Header */}
+    <section className="bg-neutral-100 pt-8 pb-16">
+      <div className="max-w-7xl mx-auto px-6">
         <div className="flex justify-between items-center mb-8">
-          <h2 className="text-5xl font-bold tracking-tight text-gray-900">
-            From the Field
-          </h2>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-gray-900">From the Field</h2>
         </div>
 
-        {/* Grid Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 items-start">
-
-          {/* LEFT: Large Featured Card (2 columns) */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
           <div className="lg:col-span-2">
-            <div className="relative w-full h-[500px] overflow-hidden group rounded-lg">
+            <div className="relative w-full h-[460px] overflow-hidden group rounded-lg">
               <Image
                 src={featuredArticle.image}
                 alt={featuredArticle.title}
@@ -149,20 +131,14 @@ const FromTheField = () => {
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 mt-5 mb-3">
-              {featuredArticle.title}
-            </h3>
-            <p className="text-base text-gray-600 leading-relaxed">
-              {featuredArticle.summary}
-            </p>
+            <h3 className="text-2xl font-bold text-gray-900 mt-5">{featuredArticle.title}</h3>
           </div>
 
-          {/* RIGHT: Two Stacked Cards with Scroll (1 column) */}
-          <div 
+          <div
             ref={articlesContainerRef}
             onMouseEnter={() => setIsRightHovered(true)}
             onMouseLeave={() => setIsRightHovered(false)}
-            className="flex flex-col gap-5 overflow-y-auto overflow-x-hidden h-[540px] lg:col-span-1 pr-2"
+            className="flex flex-col gap-5 overflow-y-auto overflow-x-hidden h-[500px] lg:col-span-1 pr-2"
             style={{
               WebkitOverflowScrolling: "touch",
               msOverflowStyle: "none",
@@ -174,10 +150,10 @@ const FromTheField = () => {
                 display: none;
               }
             `}</style>
-            
+
             {articles.map((article) => (
               <div key={article.id} className="flex-shrink-0">
-                <div className="relative w-full h-[200px] overflow-hidden group rounded-lg">
+                <div className="relative w-full h-[185px] overflow-hidden group rounded-lg">
                   <Image
                     src={article.image}
                     alt={article.title}
@@ -185,18 +161,11 @@ const FromTheField = () => {
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
-                <h4 className="text-base font-bold text-gray-900 mt-3 mb-2">
-                  {article.title}
-                </h4>
-                <p className="text-sm text-gray-600 leading-relaxed line-clamp-2">
-                  {article.summary}
-                </p>
+                <h4 className="text-base font-bold text-gray-900 mt-3 mb-2">{article.title}</h4>
               </div>
             ))}
           </div>
-
         </div>
-
       </div>
     </section>
   );

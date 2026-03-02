@@ -24,9 +24,10 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    if (isOpen) setActiveDropdown(null);
-  }, [isOpen]);
+  const toggleMobileMenu = () => {
+    setActiveDropdown(null);
+    setIsOpen((prev) => !prev);
+  };
 
   useEffect(() => {
     const handlePointerDown = (event: MouseEvent | TouchEvent) => {
@@ -127,6 +128,7 @@ const Navbar = () => {
           links: [
             { name: "Featured Projects", href: "/projects" },
             { name: "Project Map", href: "/projects/map" },
+            { name: "Upcoming Projects", href: "/projects/upcoming" },
           ],
         },
       ],
@@ -247,7 +249,7 @@ const Navbar = () => {
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
             <button
-              onClick={() => setIsOpen(!isOpen)}
+              onClick={toggleMobileMenu}
               className="text-white hover:text-[#AFC6FF] p-3 transition-colors"
             >
               {isOpen ? <X className="h-8 w-8" /> : <Menu className="h-8 w-8" />}

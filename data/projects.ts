@@ -4,7 +4,13 @@ export type Project = {
   image: string;
   slug: string;
   description: string;
-  status: "completed" | "ongoing" | "upcoming";
+  status:
+    | "preconstruction"
+    | "permitting"
+    | "mobilization"
+    | "in-progress"
+    | "substantial-completion"
+    | "complete";
   location: {
     lat: number;
     lng: number;
@@ -19,7 +25,7 @@ export const projects: Project[] = [
     image: "/markets/hospitality/projects/zachary-hotel.png",
     slug: "zachary-hotel",
     description: "Boutique hospitality project delivered with tight sequencing and premium finishes.",
-    status: "completed",
+    status: "complete",
     location: {
       lat: 41.8781,
       lng: -87.6298,
@@ -32,7 +38,7 @@ export const projects: Project[] = [
     image: "/markets/healthcare/projects/Stroger%20Hospital%20Doors.png",
     slug: "stroger-hospital",
     description: "Hospital infrastructure upgrades executed in active care environments.",
-    status: "completed",
+    status: "complete",
     location: {
       lat: 41.8866,
       lng: -87.6627,
@@ -45,7 +51,7 @@ export const projects: Project[] = [
     image: "/markets/healthcare/projects/Friend-Health.png",
     slug: "friend-health-woodlawn",
     description: "Community health facility improvements with patient-first phasing controls.",
-    status: "completed",
+    status: "complete",
     location: {
       lat: 41.8044,
       lng: -87.5887,
@@ -58,7 +64,7 @@ export const projects: Project[] = [
     image: "/markets/education/projects/raintree.png",
     slug: "raintree-hall",
     description: "Academic facilities modernization with campus stakeholder coordination.",
-    status: "completed",
+    status: "complete",
     location: {
       lat: 41.7867,
       lng: -87.6210,
@@ -71,7 +77,7 @@ export const projects: Project[] = [
     image: "/markets/education/projects/CPS-Near-West-Offices-1.jpg",
     slug: "cps-offices",
     description: "Public education administration offices delivered under active occupancy constraints.",
-    status: "completed",
+    status: "complete",
     location: {
       lat: 41.8783,
       lng: -87.6289,
@@ -84,7 +90,7 @@ export const projects: Project[] = [
     image: "/markets/affordable-housing/foglia-residences.jpg",
     slug: "foglia-residences",
     description: "Affordable housing project built with structured inspection and closeout discipline.",
-    status: "completed",
+    status: "complete",
     location: {
       lat: 41.8910,
       lng: -87.6180,
@@ -97,7 +103,7 @@ export const projects: Project[] = [
     image: "/markets/affordable-housing/westhaven-park.jpg",
     slug: "westhaven-park",
     description: "Mixed-use community development with coordinated delivery across multiple scopes.",
-    status: "completed",
+    status: "complete",
     location: {
       lat: 41.7521,
       lng: -87.6555,
@@ -110,7 +116,7 @@ export const projects: Project[] = [
     image: "/markets/education/projects/CPS-Near-West-Offices-1.jpg",
     slug: "jtdc-bathroom-renovations",
     description: "Phased restroom renovation work coordinated to maintain day-to-day facility operations.",
-    status: "ongoing",
+    status: "in-progress",
     location: {
       lat: 41.8783,
       lng: -87.6289,
@@ -123,7 +129,7 @@ export const projects: Project[] = [
     image: "/markets/healthcare/projects/Stroger%20Hospital%20Doors.png",
     slug: "ccab-1st-floor-toilet",
     description: "First-floor toilet modernization delivered with controlled access and active-facility coordination.",
-    status: "ongoing",
+    status: "in-progress",
     location: {
       lat: 41.8866,
       lng: -87.6627,
@@ -133,10 +139,10 @@ export const projects: Project[] = [
   {
     title: "Cook County Health – Buildings and Grounds Storage Trailer Site Development",
     category: "Municipal",
-    image: "/markets/municipal/projects/Cook-County-Health-Storage-Trailer.jpg",
+    image: "/images/from-the-field/cook-county-health-building.jpg",
     slug: "cook-county-health-buildings-and-grounds-storage-trailer-site-development",
     description: "Site development for storage trailer facilities at Cook County Health buildings and grounds.",
-    status: "upcoming",
+    status: "preconstruction",
     location: {
       lat: 41.8783,
       lng: -87.6289,
@@ -146,10 +152,10 @@ export const projects: Project[] = [
   {
     title: "Park Forest Indianwood/Blackhawk Plaza",
     category: "Municipal",
-    image: "/markets/municipal/projects/Park-Forest-Indianwood-Blackhawk-Plaza.jpg",
+    image: "/images/from-the-field/parkforest.jpg",
     slug: "park-forest-indianwood-blackhawk-plaza",
     description: "Site development for Park Forest Indianwood/Blackhawk Plaza.",
-    status: "upcoming",
+    status: "preconstruction",
     location: {
       lat: 41.8783,
       lng: -87.6289,
@@ -157,12 +163,12 @@ export const projects: Project[] = [
     },
   },
   {
-    title: "Central Middle School - Interior Upgrades",
+    title: "Cafeteria Flooring & Door Replacement at Walsh School",
     category: "Municipal",
-    image: "/markets/municipal/projects/Central-Middle-School-Interior-Upgrades.jpg",
-    slug: "central-middle-school-interior-upgrades",
-    description: "Interior upgrades for Central Middle School.",
-    status: "upcoming",
+    image: "/markets/municipal/projects/walsh-elementary-school-lockport-il-primaryphoto.jpg",
+    slug: "cafeteria-flooring-door-replacement-at-walsh-school",
+    description: "Cafeteria flooring and door replacement at Walsh School.",
+    status: "preconstruction",
     location: {
       lat: 41.8783,
       lng: -87.6289,
