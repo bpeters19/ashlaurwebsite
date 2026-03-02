@@ -23,7 +23,7 @@ export default function UpcomingProjectsPage() {
 			<main className="pt-20">
 				<section className="bg-white border-b border-gray-200 py-8">
 					<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-						<h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">Upcoming Projects</h1>
+						<h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">Expanding Our Impact</h1>
 						<p className="text-lg text-gray-600">A preview of projects currently in preconstruction and mobilization.</p>
 					</div>
 				</section>
