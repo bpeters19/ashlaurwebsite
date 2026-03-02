@@ -125,7 +125,7 @@ export const projects: Project[] = [
   },
   {
     title: "CCAB 1st Floor Toilet",
-    category: "Healthcare",
+    category: "Municipal",
     image: "/markets/healthcare/projects/Stroger%20Hospital%20Doors.png",
     slug: "ccab-1st-floor-toilet",
     description: "First-floor toilet modernization delivered with controlled access and active-facility coordination.",
@@ -138,7 +138,7 @@ export const projects: Project[] = [
   },
   {
     title: "Cook County Health – Buildings and Grounds Storage Trailer Site Development",
-    category: "Municipal",
+    category: "Healthcare",
     image: "/images/from-the-field/cook-county-health-building.jpg",
     slug: "cook-county-health-buildings-and-grounds-storage-trailer-site-development",
     description: "Site development for storage trailer facilities at Cook County Health buildings and grounds.",
@@ -164,7 +164,7 @@ export const projects: Project[] = [
   },
   {
     title: "Cafeteria Flooring & Door Replacement at Walsh School",
-    category: "Municipal",
+    category: "Education",
     image: "/markets/municipal/projects/walsh-elementary-school-lockport-il-primaryphoto.jpg",
     slug: "cafeteria-flooring-door-replacement-at-walsh-school",
     description: "Cafeteria flooring and door replacement at Walsh School.",
