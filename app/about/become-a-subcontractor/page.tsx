@@ -113,7 +113,7 @@ export default function BecomeSubcontractor() {
                     <p className="text-gray-600 text-sm">$1M per occurrence / $2M aggregate</p>
                   </div>
                   <div className="border-l-4 border-blue-600 pl-4">
-                    <p className="font-semibold text-gray-900">Workers' Compensation</p>
+                    <p className="font-semibold text-gray-900">Workers&apos; Compensation</p>
                     <p className="text-gray-600 text-sm">Statutory limits (IL requirement)</p>
                   </div>
                   <div className="border-l-4 border-blue-600 pl-4">
@@ -166,7 +166,7 @@ export default function BecomeSubcontractor() {
                 <div className="text-4xl font-black text-blue-600">4</div>
                 <div>
                   <h3 className="text-2xl font-bold text-gray-900 mb-2">Partnership Approval</h3>
-                  <p className="text-gray-600">Once approved, you're added to our vendor network and eligible for upcoming project opportunities.</p>
+                  <p className="text-gray-600">Once approved, you&apos;re added to our vendor network and eligible for upcoming project opportunities.</p>
                 </div>
               </div>
             </div>

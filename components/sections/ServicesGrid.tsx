@@ -173,7 +173,7 @@ const ServicesGrid = () => {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {projectsData[selectedService]?.map((project, index) => (
-                    <a key={index} href="/projects" className="group cursor-pointer">
+                    <Link key={index} href="/projects" className="group cursor-pointer">
                       <div className="bg-gray-100 rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300">
                         <div className="h-40 relative overflow-hidden group-hover:brightness-110 transition-all duration-300">
                           <Image
@@ -188,7 +188,7 @@ const ServicesGrid = () => {
                           <p className="text-gray-600 text-sm group-hover:text-gray-900 transition-colors duration-300">{project.description}</p>
                         </div>
                       </div>
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </div>

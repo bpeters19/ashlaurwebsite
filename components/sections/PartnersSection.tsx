@@ -117,8 +117,8 @@ const PartnersSection = () => {
         className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mt-16 lg:mt-20"
       >
         <p className="text-base lg:text-lg text-gray-600 max-w-4xl leading-relaxed font-light">
-          Trusted by Chicago's leading general contractors, we bring specialized expertise 
-          to ambitious projects that shape our city's future.
+          Trusted by Chicago&apos;s leading general contractors, we bring specialized expertise 
+          to ambitious projects that shape our city&apos;s future.
         </p>
       </motion.div>
     </section>

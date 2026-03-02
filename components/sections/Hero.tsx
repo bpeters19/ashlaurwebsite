@@ -6,7 +6,10 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 const Hero = () => {
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  });
   const videoRef = useRef<HTMLVideoElement>(null);
   const progressLineRef = useRef<HTMLDivElement>(null);
   const excavatorRef = useRef<HTMLDivElement>(null);
@@ -20,7 +23,6 @@ const Hero = () => {
       setPrefersReducedMotion(event.matches);
     };
 
-    setPrefersReducedMotion(mediaQuery.matches);
     mediaQuery.addEventListener("change", handleMotionChange);
 
     return () => {

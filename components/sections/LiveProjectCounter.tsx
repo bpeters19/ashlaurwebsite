@@ -78,7 +78,7 @@ const LiveProjectCounter = () => {
         >
           <h2 className="text-4xl font-bold text-secondary mb-4">ASHLAUR by the Numbers</h2>
           <p className="text-xl text-muted max-w-2xl mx-auto">
-            Our track record speaks for itself. Here's what we've achieved together with our clients.
+            Our track record speaks for itself. Here&apos;s what we&apos;ve achieved together with our clients.
           </p>
         </motion.div>
 

@@ -255,7 +255,7 @@ export default function Recognition() {
             <div className="space-y-3">
               <h2 className="text-3xl font-bold text-secondary">Trusted Partners</h2>
               <p className="text-white/85 max-w-4xl">
-                We're proud to collaborate with industry-leading organizations that share our commitment to quality, safety, and innovation.
+                We&apos;re proud to collaborate with industry-leading organizations that share our commitment to quality, safety, and innovation.
               </p>
             </div>
 
@@ -321,7 +321,7 @@ export default function Recognition() {
             <div className="space-y-3 text-center">
               <h3 className="text-2xl font-semibold">Partner with AshLaur</h3>
               <p className="max-w-3xl mx-auto text-white/90">
-                Interested in learning more about our certifications or exploring partnership opportunities? Let's connect.
+                Interested in learning more about our certifications or exploring partnership opportunities? Let&apos;s connect.
               </p>
               <div className="inline-flex flex-wrap gap-3 justify-center">
                 <a

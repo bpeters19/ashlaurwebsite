@@ -93,7 +93,7 @@ const VideoTestimonials = () => {
                 </div>
 
                 <blockquote className="text-muted mb-4 italic">
-                  "{testimonial.quote}"
+                  &ldquo;{testimonial.quote}&rdquo;
                 </blockquote>
 
                 <div>

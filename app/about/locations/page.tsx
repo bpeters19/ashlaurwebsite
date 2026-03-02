@@ -50,7 +50,7 @@ export default function Locations() {
                     1595 Valencia Ct, Calumet City, IL 60409-5410, United States
                   </p>
                   <p className="text-gray-600 text-lg leading-relaxed mb-6">
-                    Our headquarters sits in the heart of Chicago's construction ecosystem. For over two decades, we've served as a trusted partner to Chicago's leading general contractors and owners.
+                    Our headquarters sits in the heart of Chicago&apos;s construction ecosystem. For over two decades, we&apos;ve served as a trusted partner to Chicago&apos;s leading general contractors and owners.
                   </p>
                 </div>
                 <div className="space-y-4">

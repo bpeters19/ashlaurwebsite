@@ -18,7 +18,7 @@ const ClientLogos = () => {
           className="text-center mb-12"
         >
           <h3 className="text-2xl font-bold text-secondary mb-2">Trusted by Industry Leaders</h3>
-          <p className="text-muted">We're proud to partner with these organizations</p>
+          <p className="text-muted">We&apos;re proud to partner with these organizations</p>
         </motion.div>
 
         <div className="relative overflow-hidden">

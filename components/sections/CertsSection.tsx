@@ -96,7 +96,7 @@ const CertsSection = () => {
             className="text-base lg:text-lg text-gray-600 max-w-4xl leading-relaxed font-light"
           >
             Our earned credentials and strategic certifications represent a commitment to excellence, 
-            safety, and partnership with Chicago's finest institutions. These are not badges—they are 
+            safety, and partnership with Chicago&apos;s finest institutions. These are not badges—they are 
             proof of capability and trust.
           </motion.p>
         </motion.div>
@@ -183,7 +183,7 @@ const CertsSection = () => {
           <p className="text-base lg:text-lg text-gray-700 leading-relaxed font-light">
             Each credential represents thousands of hours of dedicated work, rigorous compliance, 
             and a deep commitment to partnering with the institutions that build Chicago. 
-            We don't just hold these certifications—we earn them every single day.
+            We don&apos;t just hold these certifications—we earn them every single day.
           </p>
         </motion.div>
       </div>

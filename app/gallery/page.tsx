@@ -9,29 +9,28 @@ import { projects } from "@/data/projects";
 
 export default function Gallery() {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [openProjectSlug] = useState<string | null>(() => {
+    if (typeof window === "undefined") return null;
+    return new URLSearchParams(window.location.search).get("openProject");
+  });
+  const [selectedImage, setSelectedImage] = useState<string | null>(() => {
+    if (typeof window === "undefined") return null;
+    const slug = new URLSearchParams(window.location.search).get("openProject");
+    if (!slug) return null;
+    return projects.find((project) => project.slug === slug)?.image ?? null;
+  });
 
   // Scroll to project when hash changes
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const openProjectSlug = params.get('openProject');
-    
     if (openProjectSlug) {
-      const project = projects.find(p => p.slug === openProjectSlug);
-      if (project) {
-        // Open the lightbox modal with this project's image
-        setSelectedImage(project.image);
-        
-        // Also scroll to the project
-        setTimeout(() => {
-          const element = document.getElementById(openProjectSlug);
-          if (element) {
-            element.scrollIntoView({ behavior: "smooth", block: "center" });
-          }
-        }, 100);
-      }
+      setTimeout(() => {
+        const element = document.getElementById(openProjectSlug);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+      }, 100);
     }
-  }, []);
+  }, [openProjectSlug]);
 
   const categories = [
     { id: "all", name: "All Projects" },
@@ -90,7 +89,7 @@ export default function Gallery() {
         <section className="bg-white">
           <div className="mx-auto px-0">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-0 auto-rows-max">
-              {filteredProjects.map((project, index) => (
+              {filteredProjects.map((project) => (
                 <div
                   id={project.slug}
                   key={project.slug}

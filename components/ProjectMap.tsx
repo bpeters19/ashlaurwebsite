@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, type ComponentType } from "react";
 import { useRouter } from "next/navigation";
 import { projects } from "@/data/projects";
 import Image from "next/image";
@@ -10,38 +10,49 @@ interface ProjectMapProps {
 }
 
 export default function ProjectMap({ height = "500px" }: ProjectMapProps) {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  if (!isMounted) {
-    return <div style={{ width: "100%", height, backgroundColor: "#f0f0f0" }} />;
-  }
-
   return <ProjectMapClient height={height} />;
 }
 
 function ProjectMapClient({ height }: { height: string }) {
   const router = useRouter();
-  const [MapContainer, setMapContainer] = useState<any>(null);
-  const [TileLayer, setTileLayer] = useState<any>(null);
-  const [Marker, setMarker] = useState<any>(null);
-  const [Popup, setPopup] = useState<any>(null);
-  const [L, setL] = useState<any>(null);
-  const [hoveredProject, setHoveredProject] = useState<any>(null);
+  const [MapContainer, setMapContainer] = useState<ComponentType<Record<string, unknown>> | null>(null);
+  const [TileLayer, setTileLayer] = useState<ComponentType<Record<string, unknown>> | null>(null);
+  const [Marker, setMarker] = useState<ComponentType<Record<string, unknown>> | null>(null);
+  const [Popup, setPopup] = useState<ComponentType<Record<string, unknown>> | null>(null);
+  const [customIcon, setCustomIcon] = useState<unknown>(null);
 
   useEffect(() => {
     const loadLeaflet = async () => {
       const leaflet = await import("leaflet");
       const reactLeaflet = await import("react-leaflet");
-      
-      setL(leaflet.default);
-      setMapContainer(() => reactLeaflet.MapContainer);
-      setTileLayer(() => reactLeaflet.TileLayer);
-      setMarker(() => reactLeaflet.Marker);
-      setPopup(() => reactLeaflet.Popup);
+
+      setMapContainer(
+        () => reactLeaflet.MapContainer as unknown as ComponentType<Record<string, unknown>>
+      );
+      setTileLayer(() => reactLeaflet.TileLayer as unknown as ComponentType<Record<string, unknown>>);
+      setMarker(() => reactLeaflet.Marker as unknown as ComponentType<Record<string, unknown>>);
+      setPopup(() => reactLeaflet.Popup as unknown as ComponentType<Record<string, unknown>>);
+
+      const leafletInstance = (leaflet.default ?? leaflet) as {
+        icon: (options: {
+          iconUrl: string;
+          iconSize: [number, number];
+          iconAnchor: [number, number];
+          popupAnchor: [number, number];
+          className: string;
+        }) => unknown;
+      };
+
+      setCustomIcon(
+        leafletInstance.icon({
+          iconUrl:
+            "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23EA4335'%3E%3Cpath d='M12 0C7.58 0 4 3.58 4 8c0 5.25 8 16 8 16s8-10.75 8-16c0-4.42-3.58-8-8-8zm0 11c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z'/%3E%3C/svg%3E",
+          iconSize: [32, 40],
+          iconAnchor: [16, 40],
+          popupAnchor: [0, -40],
+          className: "custom-marker",
+        })
+      );
     };
 
     loadLeaflet();
@@ -55,17 +66,6 @@ function ProjectMapClient({ height }: { height: string }) {
     const avgLng = projects.reduce((sum, p) => sum + p.location.lng, 0) / projects.length;
     return [avgLat, avgLng];
   }, []);
-
-  const customIcon = useMemo(() => {
-    if (!L) return null;
-    return L.icon({
-      iconUrl: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23EA4335'%3E%3Cpath d='M12 0C7.58 0 4 3.58 4 8c0 5.25 8 16 8 16s8-10.75 8-16c0-4.42-3.58-8-8-8zm0 11c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z'/%3E%3C/svg%3E",
-      iconSize: [32, 40],
-      iconAnchor: [16, 40],
-      popupAnchor: [0, -40],
-      className: "custom-marker",
-    });
-  }, [L]);
 
   if (!MapContainer || !TileLayer || !Marker || !Popup || !customIcon) {
     return <div style={{ width: "100%", height, backgroundColor: "#f0f0f0" }} />;
@@ -87,20 +87,19 @@ function ProjectMapClient({ height }: { height: string }) {
               click: () => {
                 router.push(`/gallery?openProject=${project.slug}`);
               },
-              mouseover: (e: any) => {
-                setHoveredProject(project);
-                e.target.openPopup();
+              mouseover: (event: unknown) => {
+                const target = (event as { target?: { openPopup?: () => void } }).target;
+                target?.openPopup?.();
               },
-              mouseout: (e: any) => {
+              mouseout: (event: unknown) => {
                 setTimeout(() => {
-                  e.target.closePopup();
-                  setHoveredProject(null);
+                  const target = (event as { target?: { closePopup?: () => void } }).target;
+                  target?.closePopup?.();
                 }, 150);
               },
             }}
           >
             <Popup
-              onClose={() => setHoveredProject(null)}
               autoClose={false}
               closeButton={false}
               keepInView={true}

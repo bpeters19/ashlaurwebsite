@@ -4,7 +4,6 @@ import { useState } from "react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
-import Link from "next/link";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -43,7 +42,7 @@ export default function Contact() {
             <div className="space-y-6 text-white">
               <p className="text-sm font-semibold tracking-wide text-blue-400">GET IN TOUCH</p>
               <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black leading-[0.9] tracking-tighter">
-                Let's Build Together.
+                Let&apos;s Build Together.
               </h1>
               <p className="text-xl lg:text-2xl text-gray-300 max-w-4xl leading-relaxed">
                 Have a project in mind? Our team is ready to discuss your construction needs and deliver excellence every step of the way.
@@ -94,7 +93,7 @@ export default function Contact() {
                   <a href="mailto:info@ashlaur.com" className="text-blue-600 hover:text-blue-700 font-semibold">
                     info@ashlaur.com
                   </a>
-                  <p className="text-sm mt-2">We'll respond within 24 hours</p>
+                  <p className="text-sm mt-2">We&apos;ll respond within 24 hours</p>
                 </div>
               </div>
 
@@ -130,7 +129,7 @@ export default function Contact() {
             <form onSubmit={handleSubmit} className="bg-white p-8 sm:p-12 rounded-lg shadow-lg space-y-6">
               {submitted && (
                 <div className="p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
-                  Thank you for reaching out! We'll be in touch shortly.
+                  Thank you for reaching out! We&apos;ll be in touch shortly.
                 </div>
               )}
 
@@ -250,7 +249,7 @@ export default function Contact() {
           <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
             <h2 className="text-4xl md:text-5xl font-black mb-6">Ready to Get Started?</h2>
             <p className="text-xl text-white/90 mb-10">
-              Whether you need a consultation or ready to move forward with your project, we're here to help.
+              Whether you need a consultation or ready to move forward with your project, we&apos;re here to help.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a

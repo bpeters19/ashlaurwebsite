@@ -1,5 +1,6 @@
 import Navbar from "../../../components/Navbar";
 import Footer from "../../../components/Footer";
+import Link from "next/link";
 import { markets } from "@/data/markets";
 
 export const metadata = {
@@ -61,12 +62,12 @@ export default function MarketSectors() {
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
               Whether your project spans one market or multiple sectors, Ashlaur brings specialized expertise and proven delivery.
             </p>
-            <a 
+            <Link
               href="/projects"
               className="inline-block bg-blue-700 hover:bg-blue-900 text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 text-lg"
             >
               See Our Projects
-            </a>
+            </Link>
           </div>
         </section>
       </main>

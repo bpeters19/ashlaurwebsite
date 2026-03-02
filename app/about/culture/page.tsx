@@ -35,15 +35,15 @@ export default function Culture() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
                 <p>
-                  Ashlaur's culture is rooted in respect. We hire people who care about precision, safety, and partnership. We develop them. We trust them. We celebrate their wins.
+                  Ashlaur&apos;s culture is rooted in respect. We hire people who care about precision, safety, and partnership. We develop them. We trust them. We celebrate their wins.
                 </p>
                 <p>
-                  Every team member—from project managers to field supervisors—represents Ashlaur's commitment to accountability and excellence. They are our competitive advantage.
+                  Every team member—from project managers to field supervisors—represents Ashlaur&apos;s commitment to accountability and excellence. They are our competitive advantage.
                 </p>
               </div>
               <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
                 <p>
-                  We invest in our people because we know that great construction comes from great teams. Training, leadership development, safety certifications—we support each person's growth.
+                  We invest in our people because we know that great construction comes from great teams. Training, leadership development, safety certifications—we support each person&apos;s growth.
                 </p>
                 <p>
                   Our culture celebrates collaboration. We solve complex problems together. We support each other through challenges. We win as one team.
@@ -113,7 +113,7 @@ export default function Culture() {
                   Our people give back. They volunteer. They mentor. They shape the next generation of construction professionals.
                 </p>
                 <p>
-                  This isn't charity—it's part of who we are. Building stronger communities makes us stronger. Our success depends on the success of the places where we build.
+                  This isn&apos;t charity—it&apos;s part of who we are. Building stronger communities makes us stronger. Our success depends on the success of the places where we build.
                 </p>
               </div>
             </div>

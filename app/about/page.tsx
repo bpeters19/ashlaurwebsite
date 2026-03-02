@@ -1,5 +1,6 @@
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import Link from "next/link";
 
 export const metadata = {
   title: "About AshLaur - Building Tomorrow, Today",
@@ -124,12 +125,12 @@ export default function About() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mx-auto text-center space-y-6">
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900">Let&apos;s Build Something That Lasts.</h2>
-              <a
+              <Link
                 href="/projects"
                 className="inline-flex items-center justify-center px-8 py-4 bg-primary text-white font-semibold border border-primary hover:bg-secondary hover:border-secondary transition-colors"
               >
                 View Our Projects
-              </a>
+              </Link>
             </div>
           </div>
         </section>

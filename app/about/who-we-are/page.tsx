@@ -39,10 +39,10 @@ export default function WhoWeAre() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                   <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
                     <p>
-                      Ashlaur Construction was founded with a singular vision: to deliver construction excellence grounded in accountability, safety, and genuine partnership. From our earliest projects to today's most complex builds, we've maintained an unwavering commitment to precision, power, and performance.
+                      Ashlaur Construction was founded with a singular vision: to deliver construction excellence grounded in accountability, safety, and genuine partnership. From our earliest projects to today&apos;s most complex builds, we&apos;ve maintained an unwavering commitment to precision, power, and performance.
                     </p>
                     <p>
-                      What began as a commitment to a few trusted clients has grown into a force reshaping Chicago's built environment. We've earned our reputation not through promises, but through consistent delivery on every project phase.
+                      What began as a commitment to a few trusted clients has grown into a force reshaping Chicago&apos;s built environment. We&apos;ve earned our reputation not through promises, but through consistent delivery on every project phase.
                     </p>
                   </div>
                   <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
@@ -50,7 +50,7 @@ export default function WhoWeAre() {
                       Our growth is rooted in relationships. We work alongside general contractors, architects, owners, and subcontractors who share our values. Each partnership strengthens our capabilities and expands our impact.
                     </p>
                     <p>
-                      Today, Ashlaur stands as a backbone of Chicago's construction industry—trusted by leading firms to deliver on ambitious, high-stakes builds that shape our city's future.
+                      Today, Ashlaur stands as a backbone of Chicago&apos;s construction industry—trusted by leading firms to deliver on ambitious, high-stakes builds that shape our city&apos;s future.
                     </p>
                   </div>
                 </div>
@@ -79,7 +79,7 @@ export default function WhoWeAre() {
                   Our Vision
                 </h3>
                 <p className="text-gray-700 text-xl leading-relaxed">
-                  To be the construction partner of choice for ambitious projects that shape our city's future—recognized for integrity, innovation, and impact.
+                  To be the construction partner of choice for ambitious projects that shape our city&apos;s future—recognized for integrity, innovation, and impact.
                 </p>
                 <p className="text-gray-600 text-lg leading-relaxed">
                   Building Tomorrow, Today. Every project. Every partnership. Every promise.
@@ -105,19 +105,19 @@ export default function WhoWeAre() {
               <div className="space-y-4">
                 <h4 className="text-3xl font-bold text-gray-900">Safety as Foundation</h4>
                 <p className="text-gray-600 text-lg leading-relaxed">
-                  Zero incidents isn't a goal—it's the only outcome we accept. Safe projects are successful projects, and we never compromise on safety.
+                  Zero incidents isn&apos;t a goal—it&apos;s the only outcome we accept. Safe projects are successful projects, and we never compromise on safety.
                 </p>
               </div>
               <div className="space-y-4">
                 <h4 className="text-3xl font-bold text-gray-900">Partnership Models</h4>
                 <p className="text-gray-600 text-lg leading-relaxed">
-                  We collaborate, not cooperate. Our partners' success is our success. This mindset drives innovation and delivers results that matter.
+                  We collaborate, not cooperate. Our partners&apos; success is our success. This mindset drives innovation and delivers results that matter.
                 </p>
               </div>
               <div className="space-y-4">
                 <h4 className="text-3xl font-bold text-gray-900">Precision Execution</h4>
                 <p className="text-gray-600 text-lg leading-relaxed">
-                  Master planning meets flawless execution. Every detail matters. Every phase is optimized. That's how we deliver power and performance.
+                  Master planning meets flawless execution. Every detail matters. Every phase is optimized. That&apos;s how we deliver power and performance.
                 </p>
               </div>
             </div>

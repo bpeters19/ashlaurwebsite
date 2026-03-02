@@ -121,7 +121,7 @@ export default function Leadership() {
                 Leadership Rooted in Accountability.
               </h1>
               <p className="text-xl lg:text-2xl text-gray-300 max-w-4xl leading-relaxed">
-                Ashlaur's leadership team brings decades of experience, operational discipline, and a commitment to excellence across every project.
+                Ashlaur&apos;s leadership team brings decades of experience, operational discipline, and a commitment to excellence across every project.
               </p>
             </div>
           </div>
@@ -136,10 +136,10 @@ export default function Leadership() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
                 <p>
-                  Ashlaur's leadership is built on a foundation of accountability, safety, and partnership. Our executive team doesn't simply manage projects—they shepherd them through every phase with precision, power, and performance.
+                  Ashlaur&apos;s leadership is built on a foundation of accountability, safety, and partnership. Our executive team doesn&apos;t simply manage projects—they shepherd them through every phase with precision, power, and performance.
                 </p>
                 <p>
-                  We lead by example. Safety isn't negotiable. Accountability isn't optional. Partnership is our model, not our tagline.
+                  We lead by example. Safety isn&apos;t negotiable. Accountability isn&apos;t optional. Partnership is our model, not our tagline.
                 </p>
               </div>
               <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
@@ -200,7 +200,7 @@ export default function Leadership() {
               Ready to Partner?
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Our leadership is committed to building long-term partnerships. Let's discuss how Ashlaur can serve your next project.
+              Our leadership is committed to building long-term partnerships. Let&apos;s discuss how Ashlaur can serve your next project.
             </p>
             <a 
               href="/contact"

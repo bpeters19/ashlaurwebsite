@@ -100,7 +100,7 @@ export default function Leadership() {
             <div className="space-y-3 max-w-3xl">
               <h3 className="text-2xl font-semibold">Join our team</h3>
               <p className="text-white/90">
-                We're always looking for talented professionals who share our commitment to quality, 
+                We&apos;re always looking for talented professionals who share our commitment to quality, 
                 safety, and client service. Explore career opportunities at AshLaur.
               </p>
               <div className="inline-flex flex-wrap gap-3 pt-2">

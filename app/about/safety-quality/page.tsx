@@ -35,10 +35,10 @@ export default function SafetyQuality() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
                 <p>
-                  Safety isn't a program. Safety isn't a goal. Safety is a values-driven culture embedded in every decision, every day, on every project.
+                  Safety isn&apos;t a program. Safety isn&apos;t a goal. Safety is a values-driven culture embedded in every decision, every day, on every project.
                 </p>
                 <p>
-                  Zero incidents isn't aspirational for Ashlaur—it's the only acceptable outcome. From the foreman to the executive, everyone owns safety accountability.
+                  Zero incidents isn&apos;t aspirational for Ashlaur—it&apos;s the only acceptable outcome. From the foreman to the executive, everyone owns safety accountability.
                 </p>
               </div>
               <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
@@ -46,7 +46,7 @@ export default function SafetyQuality() {
                   We invest heavily in safety training, equipment, and systems. We implement industry-leading protocols. We foster a culture where every worker feels empowered to stop unsafe work.
                 </p>
                 <p>
-                  Safe projects are successful projects. Efficient projects. Profitable projects. This isn't theoretical—it's how we operate every single day.
+                  Safe projects are successful projects. Efficient projects. Profitable projects. This isn&apos;t theoretical—it&apos;s how we operate every single day.
                 </p>
               </div>
             </div>
@@ -136,7 +136,7 @@ export default function SafetyQuality() {
                   Our leadership team stays informed of regulatory changes. We participate in industry associations. We train our teams on evolving standards.
                 </p>
                 <p>
-                  Compliance isn't bureaucratic for us—it's fundamental to how we earn and maintain trust with every partner, owner, and worker.
+                  Compliance isn&apos;t bureaucratic for us—it&apos;s fundamental to how we earn and maintain trust with every partner, owner, and worker.
                 </p>
               </div>
             </div>
