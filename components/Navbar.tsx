@@ -103,6 +103,7 @@ const Navbar = () => {
             { name: "Construction Management", href: "/services/construction-management" },
             { name: "Design-Build", href: "/services/design-build" },
             { name: "Architect Services", href: "/services/architect-services" },
+            { name: "Subcontracting", href: "/about/become-a-subcontractor" },
           ],
         },
       ],

@@ -100,22 +100,22 @@ export default function About() {
 
         <section className="py-20 md:py-24 border-b border-gray-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-10 text-center">
-              <div className="space-y-2">
-                <p className="text-4xl md:text-5xl font-bold text-gray-900">100+</p>
-                <p className="text-sm md:text-base text-gray-700 uppercase tracking-wide">Projects Completed</p>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+              <div className="rounded-2xl bg-white p-8 md:p-10 shadow-lg space-y-2">
+                <p className="text-4xl md:text-5xl font-bold text-gray-900">500+</p>
+                <p className="text-sm md:text-base text-gray-700">Projects Completed</p>
               </div>
-              <div className="space-y-2">
-                <p className="text-4xl md:text-5xl font-bold text-gray-900">20+</p>
-                <p className="text-sm md:text-base text-gray-700 uppercase tracking-wide">Years Experience</p>
+              <div className="rounded-2xl bg-white p-8 md:p-10 shadow-lg space-y-2">
+                <p className="text-4xl md:text-5xl font-bold text-gray-900">25+</p>
+                <p className="text-sm md:text-base text-gray-700">Years Experience</p>
               </div>
-              <div className="space-y-2">
-                <p className="text-4xl md:text-5xl font-bold text-gray-900">6</p>
-                <p className="text-sm md:text-base text-gray-700 uppercase tracking-wide">States Served</p>
+              <div className="rounded-2xl bg-white p-8 md:p-10 shadow-lg space-y-2">
+                <p className="text-4xl md:text-5xl font-bold text-gray-900">30+</p>
+                <p className="text-sm md:text-base text-gray-700">Cities Served</p>
               </div>
-              <div className="space-y-2">
-                <p className="text-4xl md:text-5xl font-bold text-gray-900">90%</p>
-                <p className="text-sm md:text-base text-gray-700 uppercase tracking-wide">Repeat Clients</p>
+              <div className="rounded-2xl bg-white p-8 md:p-10 shadow-lg space-y-2">
+                <p className="text-4xl md:text-5xl font-bold text-gray-900">99%</p>
+                <p className="text-sm md:text-base text-gray-700">Repeat Clients</p>
               </div>
             </div>
           </div>

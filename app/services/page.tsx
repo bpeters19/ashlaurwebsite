@@ -28,6 +28,19 @@ export default function Services() {
       preview:
         "Design support and technical coordination that make documents buildable, coordinated, and ready for the field.",
     },
+    {
+      title: "Subcontracting",
+      href: "/about/become-a-subcontractor",
+      preview:
+        "ASHLAUR partners with general contractors and project teams to deliver specialized scopes with reliability and precision. Our team integrates seamlessly into active job sites, maintaining the same standards of safety, communication, and quality that define every ASHLAUR project.",
+      capabilities: [
+        "Interior remodeling and build-outs",
+        "Commercial and institutional project support",
+        "Coordination with general contractors and trade partners",
+        "Schedule-driven execution to keep projects on track",
+        "Quality control and safety-focused jobsite performance",
+      ],
+    },
   ];
 
   return (
@@ -48,6 +61,16 @@ export default function Services() {
               >
                 <h2 className="text-2xl font-semibold text-secondary mb-3">{service.title}</h2>
                 <p className="text-sm text-muted leading-relaxed">{service.preview}</p>
+                {"capabilities" in service && Array.isArray(service.capabilities) && service.capabilities.length > 0 && (
+                  <ul className="mt-4 space-y-1 text-sm text-muted leading-relaxed">
+                    {service.capabilities.map((capability) => (
+                      <li key={capability} className="flex items-start gap-2">
+                        <span className="mt-1">•</span>
+                        <span>{capability}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </Link>
             ))}
           </div>

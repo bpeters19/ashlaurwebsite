@@ -12,17 +12,24 @@ export default function BecomeSubcontractor() {
       <Navbar />
       <main className="pt-20">
         {/* Hero Section */}
-        <section className="relative overflow-hidden py-20 lg:py-28 bg-gradient-to-b from-gray-900 to-gray-800">
-          <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-            <div className="space-y-6 text-white">
-              <p className="text-sm font-semibold tracking-wide text-blue-400">PARTNERSHIP</p>
-              <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black leading-[0.9] tracking-tighter">
-                Become a Subcontractor
-              </h1>
-              <p className="text-xl lg:text-2xl text-gray-300 max-w-4xl leading-relaxed">
-                Partner with Ashlaur. Build with us. Grow with us.
-              </p>
-            </div>
+        <section className="relative isolate overflow-hidden">
+          <div
+            className="absolute inset-0 -z-10"
+            style={{
+              backgroundImage:
+                "linear-gradient(180deg, rgba(8,13,24,0.52) 0%, rgba(8,13,24,0.74) 55%, rgba(8,13,24,0.8) 100%), url('/images/about/about-bg.jpg')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          />
+          <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-28 lg:py-36">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-white">
+              Subcontracting
+            </h1>
+            <p className="mt-5 text-lg md:text-xl text-white/90 max-w-3xl font-medium">
+              Reliable trade partnerships that deliver quality work, schedule discipline, and seamless coordination across every phase of construction.
+            </p>
           </div>
         </section>
 
