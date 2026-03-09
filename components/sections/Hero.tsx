@@ -110,12 +110,14 @@ const Hero = () => {
       <video
         ref={videoRef}
         className="absolute inset-0 w-full h-full object-cover z-0 group-hover:brightness-110 transition-all duration-700"
-        src="/Ashlaur%20Intro%20Video.mp4"
         autoPlay
         muted
         loop
         playsInline
-      />
+      >
+        <source src="/Ashlaur%20Intro%20Video.mp4" type="video/mp4" />
+        <source src="/video.mp4.webm" type="video/webm" />
+      </video>
       {/* Dark overlay for readability - brighter on hover */}
       <div className="absolute inset-0 bg-black/40 group-hover:bg-black/35 z-10 transition-colors duration-700" />
       
