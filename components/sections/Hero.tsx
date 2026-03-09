@@ -110,7 +110,7 @@ const Hero = () => {
       <video
         ref={videoRef}
         className="absolute inset-0 w-full h-full object-cover z-0 group-hover:brightness-110 transition-all duration-700"
-        src="/video.mp4.webm"
+        src="/Ashlaur%20Intro%20Video.mp4"
         autoPlay
         muted
         loop
