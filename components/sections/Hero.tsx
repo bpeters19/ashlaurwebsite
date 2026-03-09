@@ -115,8 +115,8 @@ const Hero = () => {
         loop
         playsInline
       >
-        <source src="/Ashlaur%20Intro%20Video.mp4" type="video/mp4" />
         <source src="/video.mp4.webm" type="video/webm" />
+        <source src="/Ashlaur%20Intro%20Video.mp4" type="video/mp4" />
       </video>
       {/* Dark overlay for readability - brighter on hover */}
       <div className="absolute inset-0 bg-black/40 group-hover:bg-black/35 z-10 transition-colors duration-700" />
