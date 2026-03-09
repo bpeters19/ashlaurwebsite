@@ -35,14 +35,14 @@ export const projects: Project[] = [
   {
     title: "Stroger Hospital",
     category: "Healthcare",
-    image: "/markets/healthcare/projects/Stroger%20Hospital%20Doors.png",
+    image: "/markets/healthcare/projects/stroger.png",
     slug: "stroger-hospital",
     description: "Hospital infrastructure upgrades executed in active care environments.",
     status: "complete",
     location: {
-      lat: 41.8866,
-      lng: -87.6627,
-      address: "Chicago, IL",
+      lat: 41.8696,
+      lng: -87.6761,
+      address: "1969 W Ogden Ave, Chicago, IL 60612",
     },
   },
   {
@@ -144,9 +144,9 @@ export const projects: Project[] = [
     description: "Site development for storage trailer facilities at Cook County Health buildings and grounds.",
     status: "preconstruction",
     location: {
-      lat: 41.8783,
-      lng: -87.6289,
-      address: "Chicago, IL",
+      lat: 41.8717038,
+      lng: -87.6754992,
+      address: "1950 W Polk St, Chicago, IL 60612",
     },
   },
   {
@@ -157,9 +157,9 @@ export const projects: Project[] = [
     description: "Site development for Park Forest Indianwood/Blackhawk Plaza.",
     status: "preconstruction",
     location: {
-      lat: 41.8783,
-      lng: -87.6289,
-      address: "Chicago, IL",
+      lat: 41.4699234,
+      lng: -87.6822878,
+      address: "Blackhawk Dr, Park Forest, IL 60466",
     },
   },
   {
@@ -170,9 +170,9 @@ export const projects: Project[] = [
     description: "Cafeteria flooring and door replacement at Walsh School.",
     status: "preconstruction",
     location: {
-      lat: 41.8783,
-      lng: -87.6289,
-      address: "Chicago, IL",
+      lat: 41.6039758,
+      lng: -88.0348505,
+      address: "514 MacGregor Rd, Lockport, IL 60441",
     },
   },
 ];
