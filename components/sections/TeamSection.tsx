@@ -47,7 +47,7 @@ const TeamSection = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-secondary mb-4">Our Leadership Team</h2>
+          <h2 className="text-4xl font-bold text-secondary mb-4">Our Team</h2>
           <p className="text-xl text-muted max-w-3xl mx-auto mb-8">
             Meet the experienced professionals who drive our commitment to excellence.
           </p>

@@ -1,12 +1,9 @@
+"use client";
+
 import Navbar from "../../../components/Navbar";
 import Footer from "../../../components/Footer";
 import { motion } from "framer-motion";
 import { markets } from "@/data/markets";
-
-export const metadata = {
-  title: "Who We Are - Ashlaur Construction",
-  description: "Discover Ashlaur's company history, mission, and what sets us apart in the construction industry.",
-};
 
 export default function WhoWeAre() {
   return (
@@ -22,7 +19,7 @@ export default function WhoWeAre() {
                 Who We Are
               </h1>
               <p className="text-xl lg:text-2xl text-gray-300 max-w-4xl leading-relaxed">
-                Built on accountability, shaped by expertise, driven by partnership. Ashlaur Construction delivers leadership across every project phase.
+                Construction works best when it's built on trust. We work closely with owners, general contractors, architects, and subcontractors to bring projects from concept to completion with accountability, safety, and clear communication.
               </p>
             </div>
           </div>
@@ -39,18 +36,18 @@ export default function WhoWeAre() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                   <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
                     <p>
-                      Ashlaur Construction was founded with a singular vision: to deliver construction excellence grounded in accountability, safety, and genuine partnership. From our earliest projects to today&apos;s most complex builds, we&apos;ve maintained an unwavering commitment to precision, power, and performance.
+                      Ashlaur Construction began with a commitment to doing things the right way—focusing on relationships, reliability, and consistent performance.
                     </p>
                     <p>
-                      What began as a commitment to a few trusted clients has grown into a force reshaping Chicago&apos;s built environment. We&apos;ve earned our reputation not through promises, but through consistent delivery on every project phase.
+                      What started as a small operation serving trusted clients has grown into a team supporting projects across Chicago and surrounding communities. Through every stage of that growth, our focus has remained the same: building strong partnerships and delivering dependable results.
                     </p>
                   </div>
                   <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
                     <p>
-                      Our growth is rooted in relationships. We work alongside general contractors, architects, owners, and subcontractors who share our values. Each partnership strengthens our capabilities and expands our impact.
+                      Today, we continue to work alongside some of the industry's most respected contractors and project teams, contributing to projects that shape the city we call home.
                     </p>
                     <p>
-                      Today, Ashlaur stands as a backbone of Chicago&apos;s construction industry—trusted by leading firms to deliver on ambitious, high-stakes builds that shape our city&apos;s future.
+                      As a certified Minority and Disadvantaged Business Enterprise, we take pride in contributing to projects that strengthen our communities while building strong partnerships across the industry.
                     </p>
                   </div>
                 </div>
@@ -68,10 +65,10 @@ export default function WhoWeAre() {
                   Our Mission
                 </h3>
                 <p className="text-gray-700 text-xl leading-relaxed">
-                  To deliver construction leadership rooted in accountability, safety, and partnership across every project phase—transforming vision into extraordinary execution.
+                  To deliver construction services rooted in accountability, safety, and partnership—bringing experience and reliability to every project we support.
                 </p>
                 <p className="text-gray-600 text-lg leading-relaxed">
-                  We are committed to precision in planning, power in execution, and performance that exceeds expectation.
+                  We believe that strong relationships and disciplined execution are what turn good projects into successful ones.
                 </p>
               </div>
               <div className="space-y-6">
@@ -79,12 +76,60 @@ export default function WhoWeAre() {
                   Our Vision
                 </h3>
                 <p className="text-gray-700 text-xl leading-relaxed">
-                  To be the construction partner of choice for ambitious projects that shape our city&apos;s future—recognized for integrity, innovation, and impact.
+                  To be a trusted construction partner recognized for reliability, collaboration, and quality work that strengthens the communities we serve.
                 </p>
                 <p className="text-gray-600 text-lg leading-relaxed">
-                  Building Tomorrow, Today. Every project. Every partnership. Every promise.
+                  Every project is an opportunity to build something lasting—both in the built environment and in the partnerships behind it.
                 </p>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Certifications & Values */}
+        <section className="py-16 lg:py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0 }}
+                viewport={{ once: true }}
+                className="text-center"
+              >
+                <p className="text-sm font-semibold text-blue-600 uppercase tracking-wide">Certified MBE</p>
+                <p className="text-xs text-gray-600 mt-2">Minority-Owned Business Enterprise</p>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                viewport={{ once: true }}
+                className="text-center"
+              >
+                <p className="text-sm font-semibold text-blue-600 uppercase tracking-wide">Certified DBE</p>
+                <p className="text-xs text-gray-600 mt-2">Disadvantaged Business Enterprise</p>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="text-center"
+              >
+                <p className="text-sm font-semibold text-blue-600 uppercase tracking-wide">Safety Focused</p>
+                <p className="text-xs text-gray-600 mt-2">Zero incidents commitment</p>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                viewport={{ once: true }}
+                className="text-center"
+              >
+                <p className="text-sm font-semibold text-blue-600 uppercase tracking-wide">Relationship Driven</p>
+                <p className="text-xs text-gray-600 mt-2">Partnership-based approach</p>
+              </motion.div>
             </div>
           </div>
         </section>

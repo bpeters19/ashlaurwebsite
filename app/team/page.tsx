@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
 
-export default function AboutLeadershipRedirect() {
+export default function TeamPage() {
   redirect("/about/team");
 }

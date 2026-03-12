@@ -65,7 +65,7 @@ const Navbar = () => {
           heading: "Company",
           links: [
             { name: "Who We Are", href: "/about/who-we-are" },
-            { name: "Leadership", href: "/about/leadership" },
+            { name: "Team", href: "/about/team" },
           ],
         },
         {

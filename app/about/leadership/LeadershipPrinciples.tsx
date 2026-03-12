@@ -7,13 +7,13 @@ export function LeadershipPrinciples() {
     {
       title: "Vision-Driven Strategy",
       description:
-        "Our leadership sets a clear vision for every project and empowers teams to execute with precision and confidence.",
+        "Our team sets a clear vision for every project and empowers crews to execute with precision and confidence.",
       delay: 0,
     },
     {
-      title: "Safety Leadership",
+      title: "Safety Commitment",
       description:
-        "Safety culture starts at the top. Zero incidents isn't aspirational—it's the standard our leadership enforces daily.",
+        "Safety culture is shared by every role. Zero incidents isn&apos;t aspirational—it&apos;s the standard our team reinforces daily.",
       delay: 0.1,
     },
     {
@@ -25,7 +25,7 @@ export function LeadershipPrinciples() {
     {
       title: "Partnership Mentality",
       description:
-        "Our leaders collaborate with partners as equals, driving innovation and delivering solutions that matter.",
+        "Our team collaborates with partners as equals, driving innovation and delivering solutions that matter.",
       delay: 0.3,
     },
   ];

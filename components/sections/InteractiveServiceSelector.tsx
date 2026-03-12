@@ -75,7 +75,7 @@ const InteractiveServiceSelector = () => {
 
     if (propertyType === "commercial" && scope === "large") {
       return {
-        title: "Commercial Construction Package",
+        title: "Architect Services Package",
         services: ["Project Management", "Licensed Contractors", "Quality Assurance", "Timeline Guarantee"],
         estimatedTime: "3-6 months",
         contact: "Schedule a consultation",

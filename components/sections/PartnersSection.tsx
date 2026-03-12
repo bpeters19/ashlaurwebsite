@@ -85,9 +85,9 @@ const PartnersSection = () => {
         <div className="absolute right-0 top-0 bottom-0 w-32 lg:w-48 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
         {/* Scrolling Container */}
-        <div className="flex animate-infinite-scroll hover:pause-animation">
+        <div className="partner-marquee-track">
           {/* First Set of Logos */}
-          <div className="flex items-center justify-around min-w-max gap-16 lg:gap-24 px-8 lg:px-12">
+          <div className="partner-marquee-group">
             {partners.map((partner) => (
               <PartnerLogo
                 key={`original-${partner.name}`}
@@ -97,7 +97,7 @@ const PartnersSection = () => {
           </div>
 
           {/* Duplicate Set for Seamless Loop */}
-          <div className="flex items-center justify-around min-w-max gap-16 lg:gap-24 px-8 lg:px-12">
+          <div className="partner-marquee-group" aria-hidden="true">
             {partners.map((partner) => (
               <PartnerLogo
                 key={`duplicate-${partner.name}`}

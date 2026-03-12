@@ -25,9 +25,9 @@ const Footer = () => {
           <div>
             <h4 className="text-xl font-bold text-white mb-6 uppercase tracking-wide">Services</h4>
             <ul className="space-y-4">
-              <li><Link href="/services" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">Commercial Construction</Link></li>
-              <li><Link href="/services" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">Infrastructure</Link></li>
-              <li><Link href="/services" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">Renovation</Link></li>
+              <li><Link href="/services" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">Architect Services</Link></li>
+              <li><Link href="/services" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">Subcontracting</Link></li>
+              <li><Link href="/services" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">General Contracting</Link></li>
               <li><Link href="/projects" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">Project Management</Link></li>
             </ul>
           </div>
@@ -84,7 +84,7 @@ const Footer = () => {
             onClick={scrollToTop}
             className="text-gray-400 hover:text-blue-400 transition-colors duration-300 cursor-pointer font-semibold flex items-center gap-2 group"
           >
-            Back to Top ↑
+            Back to Top
             <span className="group-hover:translate-y-1 transition-transform duration-300">↑</span>
           </button>
         </div>

@@ -6,7 +6,9 @@ import { useRef, useEffect, useState } from "react";
 const FromTheField = () => {
   const articlesContainerRef = useRef<HTMLDivElement>(null);
   const scrollAnimationRef = useRef<number | null>(null);
+  const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [isRightHovered, setIsRightHovered] = useState(false);
+  const [isScrolling, setIsScrolling] = useState(false);
 
   const featuredArticle = {
     id: 1,
@@ -111,8 +113,28 @@ const FromTheField = () => {
     };
   }, [isRightHovered]);
 
+  useEffect(() => {
+    return () => {
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  const handleArticlesScroll = () => {
+    setIsScrolling(true);
+
+    if (scrollTimeoutRef.current) {
+      clearTimeout(scrollTimeoutRef.current);
+    }
+
+    scrollTimeoutRef.current = setTimeout(() => {
+      setIsScrolling(false);
+    }, 650);
+  };
+
   return (
-    <section className="bg-neutral-100 pt-8 pb-16">
+    <section className="bg-gradient-to-r from-blue-900/20 via-blue-800/15 to-blue-700/10 pt-8 pb-16">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex justify-between items-center mb-8">
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-gray-900">From the Field</h2>
@@ -136,18 +158,50 @@ const FromTheField = () => {
 
           <div
             ref={articlesContainerRef}
+            onScroll={handleArticlesScroll}
             onMouseEnter={() => setIsRightHovered(true)}
             onMouseLeave={() => setIsRightHovered(false)}
-            className="flex flex-col gap-5 overflow-y-auto overflow-x-hidden h-[500px] lg:col-span-1 pr-2"
+            className={`from-the-field-scroll flex flex-col gap-5 overflow-y-scroll overflow-x-hidden h-[500px] lg:col-span-1 pr-2 ${
+              isScrolling ? "is-scrolling" : ""
+            }`}
             style={{
               WebkitOverflowScrolling: "touch",
-              msOverflowStyle: "none",
-              scrollbarWidth: "none",
             }}
           >
             <style>{`
-              div::-webkit-scrollbar {
+              .from-the-field-scroll {
+                scrollbar-width: thin;
+                scrollbar-color: transparent transparent;
+              }
+
+              .from-the-field-scroll::-webkit-scrollbar {
+                width: 8px;
+              }
+
+              .from-the-field-scroll::-webkit-scrollbar-track {
+                background: transparent;
+              }
+
+              .from-the-field-scroll::-webkit-scrollbar-button {
                 display: none;
+                width: 0;
+                height: 0;
+              }
+
+              .from-the-field-scroll::-webkit-scrollbar-thumb {
+                background: rgba(107, 114, 128, 0);
+                border-radius: 9999px;
+                opacity: 0;
+                transition: opacity 260ms ease, background-color 260ms ease;
+              }
+
+              .from-the-field-scroll.is-scrolling {
+                scrollbar-color: rgba(107, 114, 128, 0.75) transparent;
+              }
+
+              .from-the-field-scroll.is-scrolling::-webkit-scrollbar-thumb {
+                background: rgba(107, 114, 128, 0.75);
+                opacity: 1;
               }
             `}</style>
 
