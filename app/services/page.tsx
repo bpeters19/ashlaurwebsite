@@ -1,13 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 
 export default function Services() {
   const [activeServiceIndex, setActiveServiceIndex] = useState(0);
-  const serviceSummaryRefs = useRef<Array<HTMLElement | null>>([]);
 
   const services = [
     {
@@ -95,10 +94,6 @@ export default function Services() {
 
   const activeService = services[activeServiceIndex];
 
-  const handleLearnMore = () => {
-    serviceSummaryRefs.current[activeServiceIndex]?.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
-
   return (
     <div className="min-h-screen">
       <Navbar />
@@ -150,53 +145,29 @@ export default function Services() {
                     </li>
                   ))}
                 </ul>
-              </div>
-              <div className="shrink-0">
-                <button
-                  type="button"
-                  onClick={handleLearnMore}
-                  aria-controls="service-summary"
-                  className="inline-flex items-center justify-center px-6 py-3 bg-primary hover:bg-secondary text-white font-semibold rounded-md transition-colors duration-300"
-                >
-                  Learn More
-                </button>
-              </div>
-            </div>
-          </section>
 
-          <section className="mt-10 space-y-6">
-            {services.map((service, index) => (
-              <section
-                key={service.sectionId}
-                id={service.sectionId}
-                ref={(element) => {
-                  serviceSummaryRefs.current[index] = element;
-                }}
-                className={`rounded-2xl border p-8 lg:p-10 scroll-mt-32 transition-all duration-300 ${
-                  activeServiceIndex === index
-                    ? "border-primary bg-surface shadow-lg"
-                    : "border-border bg-white"
-                }`}
-              >
-                <div className="space-y-4 max-w-4xl">
+                <div className="pt-4 space-y-4">
                   <p className="text-sm font-semibold tracking-wide text-primary uppercase">Service Summary</p>
-                  <h2 className="text-3xl md:text-4xl font-bold text-secondary">
-                    {service.title} Overview
-                  </h2>
-                  <p className="text-base md:text-lg text-muted leading-relaxed">
-                    {service.summary}
-                  </p>
+                  <p className="text-base md:text-lg text-muted leading-relaxed">{activeService.summary}</p>
                 </div>
 
-                <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
-                  {service.summaryPoints.map((item) => (
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+                  {activeService.summaryPoints.map((item) => (
                     <div key={item} className="rounded-xl bg-white border border-border p-5">
                       <p className="text-sm text-secondary font-medium leading-relaxed">{item}</p>
                     </div>
                   ))}
                 </div>
-              </section>
-            ))}
+              </div>
+              <div className="shrink-0">
+                <Link
+                  href={activeService.href}
+                  className="inline-flex items-center justify-center px-6 py-3 bg-primary hover:bg-secondary text-white font-semibold rounded-md transition-colors duration-300"
+                >
+                  Learn More
+                </Link>
+              </div>
+            </div>
           </section>
 
           <section className="mt-16 rounded-2xl bg-gradient-to-r from-primary to-secondary text-white p-8 md:p-10 text-center">
