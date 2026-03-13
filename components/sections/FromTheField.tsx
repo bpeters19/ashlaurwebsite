@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useRef, useEffect, useState } from "react";
 
 const FromTheField = () => {
@@ -14,6 +15,7 @@ const FromTheField = () => {
     id: 1,
     title: "JTDC Bathroom Renovations",
     image: "/images/from-the-field/ccjc.jpg",
+    slug: "jtdc-bathroom-renovations",
   };
 
   const articles = [
@@ -21,21 +23,25 @@ const FromTheField = () => {
       id: 2,
       title: "Park Forest Indianwood/Blackhawk Plaza",
       image: "/images/from-the-field/parkforest.jpg",
+      slug: "park-forest-indianwood-blackhawk-plaza",
     },
     {
       id: 3,
       title: "Cook County Health – Buildings and Grounds Storage Trailer site developement",
       image: "/images/from-the-field/cook-county-health-building.jpg",
+      slug: "cook-county-health-buildings-and-grounds-storage-trailer-site-development",
     },
     {
       id: 4,
       title: "Skokie Courthouse Project",
       image: "/images/from-the-field/skokie-court-house.jpg",
+      slug: "skokie-courthouse-project",
     },
     {
       id: 5,
       title: "CCAB 1st Floor Toilet Project",
       image: "/images/from-the-field/cook-county-courthouse.jpg",
+      slug: "ccab-1st-floor-toilet",
     },
   ];
 
@@ -137,23 +143,31 @@ const FromTheField = () => {
     <section className="bg-gradient-to-r from-blue-900/20 via-blue-800/15 to-blue-700/10 pt-8 pb-16">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex justify-between items-center mb-8">
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-gray-900">From the Field</h2>
+          <Link href="/projects/upcoming" className="group inline-block">
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 group-hover:text-blue-700 transition-colors duration-300">
+              From the Field
+            </h2>
+          </Link>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
           <div className="lg:col-span-2">
-            <div className="relative w-full h-[460px] overflow-hidden group rounded-lg">
-              <Image
-                src={featuredArticle.image}
-                alt={featuredArticle.title}
-                fill
-                sizes="(min-width: 1024px) 66vw, 100vw"
-                quality={100}
-                priority
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-            </div>
-            <h3 className="text-2xl font-bold text-gray-900 mt-5">{featuredArticle.title}</h3>
+            <Link href={`/projects/upcoming#${featuredArticle.slug}`} className="block group">
+              <div className="relative w-full h-[460px] overflow-hidden rounded-lg">
+                <Image
+                  src={featuredArticle.image}
+                  alt={featuredArticle.title}
+                  fill
+                  sizes="(min-width: 1024px) 66vw, 100vw"
+                  quality={100}
+                  priority
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mt-5 group-hover:text-blue-700 transition-colors duration-300">
+                {featuredArticle.title}
+              </h3>
+            </Link>
           </div>
 
           <div
@@ -207,15 +221,19 @@ const FromTheField = () => {
 
             {articles.map((article) => (
               <div key={article.id} className="flex-shrink-0">
-                <div className="relative w-full h-[185px] overflow-hidden group rounded-lg">
-                  <Image
-                    src={article.image}
-                    alt={article.title}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                </div>
-                <h4 className="text-base font-bold text-gray-900 mt-3 mb-2">{article.title}</h4>
+                <Link href={`/projects/upcoming#${article.slug}`} className="block group">
+                  <div className="relative w-full h-[185px] overflow-hidden rounded-lg">
+                    <Image
+                      src={article.image}
+                      alt={article.title}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </div>
+                  <h4 className="text-base font-bold text-gray-900 mt-3 mb-2 group-hover:text-blue-700 transition-colors duration-300">
+                    {article.title}
+                  </h4>
+                </Link>
               </div>
             ))}
           </div>

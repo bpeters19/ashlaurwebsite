@@ -15,7 +15,16 @@ const timelinePhases = [
 
 export default function UpcomingProjectsPage() {
 	const upcomingStatuses = new Set(["preconstruction", "permitting", "mobilization"]);
-	const upcomingProjects = projects.filter((project) => upcomingStatuses.has(project.status));
+	const fromTheFieldSlugs = new Set([
+		"jtdc-bathroom-renovations",
+		"park-forest-indianwood-blackhawk-plaza",
+		"cook-county-health-buildings-and-grounds-storage-trailer-site-development",
+		"skokie-courthouse-project",
+		"ccab-1st-floor-toilet",
+	]);
+	const upcomingProjects = projects.filter(
+		(project) => upcomingStatuses.has(project.status) || fromTheFieldSlugs.has(project.slug)
+	);
 
 	return (
 		<div className="min-h-screen bg-white">
@@ -39,7 +48,8 @@ export default function UpcomingProjectsPage() {
 									<Link
 										key={project.slug}
 										href={`/projects/${project.slug}`}
-										className="group block overflow-hidden rounded-lg"
+										id={project.slug}
+										className="group block overflow-hidden rounded-lg scroll-mt-28"
 									>
 										<div className="relative aspect-[4/3] w-full">
 											<Image

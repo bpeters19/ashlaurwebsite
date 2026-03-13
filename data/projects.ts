@@ -113,7 +113,7 @@ export const projects: Project[] = [
   {
     title: "JTDC Bathroom Renovations",
     category: "Education",
-    image: "/markets/education/projects/CPS-Near-West-Offices-1.jpg",
+    image: "/images/from-the-field/ccjc.jpg",
     slug: "jtdc-bathroom-renovations",
     description: "Phased restroom renovation work coordinated to maintain day-to-day facility operations.",
     status: "in-progress",
@@ -126,7 +126,7 @@ export const projects: Project[] = [
   {
     title: "CCAB 1st Floor Toilet",
     category: "Municipal",
-    image: "/markets/healthcare/projects/Stroger%20Hospital%20Doors.png",
+    image: "/images/from-the-field/cook-county-courthouse.jpg",
     slug: "ccab-1st-floor-toilet",
     description: "First-floor toilet modernization delivered with controlled access and active-facility coordination.",
     status: "in-progress",
@@ -160,6 +160,19 @@ export const projects: Project[] = [
       lat: 41.4699234,
       lng: -87.6822878,
       address: "Blackhawk Dr, Park Forest, IL 60466",
+    },
+  },
+  {
+    title: "Skokie Courthouse Project",
+    category: "Municipal",
+    image: "/images/from-the-field/skokie-court-house.jpg",
+    slug: "skokie-courthouse-project",
+    description: "Courthouse improvement project coordinated to maintain continuity in an active civic facility.",
+    status: "preconstruction",
+    location: {
+      lat: 42.038352,
+      lng: -87.750126,
+      address: "5600 Old Orchard Rd, Skokie, IL 60077",
     },
   },
   {
