@@ -151,11 +151,7 @@ const Navbar = () => {
 
   const handleLogoClick = () => {
     if (pathname === "/") {
-      // On home page, scroll to top
       window.scrollTo({ top: 0, behavior: "smooth" });
-    } else {
-      // On other pages, navigate to home
-      window.location.href = "/";
     }
   };
 
@@ -182,9 +178,10 @@ const Navbar = () => {
           <div className="flex justify-between h-20">
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <button 
+                <Link
+                  href="/"
                   onClick={handleLogoClick}
-                  className="logo-link hover:opacity-80 transition-opacity duration-300 bg-none border-none p-0 cursor-pointer"
+                  className="logo-link hover:opacity-80 transition-opacity duration-300 bg-none border-none p-0 cursor-pointer block"
                   aria-label="Home"
                 >
                   <Image
@@ -195,7 +192,7 @@ const Navbar = () => {
                     className="h-10 md:h-12 w-auto drop-shadow-lg"
                     priority
                   />
-                </button>
+                </Link>
               </div>
             </div>
 

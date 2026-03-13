@@ -10,31 +10,31 @@ const CertsSection = () => {
       name: "Chicago Housing Authority",
       image: "/images/certs/cha-logo-cert.png",
       description: "Chicago Housing Authority",
-      href: "/certifications#cha"
+      href: "https://www.thecha.org/voucher-holders"
     },
     {
       name: "CMS Certified",
       image: "/images/certs/cms-logo-cert.jpg",
       description: "Central Management Services",
-      href: "/certifications#cms"
+      href: "https://cms.illinois.gov/"
     },
     {
       name: "MBE Certified",
       image: "/images/certs/mbe-logo-cert.png",
       description: "Minority Business Enterprise",
-      href: "/certifications#mbe"
+      href: "https://www.chicago.gov/city/en/depts/dps/provdrs/cert/svcs/minority_and_womenownedbusinessenterprisecertificationmbewbe.html"
     },
     {
       name: "DBE Certified",
       image: "/images/certs/dbe-logo-cert.png",
       description: "Disadvantaged Business Enterprise",
-      href: "/certifications#dbe"
+      href: "https://www.chicago.gov/city/en/depts/dps/provdrs/cert/svcs/airport_concessionsdisadvantagedbusinessenterpriseacdbeordisadva.html"
     },
     {
       name: "CDOT Approved",
       image: "/images/certs/cdot-logo-cert.png",
       description: "Chicago Department of Transportation",
-      href: "/certifications#cdot"
+      href: "https://www.chicago.gov/city/en/depts/cdot.html"
     }
   ];
 

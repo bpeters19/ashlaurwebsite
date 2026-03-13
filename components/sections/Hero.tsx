@@ -105,7 +105,7 @@ const Hero = () => {
   }, [prefersReducedMotion]);
 
   return (
-    <section className="relative h-screen w-full overflow-hidden group cursor-pointer" onClick={() => window.location.href = '/gallery'}>
+    <section className="relative h-screen w-full overflow-hidden group">
       {/* Full-width, full-height background video */}
       <video
         ref={videoRef}
@@ -128,13 +128,11 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <Link href="/projects" className="group/headline inline-block">
-              <h1 className="text-[4rem] sm:text-[6rem] lg:text-[8rem] xl:text-[11rem] 2xl:text-[15rem] font-black leading-none tracking-tight mb-8 cursor-pointer hover:text-blue-300 transition-colors duration-500 hover:drop-shadow-lg">
-                We build with intent.
-                <br />
-                We deliver with certainty.
-              </h1>
-            </Link>
+            <h1 className="text-[4rem] sm:text-[6rem] lg:text-[8rem] xl:text-[11rem] 2xl:text-[15rem] font-black leading-none tracking-tight mb-8">
+              We build with intent.
+              <br />
+              We deliver with certainty.
+            </h1>
           </motion.div>
 
           <motion.div
@@ -144,7 +142,7 @@ const Hero = () => {
             className="flex flex-wrap items-center gap-6"
           >
             <Link
-              href="/about"
+              href="/services"
               className="group inline-flex items-center gap-2 text-lg font-semibold border-b-2 border-white hover:border-blue-300 transition-all duration-300 hover:gap-3 cursor-pointer hover:text-blue-200"
             >
               Learn more <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
