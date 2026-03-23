@@ -30,13 +30,10 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
     notFound();
   }
 
-  const upcomingStatuses = new Set<string>(["preconstruction", "permitting", "mobilization"]);
-  const projectGroup = upcomingStatuses.has(project.status)
-    ? projects.filter((item) => upcomingStatuses.has(item.status))
-    : projects;
-  const projectIndex = projectGroup.findIndex((item) => item.slug === project.slug);
-  const previousProject = projectGroup[(projectIndex - 1 + projectGroup.length) % projectGroup.length];
-  const nextProject = projectGroup[(projectIndex + 1) % projectGroup.length];
+  // Navigate through ALL featured projects regardless of status
+  const projectIndex = projects.findIndex((item) => item.slug === project.slug);
+  const previousProject = projects[(projectIndex - 1 + projects.length) % projects.length];
+  const nextProject = projects[(projectIndex + 1) % projects.length];
 
   const currentPhaseIndex = timelinePhases.findIndex((phase) => phase.key === project.status);
   const safePhaseIndex = currentPhaseIndex === -1 ? 0 : currentPhaseIndex;
