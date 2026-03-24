@@ -23,19 +23,19 @@ const FromTheField = () => {
       id: 2,
       title: "Park Forest Indianwood/Blackhawk Plaza",
       image: "/images/from-the-field/parkforest.jpg",
-      slug: "park-forest-indianwood-blackhawk-plaza",
+      slug: "park-forest-blackhawk-plaza",
     },
     {
       id: 3,
       title: "Cook County Health – Buildings and Grounds Storage Trailer site developement",
       image: "/images/from-the-field/cook-county-health-building.jpg",
-      slug: "cook-county-health-buildings-and-grounds-storage-trailer-site-development",
+      slug: "cook-county-health-storage-trailer-site",
     },
     {
       id: 4,
       title: "Skokie Courthouse Project",
       image: "/images/from-the-field/skokie-court-house.jpg",
-      slug: "skokie-courthouse-project",
+      slug: "skokie-courthouse",
     },
     {
       id: 5,

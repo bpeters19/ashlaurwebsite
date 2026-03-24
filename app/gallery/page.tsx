@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import Image from "next/image";
@@ -13,14 +14,7 @@ export default function Gallery() {
     if (typeof window === "undefined") return null;
     return new URLSearchParams(window.location.search).get("openProject");
   });
-  const [selectedImage, setSelectedImage] = useState<string | null>(() => {
-    if (typeof window === "undefined") return null;
-    const slug = new URLSearchParams(window.location.search).get("openProject");
-    if (!slug) return null;
-    return projects.find((project) => project.slug === slug)?.image ?? null;
-  });
 
-  // Scroll to project when hash changes
   useEffect(() => {
     if (openProjectSlug) {
       setTimeout(() => {
@@ -32,20 +26,16 @@ export default function Gallery() {
     }
   }, [openProjectSlug]);
 
-  const categories = [
-    { id: "all", name: "All Projects" },
-    { id: "commercial", name: "Commercial" },
-    { id: "residential", name: "Residential" },
-    { id: "hospitality", name: "Hospitality" },
-    { id: "healthcare", name: "Healthcare" },
-    { id: "education", name: "Education" },
-  ];
+  const categories = useMemo(
+    () => ["all", ...new Set(projects.map((project) => project.category))],
+    []
+  );
 
   const filteredProjects =
     selectedCategory === "all"
       ? projects
       : projects.filter(
-          (project) => project.category.toLowerCase() === selectedCategory
+          (project) => project.category === selectedCategory
         );
 
   return (
@@ -70,15 +60,15 @@ export default function Gallery() {
             <div className="flex flex-wrap justify-center gap-2">
               {categories.map((category) => (
                 <button
-                  key={category.id}
-                  onClick={() => setSelectedCategory(category.id)}
+                  key={category}
+                  onClick={() => setSelectedCategory(category)}
                   className={`px-4 py-2 text-sm rounded-full font-medium transition-all ${
-                    selectedCategory === category.id
+                    selectedCategory === category
                       ? "bg-blue-600 text-white shadow-md"
                       : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                   }`}
                 >
-                  {category.name}
+                  {category === "all" ? "All Projects" : category}
                 </button>
               ))}
             </div>
@@ -90,23 +80,22 @@ export default function Gallery() {
           <div className="mx-auto px-0">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-0 auto-rows-max">
               {filteredProjects.map((project) => (
-                <div
+                <Link
                   id={project.slug}
                   key={project.slug}
+                  href={`/projects/${project.slug}`}
                   className="group relative overflow-hidden cursor-pointer w-full aspect-square transition-all duration-300"
-                  onClick={() => setSelectedImage(project.image)}
                 >
                   <Image
-                    src={project.image}
+                    src={project.mainImage}
                     alt={project.title}
                     fill
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw"
                   />
 
-                  {/* Gradient Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent group-hover:from-black/70 group-hover:via-black/30 transition-colors duration-300" />
 
-                  {/* Text - Always visible */}
                   <div className="absolute bottom-6 left-6 text-white">
                     <h3 className="text-white text-base md:text-lg font-semibold leading-tight">
                       {project.title}
@@ -114,8 +103,11 @@ export default function Gallery() {
                     <p className="text-white/70 text-xs md:text-sm mt-2 tracking-wide uppercase">
                       {project.category}
                     </p>
+                    <p className="mt-3 text-xs font-medium uppercase tracking-[0.18em] text-white">
+                      View Project
+                    </p>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
 
@@ -149,29 +141,6 @@ export default function Gallery() {
           </div>
         </section>
       </main>
-
-      {/* Lightbox Modal */}
-      {selectedImage && (
-        <div
-          className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4"
-          onClick={() => setSelectedImage(null)}
-        >
-          <button
-            className="absolute top-6 right-6 text-white text-4xl hover:text-gray-300 transition-colors"
-            onClick={() => setSelectedImage(null)}
-          >
-            ×
-          </button>
-          <div className="relative w-full h-full max-w-6xl max-h-[90vh]">
-            <Image
-              src={selectedImage}
-              alt="Project preview"
-              fill
-              className="object-contain"
-            />
-          </div>
-        </div>
-      )}
 
       <Footer />
     </div>

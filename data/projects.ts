@@ -1,30 +1,43 @@
+export type ProjectStatus =
+  | "preconstruction"
+  | "permitting"
+  | "mobilization"
+  | "in-progress"
+  | "substantial-completion"
+  | "complete";
+
+export type ProjectLocation = {
+  lat: number;
+  lng: number;
+  address: string;
+};
+
 export type Project = {
   title: string;
-  category: string;
-  image: string;
   slug: string;
+  category: string;
+  mainImage: string;
+  galleryImages: string[];
   description: string;
-  status:
-    | "preconstruction"
-    | "permitting"
-    | "mobilization"
-    | "in-progress"
-    | "substantial-completion"
-    | "complete";
-  location: {
-    lat: number;
-    lng: number;
-    address: string;
-  };
+  location?: ProjectLocation;
+  scope?: string;
+  status: ProjectStatus;
 };
+
+const COMING_SOON_IMAGE = "/images/projects/coming-soon.svg";
+
+const buildGallery = (mainImage: string) => [mainImage, COMING_SOON_IMAGE];
 
 export const projects: Project[] = [
   {
     title: "Zachary Hotel",
-    category: "Hospitality",
-    image: "/markets/hospitality/projects/zachary-hotel.png",
     slug: "zachary-hotel",
-    description: "Boutique hospitality project delivered with tight sequencing and premium finishes.",
+    category: "Hospitality",
+    mainImage: "/markets/hospitality/projects/zachary-hotel.png",
+    galleryImages: buildGallery("/markets/hospitality/projects/zachary-hotel.png"),
+    description:
+      "Boutique hospitality work delivered with tight sequencing, polished finishes, and active-operations coordination across guest-facing areas.",
+    scope: "Interior renovation, finish coordination, and phased hospitality upgrades.",
     status: "complete",
     location: {
       lat: 41.8781,
@@ -34,10 +47,13 @@ export const projects: Project[] = [
   },
   {
     title: "Stroger Hospital",
-    category: "Healthcare",
-    image: "/markets/healthcare/projects/stroger.png",
     slug: "stroger-hospital",
-    description: "Hospital infrastructure upgrades executed in active care environments.",
+    category: "Healthcare",
+    mainImage: "/markets/healthcare/projects/stroger.png",
+    galleryImages: buildGallery("/markets/healthcare/projects/stroger.png"),
+    description:
+      "Hospital infrastructure and door upgrades executed in active care environments with strict infection-control and patient-flow planning.",
+    scope: "Healthcare infrastructure improvements, door replacements, and phased facility work.",
     status: "complete",
     location: {
       lat: 41.8696,
@@ -47,10 +63,13 @@ export const projects: Project[] = [
   },
   {
     title: "Friend Health Woodlawn",
-    category: "Healthcare",
-    image: "/markets/healthcare/projects/Friend-Health.png",
     slug: "friend-health-woodlawn",
-    description: "Community health facility improvements with patient-first phasing controls.",
+    category: "Healthcare",
+    mainImage: "/markets/healthcare/projects/Friend-Health.png",
+    galleryImages: buildGallery("/markets/healthcare/projects/Friend-Health.png"),
+    description:
+      "Community health facility improvements organized around patient-first phasing, durable finishes, and uninterrupted daily operations.",
+    scope: "Clinical space improvements, finish upgrades, and operational phasing.",
     status: "complete",
     location: {
       lat: 41.8044,
@@ -60,23 +79,29 @@ export const projects: Project[] = [
   },
   {
     title: "Raintree Hall",
-    category: "Education",
-    image: "/markets/education/projects/raintree.png",
     slug: "raintree-hall",
-    description: "Academic facilities modernization with campus stakeholder coordination.",
+    category: "Education",
+    mainImage: "/markets/education/projects/raintree.png",
+    galleryImages: buildGallery("/markets/education/projects/raintree.png"),
+    description:
+      "Academic facilities modernization delivered with campus stakeholder coordination, controlled access planning, and finish quality oversight.",
+    scope: "Campus modernization, interior upgrades, and stakeholder coordination.",
     status: "complete",
     location: {
       lat: 41.7867,
-      lng: -87.6210,
+      lng: -87.621,
       address: "Chicago, IL",
     },
   },
   {
-    title: "CPS Offices",
+    title: "CPS Near West Offices",
+    slug: "cps-near-west-offices",
     category: "Education",
-    image: "/markets/education/projects/CPS-Near-West-Offices-1.jpg",
-    slug: "cps-offices",
-    description: "Public education administration offices delivered under active occupancy constraints.",
+    mainImage: "/markets/education/projects/CPS-Near-West-Offices-1.jpg",
+    galleryImages: buildGallery("/markets/education/projects/CPS-Near-West-Offices-1.jpg"),
+    description:
+      "Public education administration offices delivered under active occupancy constraints with disciplined sequencing and turnover planning.",
+    scope: "Office renovation, occupied-space coordination, and closeout sequencing.",
     status: "complete",
     location: {
       lat: 41.8783,
@@ -86,23 +111,29 @@ export const projects: Project[] = [
   },
   {
     title: "Foglia Residences",
-    category: "Residential",
-    image: "/markets/affordable-housing/foglia-residences.jpg",
     slug: "foglia-residences",
-    description: "Affordable housing project built with structured inspection and closeout discipline.",
+    category: "Residential",
+    mainImage: "/markets/affordable-housing/foglia-residences.jpg",
+    galleryImages: buildGallery("/markets/affordable-housing/foglia-residences.jpg"),
+    description:
+      "Affordable housing delivered with structured inspection milestones, resident-safety planning, and disciplined closeout management.",
+    scope: "Residential construction, building envelope coordination, and turnover execution.",
     status: "complete",
     location: {
-      lat: 41.8910,
-      lng: -87.6180,
+      lat: 41.891,
+      lng: -87.618,
       address: "Chicago, IL",
     },
   },
   {
     title: "Westhaven Park",
-    category: "Hospitality",
-    image: "/markets/affordable-housing/westhaven-park.jpg",
     slug: "westhaven-park",
-    description: "Mixed-use community development with coordinated delivery across multiple scopes.",
+    category: "Residential",
+    mainImage: "/markets/affordable-housing/westhaven-park.jpg",
+    galleryImages: buildGallery("/markets/affordable-housing/westhaven-park.jpg"),
+    description:
+      "Mixed-use community development coordinated across multiple scopes, inspection checkpoints, and neighborhood access requirements.",
+    scope: "Mixed-use residential development and multi-scope field coordination.",
     status: "complete",
     location: {
       lat: 41.7521,
@@ -112,10 +143,13 @@ export const projects: Project[] = [
   },
   {
     title: "JTDC Bathroom Renovations",
-    category: "Education",
-    image: "/images/from-the-field/ccjc.jpg",
     slug: "jtdc-bathroom-renovations",
-    description: "Phased restroom renovation work coordinated to maintain day-to-day facility operations.",
+    category: "Education",
+    mainImage: "/images/from-the-field/ccjc.jpg",
+    galleryImages: buildGallery("/images/from-the-field/ccjc.jpg"),
+    description:
+      "Phased restroom renovation work coordinated to maintain day-to-day facility operations while improving durability and code compliance.",
+    scope: "Restroom renovations, finish replacement, and phased occupied-facility work.",
     status: "in-progress",
     location: {
       lat: 41.8783,
@@ -125,10 +159,13 @@ export const projects: Project[] = [
   },
   {
     title: "CCAB 1st Floor Toilet",
-    category: "Municipal",
-    image: "/images/from-the-field/cook-county-courthouse.jpg",
     slug: "ccab-1st-floor-toilet",
-    description: "First-floor toilet modernization delivered with controlled access and active-facility coordination.",
+    category: "Municipal",
+    mainImage: "/images/from-the-field/cook-county-courthouse.jpg",
+    galleryImages: buildGallery("/images/from-the-field/cook-county-courthouse.jpg"),
+    description:
+      "First-floor toilet modernization delivered with controlled access, active-facility coordination, and precise turnover scheduling.",
+    scope: "Civic facility renovation, interior upgrades, and constrained-access sequencing.",
     status: "in-progress",
     location: {
       lat: 41.8866,
@@ -137,11 +174,14 @@ export const projects: Project[] = [
     },
   },
   {
-    title: "Cook County Health – Buildings and Grounds Storage Trailer Site Development",
+    title: "Cook County Health Storage Trailer Site Development",
+    slug: "cook-county-health-storage-trailer-site",
     category: "Healthcare",
-    image: "/images/from-the-field/cook-county-health-building.jpg",
-    slug: "cook-county-health-buildings-and-grounds-storage-trailer-site-development",
-    description: "Site development for storage trailer facilities at Cook County Health buildings and grounds.",
+    mainImage: "/images/from-the-field/cook-county-health-building.jpg",
+    galleryImages: buildGallery("/images/from-the-field/cook-county-health-building.jpg"),
+    description:
+      "Site development for support facilities at Cook County Health, planned around access logistics, durable civil work, and active-campus coordination.",
+    scope: "Site development, utility coordination, and support-facility installation.",
     status: "preconstruction",
     location: {
       lat: 41.8717038,
@@ -150,11 +190,14 @@ export const projects: Project[] = [
     },
   },
   {
-    title: "Park Forest Indianwood/Blackhawk Plaza",
+    title: "Park Forest Blackhawk Plaza",
+    slug: "park-forest-blackhawk-plaza",
     category: "Municipal",
-    image: "/images/from-the-field/parkforest.jpg",
-    slug: "park-forest-indianwood-blackhawk-plaza",
-    description: "Site development for Park Forest Indianwood/Blackhawk Plaza.",
+    mainImage: "/images/from-the-field/parkforest.jpg",
+    galleryImages: buildGallery("/images/from-the-field/parkforest.jpg"),
+    description:
+      "Site development for a civic plaza with utility planning, concrete sequencing, and field coordination across public-facing areas.",
+    scope: "Site development, hardscape work, and public-realm coordination.",
     status: "preconstruction",
     location: {
       lat: 41.4699234,
@@ -163,11 +206,14 @@ export const projects: Project[] = [
     },
   },
   {
-    title: "Skokie Courthouse Project",
+    title: "Skokie Courthouse",
+    slug: "skokie-courthouse",
     category: "Municipal",
-    image: "/images/from-the-field/skokie-court-house.jpg",
-    slug: "skokie-courthouse-project",
-    description: "Courthouse improvement project coordinated to maintain continuity in an active civic facility.",
+    mainImage: "/images/from-the-field/skokie-court-house.jpg",
+    galleryImages: buildGallery("/images/from-the-field/skokie-court-house.jpg"),
+    description:
+      "Courthouse improvement work coordinated to maintain continuity in an active civic facility with secure-access requirements.",
+    scope: "Civic building upgrades, secure-access coordination, and phased construction planning.",
     status: "preconstruction",
     location: {
       lat: 42.038352,
@@ -176,11 +222,14 @@ export const projects: Project[] = [
     },
   },
   {
-    title: "Cafeteria Flooring & Door Replacement at Walsh School",
+    title: "Walsh School Cafeteria Flooring",
+    slug: "walsh-school-flooring",
     category: "Education",
-    image: "/markets/municipal/projects/walsh-elementary-school-lockport-il-primaryphoto.jpg",
-    slug: "cafeteria-flooring-door-replacement-at-walsh-school",
-    description: "Cafeteria flooring and door replacement at Walsh School.",
+    mainImage: "/markets/municipal/projects/walsh-elementary-school-lockport-il-primaryphoto.jpg",
+    galleryImages: buildGallery("/markets/municipal/projects/walsh-elementary-school-lockport-il-primaryphoto.jpg"),
+    description:
+      "Full cafeteria flooring replacement and door upgrades delivered with school-calendar coordination and durable finish selection.",
+    scope: "Flooring replacement, door upgrades, and school operations coordination.",
     status: "preconstruction",
     location: {
       lat: 41.6039758,
@@ -189,3 +238,7 @@ export const projects: Project[] = [
     },
   },
 ];
+
+export function getProjectBySlug(slug: string) {
+  return projects.find((project) => project.slug === slug);
+}

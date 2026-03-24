@@ -58,14 +58,23 @@ function ProjectMapClient({ height }: { height: string }) {
     loadLeaflet();
   }, []);
 
+  const projectsWithLocation = useMemo(
+    () => projects.filter((project) => project.location),
+    []
+  );
+
   const center = useMemo(() => {
-    if (!projects.length) {
+    if (!projectsWithLocation.length) {
       return [41.8781, -87.6298];
     }
-    const avgLat = projects.reduce((sum, p) => sum + p.location.lat, 0) / projects.length;
-    const avgLng = projects.reduce((sum, p) => sum + p.location.lng, 0) / projects.length;
+    const avgLat =
+      projectsWithLocation.reduce((sum, project) => sum + (project.location?.lat ?? 0), 0) /
+      projectsWithLocation.length;
+    const avgLng =
+      projectsWithLocation.reduce((sum, project) => sum + (project.location?.lng ?? 0), 0) /
+      projectsWithLocation.length;
     return [avgLat, avgLng];
-  }, []);
+  }, [projectsWithLocation]);
 
   if (!MapContainer || !TileLayer || !Marker || !Popup || !customIcon) {
     return <div style={{ width: "100%", height, backgroundColor: "#f0f0f0" }} />;
@@ -78,10 +87,10 @@ function ProjectMapClient({ height }: { height: string }) {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {projects.map((project) => (
+        {projectsWithLocation.map((project) => (
           <Marker
             key={project.slug}
-            position={[project.location.lat, project.location.lng]}
+            position={[project.location!.lat, project.location!.lng]}
             icon={customIcon}
             eventHandlers={{
               click: () => {
@@ -107,7 +116,7 @@ function ProjectMapClient({ height }: { height: string }) {
               <div style={{ width: "200px" }}>
                 <div className="relative w-full h-32 rounded overflow-hidden bg-gray-200 mb-2">
                   <Image
-                    src={project.image}
+                    src={project.mainImage}
                     alt={project.title}
                     fill
                     className="object-cover"

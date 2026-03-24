@@ -36,7 +36,7 @@ const ProjectsCarousel = () => {
             >
               <div className="relative w-full h-[300px] overflow-hidden">
                 <Image
-                  src={project.image}
+                  src={project.mainImage}
                   alt={project.title}
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-105"

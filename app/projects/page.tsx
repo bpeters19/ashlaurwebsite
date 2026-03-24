@@ -38,7 +38,7 @@ export default function Projects() {
                 className={`relative group overflow-hidden ${getTileSizeClass(index, project.slug)}`}
               >
                 <Image
-                  src={project.image}
+                  src={project.mainImage}
                   alt={project.title}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-105"

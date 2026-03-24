@@ -17,9 +17,9 @@ export default function UpcomingProjectsPage() {
 	const upcomingStatuses = new Set(["preconstruction", "permitting", "mobilization"]);
 	const fromTheFieldSlugs = new Set([
 		"jtdc-bathroom-renovations",
-		"park-forest-indianwood-blackhawk-plaza",
-		"cook-county-health-buildings-and-grounds-storage-trailer-site-development",
-		"skokie-courthouse-project",
+		"park-forest-blackhawk-plaza",
+		"cook-county-health-storage-trailer-site",
+		"skokie-courthouse",
 		"ccab-1st-floor-toilet",
 	]);
 	const upcomingProjects = projects.filter(
@@ -53,7 +53,7 @@ export default function UpcomingProjectsPage() {
 									>
 										<div className="relative aspect-[4/3] w-full">
 											<Image
-												src={project.image}
+												src={project.mainImage}
 												alt={project.title}
 												fill
 												className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
@@ -61,7 +61,7 @@ export default function UpcomingProjectsPage() {
 											<div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition" />
 											<div className="absolute bottom-2 left-2 text-white max-w-[78%]">
 												<p className="m-0 text-[20px] md:text-[22px] font-semibold tracking-tight leading-[1.15]">{project.title}</p>
-												<p className="m-0 mt-0.5 text-[18px] uppercase tracking-[0.1em] text-white/75 leading-none">{project.location.address}</p>
+												<p className="m-0 mt-0.5 text-[18px] uppercase tracking-[0.1em] text-white/75 leading-none">{project.location?.address ?? "Chicago, IL"}</p>
 
 												<div className="relative mt-2 w-36">
 													<div className="absolute left-0 right-0 top-1.5 h-px bg-white/30" />
