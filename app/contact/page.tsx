@@ -90,8 +90,8 @@ export default function Contact() {
                 </div>
                 <h3 className="text-xl font-bold text-gray-900">Email</h3>
                 <div className="text-gray-600">
-                  <a href="mailto:info@ashlaur.com" className="text-blue-600 hover:text-blue-700 font-semibold">
-                    info@ashlaur.com
+                  <a href="mailto:info@ashlaurconstruction.com" className="text-blue-600 hover:text-blue-700 font-semibold">
+                    info@ashlaurconstruction.com
                   </a>
                   <p className="text-sm mt-2">We&apos;ll respond within 24 hours</p>
                 </div>
@@ -259,7 +259,7 @@ export default function Contact() {
                 Call (773) 651-1900
               </a>
               <a
-                href="mailto:info@ashlaur.com"
+                href="mailto:info@ashlaurconstruction.com"
                 className="px-8 py-4 border border-white text-white font-semibold rounded-lg hover:bg-white/10 transition"
               >
                 Email Us
