@@ -20,6 +20,28 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Job Application Form Setup
+
+The website now includes a careers application form at `/careers` that sends applications (including resume attachments) to your company email.
+
+Set these environment variables in `.env.local`:
+
+```env
+COMPANY_EMAIL=renae@ashlaurconstruction.com
+SMTP_HOST=smtp.your-provider.com
+SMTP_PORT=587
+SMTP_USER=your_smtp_username
+SMTP_PASS=your_smtp_password
+SMTP_FROM="Ashlaur Careers <no-reply@yourdomain.com>"
+```
+
+Notes:
+
+- `COMPANY_EMAIL` is the destination inbox that receives job applications.
+- `SMTP_*` values come from your email provider.
+- Port `587` is usually used with STARTTLS, and port `465` is usually used with SSL.
+- If `COMPANY_EMAIL` is not set, the app defaults to `renae@ashlaurconstruction.com`.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

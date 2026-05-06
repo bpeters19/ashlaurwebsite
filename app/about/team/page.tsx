@@ -75,15 +75,6 @@ const executives: Executive[] = [
     linkedIn: "https://www.linkedin.com",
   },
   {
-    id: 7,
-    name: "Rob Leeds",
-    title: "Program Director",
-    category: "Executive",
-    bio: "Rob manages multi-project programs and strategic initiatives. His team-based approach coordinates complex portfolios, aligns stakeholder objectives, and delivers results across concurrent projects.",
-    image: "/images/team/Artboard-5%20rob.jpg",
-    linkedIn: "https://www.linkedin.com",
-  },
-  {
     id: 8,
     name: "Courtney W. Mitchell, NCARB",
     title: "Architect",

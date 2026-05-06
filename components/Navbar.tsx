@@ -51,6 +51,7 @@ const Navbar = () => {
     { name: "Services", href: "/services", hasDropdown: true },
     { name: "Projects", href: "/projects", hasDropdown: true },
     { name: "Process", href: "/process", hasDropdown: false },
+    { name: "Careers", href: "/careers", hasDropdown: false },
     { name: "Contact", href: "/contact", hasDropdown: false },
   ];
   const marketLinks = markets.map((market) => ({ name: market.name, href: market.path }));
@@ -175,29 +176,28 @@ const Navbar = () => {
         onMouseLeave={() => setActiveDropdown(null)}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-20">
-            <div className="flex items-center">
-              <div className="flex-shrink-0">
-                <Link
-                  href="/"
-                  onClick={handleLogoClick}
-                  className="logo-link hover:opacity-80 transition-opacity duration-300 bg-none border-none p-0 cursor-pointer block"
-                  aria-label="Home"
-                >
-                  <Image
-                    src="/logo.png"
-                    alt="Ashlaur Construction"
-                    width={180}
-                    height={50}
-                    className="h-10 md:h-12 w-auto drop-shadow-lg"
-                    priority
-                  />
-                </Link>
-              </div>
+          <div className="flex justify-between items-center h-20">
+            {/* Logo */}
+            <div className="flex-shrink-0 mr-8 md:mr-12">
+              <Link
+                href="/"
+                onClick={handleLogoClick}
+                className="logo-link hover:opacity-80 transition-opacity duration-300 bg-none border-none p-0 cursor-pointer block"
+                aria-label="Home"
+              >
+                <Image
+                  src="/logo.png"
+                  alt="Ashlaur Construction"
+                  width={180}
+                  height={50}
+                  className="h-10 md:h-12 w-auto drop-shadow-lg"
+                  priority
+                />
+              </Link>
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
+            <div className="hidden md:flex items-center space-x-4">
               {navItems.map((item) => {
                 const hasMegaMenu = Boolean(
                   item.hasDropdown && megaMenuContent[item.name as keyof typeof megaMenuContent]
@@ -235,25 +235,26 @@ const Navbar = () => {
               })}
             </div>
 
-          <div className="hidden md:flex items-center gap-8">
-            <SocialIcons size="sm" variant="light" />
-            <Link href="/projects">
-              <button className="bg-[#123563] hover:bg-[#1c3a66] text-white font-bold py-3 px-6 rounded transition duration-300 transform hover:scale-105 border border-white/25 shadow-lg">
-                SEE OUR PROJECTS
-              </button>
-            </Link>
-          </div>
+            {/* Right side: Social Icons + CTA + Mobile Menu */}
+            <div className="flex items-center gap-6 md:gap-8">
+              <div className="hidden md:flex items-center gap-6">
+                <SocialIcons size="sm" variant="light" />
+                <Link href="/projects">
+                  <button className="bg-[#123563] hover:bg-[#1c3a66] text-white font-bold py-3 px-6 rounded transition duration-300 transform hover:scale-105 border border-white/25 shadow-lg">
+                    SEE OUR PROJECTS
+                  </button>
+                </Link>
+              </div>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden flex items-center">
-            <button
-              onClick={toggleMobileMenu}
-              className="text-white hover:text-[#AFC6FF] p-3 transition-colors"
-            >
-              {isOpen ? <X className="h-8 w-8" /> : <Menu className="h-8 w-8" />}
-            </button>
+              {/* Mobile menu button */}
+              <button
+                onClick={toggleMobileMenu}
+                className="md:hidden text-white hover:text-[#AFC6FF] p-2 transition-colors"
+              >
+                {isOpen ? <X className="h-8 w-8" /> : <Menu className="h-8 w-8" />}
+              </button>
+            </div>
           </div>
-        </div>
       </div>
 
         <AnimatePresence mode="wait" initial={false}>
