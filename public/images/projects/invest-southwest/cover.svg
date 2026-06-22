@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Invest Southwest cover placeholder">
+  <rect width="1600" height="900" fill="#1f2937"/>
+  <rect x="60" y="60" width="1480" height="780" fill="none" stroke="#9ca3af" stroke-width="4" stroke-dasharray="12 10"/>
+  <text x="800" y="420" fill="#f9fafb" font-size="64" text-anchor="middle" font-family="Arial, sans-serif">Invest Southwest</text>
+  <text x="800" y="500" fill="#d1d5db" font-size="34" text-anchor="middle" font-family="Arial, sans-serif">Cover Image Placeholder</text>
+  <text x="800" y="560" fill="#9ca3af" font-size="24" text-anchor="middle" font-family="Arial, sans-serif">Replace this file with your final cover image</text>
+</svg>

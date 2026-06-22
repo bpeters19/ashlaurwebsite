@@ -17,4 +17,13 @@ export const affordableHousingProjects = [
     scope: "Structural Framing, Finishes",
     duration: "11 months",
   },
+  {
+    name: "Invest Southwest",
+    image: "/images/projects/invest-southwest/cover.jpg",
+    contractor: "[To Be Announced]",
+    address: "Chicago, Illinois",
+    contractValue: "TBD",
+    scope: "Modern affordable housing development, community engagement, and sustainable design.",
+    duration: "Pre-Construction",
+  },
 ];
