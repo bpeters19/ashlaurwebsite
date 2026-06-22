@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
@@ -29,7 +29,9 @@ export default function ProjectDetailView({
   currentPhaseIndex,
 }: ProjectDetailViewProps) {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
-  const projectImages = project.galleryImages.length ? project.galleryImages : [project.mainImage];
+  const projectImages = (project.galleryImages.length ? project.galleryImages : [project.mainImage]).filter(
+    (img) => !img.includes("coming-soon")
+  );
   const progressWidth = `${(currentPhaseIndex / (timelinePhases.length - 1)) * 100}%`;
 
   const selectedImage =
@@ -52,6 +54,30 @@ export default function ProjectDetailView({
 
     setSelectedImageIndex((selectedImageIndex + 1) % projectImages.length);
   };
+
+  useEffect(() => {
+    if (selectedImageIndex === null) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSelectedImageIndex(null);
+      if (e.key === "ArrowLeft")
+        setSelectedImageIndex((i) =>
+          i === null ? null : (i - 1 + projectImages.length) % projectImages.length
+        );
+      if (e.key === "ArrowRight")
+        setSelectedImageIndex((i) =>
+          i === null ? null : (i + 1) % projectImages.length
+        );
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [selectedImageIndex, projectImages.length]);
 
   return (
     <div className="min-h-screen bg-white">
@@ -196,14 +222,15 @@ export default function ProjectDetailView({
               <p className="mt-5 text-lg leading-relaxed text-gray-600">{project.description}</p>
             </div>
 
-            <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+            <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2">
               {projectImages.map((image, index) => (
                 <motion.button
                   key={`${project.slug}-${image}-${index}`}
                   type="button"
                   initial={{ opacity: 0, y: 18 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.45, delay: 0.08 * index, ease: "easeOut" }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.45, delay: 0.06 * index, ease: "easeOut" }}
                   onClick={() => setSelectedImageIndex(index)}
                   className="group relative aspect-[4/3] overflow-hidden rounded-2xl bg-gray-100 text-left"
                 >
@@ -256,10 +283,12 @@ export default function ProjectDetailView({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 bg-black/95 p-4"
+            onClick={() => setSelectedImageIndex(null)}
           >
             <button
               type="button"
-              onClick={() => setSelectedImageIndex(null)}
+              aria-label="Close image viewer"
+              onClick={(e) => { e.stopPropagation(); setSelectedImageIndex(null); }}
               className="absolute right-6 top-6 z-10 text-4xl text-white transition-colors hover:text-gray-300"
             >
               ×
@@ -269,14 +298,16 @@ export default function ProjectDetailView({
               <>
                 <button
                   type="button"
-                  onClick={openPreviousImage}
+                  aria-label="Previous image"
+                  onClick={(e) => { e.stopPropagation(); openPreviousImage(); }}
                   className="absolute left-4 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/30 text-2xl text-white transition-colors hover:bg-black/45"
                 >
                   ←
                 </button>
                 <button
                   type="button"
-                  onClick={openNextImage}
+                  aria-label="Next image"
+                  onClick={(e) => { e.stopPropagation(); openNextImage(); }}
                   className="absolute right-4 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/30 text-2xl text-white transition-colors hover:bg-black/45"
                 >
                   →
@@ -284,7 +315,10 @@ export default function ProjectDetailView({
               </>
             )}
 
-            <div className="relative mx-auto h-full w-full max-w-7xl">
+            <div
+              className="relative mx-auto h-full w-full max-w-7xl"
+              onClick={(e) => e.stopPropagation()}
+            >
               <Image
                 src={selectedImage}
                 alt={`${project.title} expanded gallery image`}
