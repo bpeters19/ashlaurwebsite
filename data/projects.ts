@@ -30,6 +30,37 @@ const buildGallery = (mainImage: string) => [mainImage, COMING_SOON_IMAGE];
 
 export const projects: Project[] = [
   {
+    title: "Invest Southwest",
+    slug: "invest-southwest",
+    category: "Affordable Housing",
+    mainImage: "/images/projects/invest-southwest/cover.jpg",
+    galleryImages: [
+      "/images/projects/invest-southwest/cover.jpg",
+      "/images/projects/invest-southwest/IMG_1390.jpg",
+      "/images/projects/invest-southwest/IMG_1395.jpg",
+      "/images/projects/invest-southwest/IMG_1396.jpg",
+      "/images/projects/invest-southwest/IMG_1411.jpg",
+      "/images/projects/invest-southwest/IMG_1446.jpg",
+      "/images/projects/invest-southwest/IMG_1471.jpg",
+      "/images/projects/invest-southwest/IMG_1476.jpg",
+      "/images/projects/invest-southwest/IMG_1481.jpg",
+      "/images/projects/invest-southwest/IMG_1488.jpg",
+      "/images/projects/invest-southwest/IMG_1494.jpg",
+      "/images/projects/invest-southwest/IMG_1501.jpg",
+      "/images/projects/invest-southwest/IMG_1506.jpg",
+      "/images/projects/invest-southwest/IMG_1517.jpg",
+    ],
+    description:
+      "A community-focused development supporting neighborhood growth, accessibility, and long-term investment through modern affordable housing solutions.",
+    scope: "Modern affordable housing development, community engagement, and sustainable design.",
+    status: "in-progress",
+    location: {
+      lat: 41.8781,
+      lng: -87.6298,
+      address: "Chicago, Illinois",
+    },
+  },
+  {
     title: "Zachary Hotel",
     slug: "zachary-hotel",
     category: "Hospitality",
