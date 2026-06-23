@@ -194,8 +194,8 @@ export const projects: Project[] = [
     category: "Municipal",
     mainImage: "/images/from-the-field/cook-county-courthouse.jpg",
     galleryImages: [
-  "/projects/ccab-1.jpeg",
-  "/projects/ccab-2.jpeg",
+  "/projects/ccab-1a.jpeg",
+  "/projects/ccab-2a.jpeg",
   "/projects/ccab-3a.jpeg",
   "/projects/ccab-4a.jpeg",
   "/projects/ccab-5.jpeg",
