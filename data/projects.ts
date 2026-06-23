@@ -210,7 +210,7 @@ export const projects: Project[] = [
     description:
       "First-floor toilet modernization delivered with controlled access, active-facility coordination, and precise turnover scheduling.",
     scope: "Civic facility renovation, interior upgrades, and constrained-access sequencing.",
-    status: "in-progress",
+    status: "substantial-completion",
     location: {
       lat: 41.8866,
       lng: -87.6627,
