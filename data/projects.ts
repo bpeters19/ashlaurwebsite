@@ -143,7 +143,7 @@ export const projects: Project[] = [
   {
     title: "Foglia Residences",
     slug: "foglia-residences",
-    category: "Residential",
+    category: "Affordable Housing",
     mainImage: "/markets/affordable-housing/foglia-residences.jpg",
     galleryImages: buildGallery("/markets/affordable-housing/foglia-residences.jpg"),
     description:
@@ -159,7 +159,7 @@ export const projects: Project[] = [
   {
     title: "Westhaven Park",
     slug: "westhaven-park",
-    category: "Residential",
+    category: "Affordable Housing",
     mainImage: "/markets/affordable-housing/westhaven-park.jpg",
     galleryImages: buildGallery("/markets/affordable-housing/westhaven-park.jpg"),
     description:

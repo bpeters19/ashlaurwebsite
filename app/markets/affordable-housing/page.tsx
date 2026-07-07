@@ -1,6 +1,25 @@
 import ProjectGrid from "./ProjectGrid";
-import { affordableHousingProjects } from "./projects/data";
 import MarketHero from "../MarketHero";
+import { projects } from "@/data/projects";
+
+const affordableHousingProjects = Array.from(
+  new Map(
+    projects
+      .filter((project) => project.category === "Affordable Housing")
+      .map((project) => [
+        project.slug,
+        {
+          name: project.title,
+          image: project.mainImage,
+          contractor: "TBD",
+          address: project.location?.address ?? "Chicago, IL",
+          contractValue: "TBD",
+          scope: project.scope ?? "Scope details available upon request.",
+          duration: "Active",
+        },
+      ])
+  ).values()
+);
 
 export default function AffordableHousing() {
   return (

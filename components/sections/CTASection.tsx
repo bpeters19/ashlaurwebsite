@@ -19,7 +19,7 @@ const CTASection = () => {
             Explore our portfolio and see what we can build together.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/projects" className="inline-block bg-blue-700 hover:bg-blue-900 text-white font-bold py-4 px-8 rounded transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer">
+            <Link href="/about/market-sectors" className="inline-block bg-blue-700 hover:bg-blue-900 text-white font-bold py-4 px-8 rounded transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer">
               SEE OUR PROJECTS
             </Link>
             <Link href="/contact" className="inline-block bg-gray-700 hover:bg-gray-600 text-white font-bold py-4 px-8 rounded transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer">

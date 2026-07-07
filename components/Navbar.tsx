@@ -119,7 +119,7 @@ const Navbar = () => {
       title: "Projects",
       description:
         "Sector-led teams delivering healthcare, industrial, and commercial builds with predictable outcomes.",
-      cta: { label: "See Featured Projects →", href: "/projects" },
+      cta: { label: "See Featured Projects →", href: "/markets/affordable-housing" },
       columns: [
         {
           heading: "Market Sectors",
@@ -128,7 +128,7 @@ const Navbar = () => {
         {
           heading: "Highlights",
           links: [
-            { name: "Featured Projects", href: "/projects" },
+            { name: "Featured Projects", href: "/markets/affordable-housing" },
             { name: "Project Map", href: "/projects/map" },
             { name: "Upcoming Projects", href: "/projects/upcoming" },
           ],
@@ -239,7 +239,7 @@ const Navbar = () => {
             <div className="flex items-center gap-6 md:gap-8">
               <div className="hidden md:flex items-center gap-6">
                 <SocialIcons size="sm" variant="light" />
-                <Link href="/projects">
+                <Link href="/about/market-sectors">
                   <button className="bg-[#123563] hover:bg-[#1c3a66] text-white font-bold py-3 px-6 rounded transition duration-300 transform hover:scale-105 border border-white/25 shadow-lg">
                     SEE OUR PROJECTS
                   </button>
@@ -407,7 +407,7 @@ const Navbar = () => {
                     </motion.a>
                   );
                 })}
-                <Link href="/projects">
+                <Link href="/about/market-sectors">
                   <motion.button
                     initial={{ opacity: 0, x: 50 }}
                     animate={{ opacity: 1, x: 0 }}

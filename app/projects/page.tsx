@@ -15,15 +15,33 @@ const tileSizes = [
   "col-span-2 row-span-2",
 ] as const;
 
-function getTileSizeClass(index: number, slug: string) {
+function getTileSizeClass(index: number, slug: string, totalCount: number) {
+  const remainingItems = totalCount - index;
+
+  // Prevent trailing gaps by shrinking large cards near the end of the list.
+  if (remainingItems <= 2) {
+    return "col-span-1 row-span-1";
+  }
+
   const seed = (index + slug.length) % tileSizes.length;
-  return tileSizes[seed];
+  const candidateSize = tileSizes[seed];
+
+  if (remainingItems <= 4 && candidateSize.includes("row-span-2")) {
+    return "col-span-1 row-span-1";
+  }
+
+  if (remainingItems <= 6 && candidateSize === "col-span-2 row-span-2") {
+    return "col-span-2 row-span-1";
+  }
+
+  return candidateSize;
 }
 
 export default function Projects() {
   const fillerCount = 6;
   const fillerProjects = Array.from({ length: fillerCount }, (_, index) => projects[index % projects.length]);
-  const displayProjects = [...projects, ...fillerProjects];
+  const mergedProjects = [...projects, ...fillerProjects];
+  const displayProjects = Array.from(new Map(mergedProjects.map((project) => [project.slug, project])).values());
 
   return (
     <div className="min-h-screen bg-white">
@@ -35,7 +53,7 @@ export default function Projects() {
               <Link
                 key={`${project.slug}-${index}`}
                 href={`/projects/${project.slug}`}
-                className={`relative group overflow-hidden ${getTileSizeClass(index, project.slug)}`}
+                className={`relative group overflow-hidden ${getTileSizeClass(index, project.slug, displayProjects.length)}`}
               >
                 <Image
                   src={project.mainImage}

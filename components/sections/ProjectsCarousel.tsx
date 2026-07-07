@@ -6,7 +6,7 @@ import { projects } from "@/data/projects";
 
 const ProjectsCarousel = () => {
   // Display ALL featured projects
-  const featuredProjects = projects;
+  const featuredProjects = Array.from(new Map(projects.map((project) => [project.slug, project])).values());
 
   return (
     <section className="bg-neutral-100 py-20">
