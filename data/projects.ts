@@ -173,6 +173,28 @@ export const projects: Project[] = [
     },
   },
   {
+     title: "Jigzibik",
+    slug: "jigzibik",
+    category: "Affordable Housing",
+    mainImage: "/images/projects/jigzibik/cover-jig.jpg",
+    galleryImages: [
+      "/images/projects/jigzibik/cover-jig.jpg",
+      "/images/projects/jigzibik/gallery-1-jig.jpg",
+      "/images/projects/jigzibik/gallery-2-jig.jpeg",
+      "/images/projects/jigzibik/gallery-3-jig.jpeg",
+      "/images/projects/jigzibik/gallery-4-jig.jpeg",
+    ],
+    description:
+      "Affordable housing project added to the portfolio with placeholder image filenames that can be replaced with the final cover and gallery assets.",
+    scope: "Affordable housing development, portfolio showcase, and gallery imagery placeholder setup.",
+    status: "complete",
+    location: {
+      lat: 41.8781,
+      lng: -87.6298,
+      address: "Chicago, IL",
+    },
+  },
+  {
     title: "JTDC Bathroom Renovations",
     slug: "jtdc-bathroom-renovations",
     category: "Education",
