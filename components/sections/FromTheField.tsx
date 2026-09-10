@@ -140,11 +140,14 @@ const FromTheField = () => {
   };
 
   return (
-    <section className="bg-gradient-to-r from-blue-900/20 via-blue-800/15 to-blue-700/10 pt-8 pb-16">
+    <section className="bg-ink pt-16 pb-16 lg:pt-20">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex justify-between items-center mb-8">
           <Link href="/projects/upcoming" className="group inline-block">
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 group-hover:text-blue-700 transition-colors duration-300">
+            <h2
+              className="font-display font-black uppercase text-4xl md:text-5xl tracking-tight text-bone group-hover:text-bone/70 transition-colors duration-300"
+              style={{ fontVariationSettings: "'opsz' 72, 'wght' 900" }}
+            >
               From the Field
             </h2>
           </Link>
@@ -164,7 +167,7 @@ const FromTheField = () => {
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mt-5 group-hover:text-blue-700 transition-colors duration-300">
+              <h3 className="text-2xl font-bold text-bone mt-5 group-hover:text-bone/70 transition-colors duration-300">
                 {featuredArticle.title}
               </h3>
             </Link>
@@ -230,7 +233,7 @@ const FromTheField = () => {
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                   </div>
-                  <h4 className="text-base font-bold text-gray-900 mt-3 mb-2 group-hover:text-blue-700 transition-colors duration-300">
+                  <h4 className="text-base font-bold text-bone mt-3 mb-2 group-hover:text-bone/70 transition-colors duration-300">
                     {article.title}
                   </h4>
                 </Link>

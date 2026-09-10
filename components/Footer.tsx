@@ -38,6 +38,7 @@ const Footer = () => {
             <ul className="space-y-4">
               <li><Link href="/about" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">About Us</Link></li>
               <li><Link href="/careers" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">Careers</Link></li>
+              <li><Link href="/policies" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">Policies</Link></li>
               <li><Link href="/projects" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">Projects</Link></li>
               <li><Link href="/contact" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">Contact</Link></li>
             </ul>
@@ -47,7 +48,7 @@ const Footer = () => {
           <div>
             <h4 className="text-xl font-bold text-white mb-6 uppercase tracking-wide">Get In Touch</h4>
             <div className="space-y-4 text-gray-400 mb-6">
-              <p>1595 Valencia Ct Calumet City, IL 60409-5410 United States</p>
+              <p>509 E 75th St, Chicago, IL 60619, United States</p>
               <p className="hover:text-blue-400 transition-colors duration-300 cursor-pointer">Phone: (773) 651-1900</p>
               <p className="hover:text-blue-400 transition-colors duration-300 cursor-pointer">Email: info@ashlaurconstruction.com</p>
             </div>

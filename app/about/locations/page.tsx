@@ -45,9 +45,9 @@ export default function Locations() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               <div className="space-y-8">
                 <div>
-                  <h3 className="text-4xl font-black text-gray-900 mb-4">Calumet City, Illinois</h3>
+                  <h3 className="text-4xl font-black text-gray-900 mb-4">Chicago, Illinois</h3>
                   <p className="text-gray-600 text-base leading-relaxed mb-3">
-                    1595 Valencia Ct, Calumet City, IL 60409-5410, United States
+                    509 E 75th St, Chicago, IL 60619, United States
                   </p>
                   <p className="text-gray-600 text-lg leading-relaxed mb-6">
                     Our headquarters sits in the heart of Chicago&apos;s construction ecosystem. For over two decades, we&apos;ve served as a trusted partner to Chicago&apos;s leading general contractors and owners.
@@ -66,15 +66,15 @@ export default function Locations() {
                 </div>
               </div>
               <a
-                href="https://maps.google.com/?q=1595%20Valencia%20Ct%2C%20Calumet%20City%2C%20IL%2060409-5410%2C%20United%20States"
+                href="https://maps.google.com/?q=509%20E%2075th%20St%2C%20Chicago%2C%20IL%2060619%2C%20United%20States"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group relative block bg-gray-100 rounded-lg h-80 overflow-hidden border border-gray-200"
-                aria-label="Open map for 1595 Valencia Ct, Calumet City, IL"
+                aria-label="Open map for 509 E 75th St, Chicago, IL"
               >
                 <iframe
-                  title="Calumet City Headquarters Map"
-                  src="https://maps.google.com/maps?q=1595%20Valencia%20Ct%2C%20Calumet%20City%2C%20IL%2060409-5410%2C%20United%20States&z=15&output=embed"
+                  title="Chicago Headquarters Map"
+                  src="https://maps.google.com/maps?q=509%20E%2075th%20St%2C%20Chicago%2C%20IL%2060619%2C%20United%20States&z=15&output=embed"
                   className="w-full h-full"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"

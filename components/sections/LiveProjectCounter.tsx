@@ -68,40 +68,42 @@ const LiveProjectCounter = () => {
   ];
 
   return (
-    <section ref={ref} className="py-16 bg-gradient-to-r from-blue-900/20 via-blue-800/15 to-blue-700/10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section ref={ref} className="py-20 lg:py-28 bg-ink">
+      <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-16"
         >
-          <h2 className="text-4xl font-bold text-secondary mb-4">ASHLAUR by the Numbers</h2>
-          <p className="text-xl text-muted max-w-2xl mx-auto">
+          <h2
+            className="font-display font-black uppercase text-4xl md:text-5xl text-bone leading-[0.95] tracking-tight mb-4"
+            style={{ fontVariationSettings: "'opsz' 72, 'wght' 900" }}
+          >
+            ASHLAUR by the numbers.
+          </h2>
+          <p className="text-bone/65 text-lg max-w-2xl">
             Our track record speaks for itself. Here&apos;s what we&apos;ve achieved together with our clients.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-bone/15 border-t border-b border-bone/15">
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: index * 0.1 }}
-              className="text-center"
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="py-10 px-2 md:px-10"
             >
-              <div className="bg-card rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <motion.div
-                  className="text-4xl font-bold text-primary mb-2"
-                  initial={{ scale: 0.5 }}
-                  animate={isInView ? { scale: 1 } : { scale: 0.5 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
-                  {stat.value.toLocaleString()}{stat.suffix}
-                </motion.div>
-                <h3 className="text-lg font-semibold text-secondary">{stat.label}</h3>
+              <div className="font-technical text-5xl md:text-6xl tabular-nums text-bone mb-2">
+                {stat.value.toLocaleString()}{stat.suffix}
               </div>
+              <p className="font-technical text-xs uppercase tracking-[0.15em] text-bone/55">
+                {stat.label}
+              </p>
             </motion.div>
           ))}
         </div>

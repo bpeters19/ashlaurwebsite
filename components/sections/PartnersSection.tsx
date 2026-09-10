@@ -55,17 +55,20 @@ const partners: Partner[] = [
 
 const PartnersSection = () => {
   return (
-    <section className="pt-16 pb-20 lg:pt-20 lg:pb-24 bg-white relative overflow-hidden">
+    <section className="pt-16 pb-20 lg:pt-20 lg:pb-24 bg-concrete relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 32 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.0, ease: [0.25, 0.46, 0.45, 0.94] }}
+          transition={{ duration: 0.7 }}
           viewport={{ once: true, margin: "-100px" }}
           className="mb-20 lg:mb-24"
         >
-          <h2 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black leading-[0.9] tracking-tighter text-gray-900">
+          <h2
+            className="font-display font-black uppercase text-6xl sm:text-7xl md:text-8xl lg:text-9xl leading-[0.9] tracking-tight text-ink"
+            style={{ fontVariationSettings: "'opsz' 72, 'wght' 900" }}
+          >
             Strength in <br />
             Collaboration
           </h2>
@@ -76,13 +79,13 @@ const PartnersSection = () => {
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+        transition={{ duration: 0.9 }}
         viewport={{ once: true, margin: "-100px" }}
         className="relative w-full overflow-hidden py-12 lg:py-16"
       >
         {/* Gradient Fade Edges */}
-        <div className="absolute left-0 top-0 bottom-0 w-32 lg:w-48 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-32 lg:w-48 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-32 lg:w-48 bg-gradient-to-r from-concrete to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-32 lg:w-48 bg-gradient-to-l from-concrete to-transparent z-10 pointer-events-none" />
 
         {/* Scrolling Container */}
         <div className="partner-marquee-track">
@@ -112,12 +115,12 @@ const PartnersSection = () => {
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.9, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+        transition={{ duration: 0.6, delay: 0.2 }}
         viewport={{ once: true, margin: "-100px" }}
         className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mt-16 lg:mt-20"
       >
-        <p className="text-base lg:text-lg text-gray-600 max-w-4xl leading-relaxed font-light">
-          Trusted by Chicago&apos;s leading general contractors, we bring specialized expertise 
+        <p className="text-base lg:text-lg text-ink/70 max-w-4xl leading-relaxed font-light">
+          Trusted by Chicago&apos;s leading general contractors, we bring specialized expertise
           to ambitious projects that shape our city&apos;s future.
         </p>
       </motion.div>

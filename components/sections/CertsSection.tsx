@@ -74,29 +74,32 @@ const CertsSection = () => {
   };
 
   return (
-    <section className="pt-20 pb-16 lg:pt-24 lg:pb-20 bg-white relative overflow-hidden">
+    <section className="pt-20 pb-16 lg:pt-24 lg:pb-20 bg-concrete relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Section Header - Editorial Scale */}
         <motion.div
-          initial={{ opacity: 0, y: 32 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.0, ease: [0.25, 0.46, 0.45, 0.94] }}
-          viewport={{ once: false, margin: "-100px" }}
+          transition={{ duration: 0.7 }}
+          viewport={{ once: true, margin: "-100px" }}
           className="mb-24 lg:mb-32"
         >
-          <h2 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black leading-[0.9] tracking-tighter text-gray-900 mb-8 lg:mb-10">
+          <h2
+            className="font-display font-black uppercase text-6xl sm:text-7xl md:text-8xl lg:text-9xl leading-[0.9] tracking-tight text-ink mb-8 lg:mb-10"
+            style={{ fontVariationSettings: "'opsz' 72, 'wght' 900" }}
+          >
             Strength in <br />
             Certifications
           </h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
-            viewport={{ once: false, margin: "-100px" }}
-            className="text-base lg:text-lg text-gray-600 max-w-4xl leading-relaxed font-light"
+            transition={{ duration: 0.6, delay: 0.15 }}
+            viewport={{ once: true, margin: "-100px" }}
+            className="text-base lg:text-lg text-ink/70 max-w-4xl leading-relaxed font-light"
           >
-            Our earned credentials and strategic certifications represent a commitment to excellence, 
-            safety, and partnership with Chicago&apos;s finest institutions. These are not badges—they are 
+            Our earned credentials and strategic certifications represent a commitment to excellence,
+            safety, and partnership with Chicago&apos;s finest institutions. These are not badges—they are
             proof of capability and trust.
           </motion.p>
         </motion.div>
@@ -126,7 +129,7 @@ const CertsSection = () => {
                   variants={hoverVariants}
                   initial="rest"
                   whileHover="hover"
-                  className="relative w-full aspect-square mb-8 bg-gray-50 rounded-xl border border-gray-100 group-hover:border-blue-300 overflow-hidden shadow-sm group-hover:shadow-md transition-all duration-500 flex items-center justify-center p-6"
+                  className="relative w-full aspect-square mb-8 bg-white border border-ink/10 group-hover:border-ink/40 overflow-hidden transition-all duration-500 flex items-center justify-center p-6"
                 >
                   <Image
                     src={cert.image}
@@ -144,7 +147,7 @@ const CertsSection = () => {
                     initial={{ opacity: 0.8 }}
                     whileHover={{ opacity: 1 }}
                     transition={{ duration: 0.3 }}
-                    className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-700 transition-colors duration-300 leading-snug"
+                    className="text-lg font-bold text-ink mb-2 leading-snug"
                   >
                     {cert.name}
                   </motion.h3>
@@ -152,7 +155,7 @@ const CertsSection = () => {
                     initial={{ opacity: 0.7 }}
                     whileHover={{ opacity: 1 }}
                     transition={{ duration: 0.3 }}
-                    className="text-sm text-gray-600 group-hover:text-gray-900 transition-colors duration-300 font-light"
+                    className="text-sm text-ink/65 group-hover:text-ink transition-colors duration-300 font-light"
                   >
                     {cert.description}
                   </motion.p>
@@ -160,9 +163,9 @@ const CertsSection = () => {
                     initial={{ opacity: 0.5 }}
                     whileHover={{ opacity: 1 }}
                     transition={{ duration: 0.3 }}
-                    className="mt-4 pt-4 border-t border-gray-200 group-hover:border-blue-300 transition-colors duration-300"
+                    className="mt-4 pt-4 border-t border-ink/15 group-hover:border-ink/40 transition-colors duration-300"
                   >
-                    <span className="text-xs font-semibold text-blue-700 group-hover:text-blue-900 transition-colors duration-300">
+                    <span className="font-technical text-xs uppercase tracking-[0.1em] text-ink/70 group-hover:text-ink transition-colors duration-300">
                       Learn more →
                     </span>
                   </motion.div>
@@ -174,15 +177,15 @@ const CertsSection = () => {
 
         {/* Supporting Statement */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-          viewport={{ once: false, margin: "-100px" }}
-          className="mt-24 lg:mt-32 pt-24 lg:pt-32 border-t border-gray-200 max-w-3xl"
+          transition={{ duration: 0.6, delay: 0.3 }}
+          viewport={{ once: true, margin: "-100px" }}
+          className="mt-24 lg:mt-32 pt-24 lg:pt-32 border-t border-ink/15 max-w-3xl"
         >
-          <p className="text-base lg:text-lg text-gray-700 leading-relaxed font-light">
-            Each credential represents thousands of hours of dedicated work, rigorous compliance, 
-            and a deep commitment to partnering with the institutions that build Chicago. 
+          <p className="text-base lg:text-lg text-ink/75 leading-relaxed font-light">
+            Each credential represents thousands of hours of dedicated work, rigorous compliance,
+            and a deep commitment to partnering with the institutions that build Chicago.
             We don&apos;t just hold these certifications—we earn them every single day.
           </p>
         </motion.div>

@@ -63,8 +63,8 @@ export default function Contact() {
                 <h3 className="text-xl font-bold text-gray-900">Office Location</h3>
                 <div className="text-gray-600 space-y-2">
                   <p className="font-semibold">AshLaur Construction</p>
-                  <p>1595 Valencia Ct</p>
-                  <p>Calumet City, IL 60409-5410</p>
+                  <p>509 E 75th St</p>
+                  <p>Chicago, IL 60619</p>
                   <p>United States</p>
                 </div>
               </div>

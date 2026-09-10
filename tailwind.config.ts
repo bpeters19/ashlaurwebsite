@@ -25,9 +25,19 @@ const config: Config = {
           darkBlue: "#1E40AF",
           white: "#FFFFFF",
         },
+        // Refined brand palette — deepened/desaturated navy, warm neutrals, single brass accent.
+        ink: "#1E2F4D",
+        "warm-black": "#100D0A",
+        bone: "#F3EEE5",
+        stone: "#B4AA9A",
+        brass: "#9C7A45",
+        // Cool, harder-edged neutral for content sections outside the hero — concrete, not cream.
+        concrete: "#ECEDEF",
       },
       fontFamily: {
         sans: ['Inter', 'Helvetica', 'Arial', 'sans-serif'],
+        display: ['var(--font-big-shoulders)', 'sans-serif'],
+        technical: ['var(--font-plex-mono)', 'monospace'],
       },
       animation: {
         'glow': 'glow 2s ease-in-out infinite alternate',
