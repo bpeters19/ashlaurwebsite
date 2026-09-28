@@ -109,7 +109,6 @@ const Navbar = () => {
     { name: "Services", href: "/services", hasDropdown: true },
     { name: "Projects", href: "/projects", hasDropdown: true },
     { name: "Process", href: "/process", hasDropdown: false },
-    { name: "Work With Us", href: "/work-with-us", hasDropdown: false },
     { name: "Careers", href: "/careers", hasDropdown: false },
     { name: "Contact", href: "/contact", hasDropdown: false },
   ];

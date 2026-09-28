@@ -21,8 +21,3 @@ export const safetyMetrics: SafetyMetric[] = [
     note: "TODO(client-content): Add workforce completion percentage.",
   },
 ];
-
-export const workWithUsPlaceholders = {
-  bondingCapacity: "TODO-BONDING-CAPACITY",
-  insuranceLimits: "TODO-INSURANCE-LIMITS",
-} as const;

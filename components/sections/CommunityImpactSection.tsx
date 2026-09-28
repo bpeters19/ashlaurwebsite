@@ -25,10 +25,10 @@ export default function CommunityImpactSection() {
               <li>Neighborhood partnerships tied to active projects</li>
             </ul>
             <Link
-              href="/work-with-us"
+              href="/contact"
               className="inline-flex items-center justify-center rounded-md bg-blue-700 px-5 py-3 text-sm font-semibold text-white hover:bg-blue-800"
             >
-              Work With Us
+              Contact Us
             </Link>
           </div>
         </div>
