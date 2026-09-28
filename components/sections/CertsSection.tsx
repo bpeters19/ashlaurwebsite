@@ -3,41 +3,10 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { certifications } from "@/data/certifications";
+import { isPlaceholderValue, SHOW_PLACEHOLDER_CONTENT } from "@/data/siteConfig";
 
 const CertsSection = () => {
-  const certifications = [
-    {
-      name: "Chicago Housing Authority",
-      image: "/images/certs/cha-logo-cert.png",
-      description: "Chicago Housing Authority",
-      href: "https://www.thecha.org/voucher-holders"
-    },
-    {
-      name: "CMS Certified",
-      image: "/images/certs/cms-logo-cert.jpg",
-      description: "Central Management Services",
-      href: "https://cms.illinois.gov/"
-    },
-    {
-      name: "MBE Certified",
-      image: "/images/certs/mbe-logo-cert.png",
-      description: "Minority Business Enterprise",
-      href: "https://www.chicago.gov/city/en/depts/dps/provdrs/cert/svcs/minority_and_womenownedbusinessenterprisecertificationmbewbe.html"
-    },
-    {
-      name: "DBE Certified",
-      image: "/images/certs/dbe-logo-cert.png",
-      description: "Disadvantaged Business Enterprise",
-      href: "https://www.chicago.gov/city/en/depts/dps/provdrs/cert/svcs/airport_concessionsdisadvantagedbusinessenterpriseacdbeordisadva.html"
-    },
-    {
-      name: "CDOT Approved",
-      image: "/images/certs/cdot-logo-cert.png",
-      description: "Chicago Department of Transportation",
-      href: "https://www.chicago.gov/city/en/depts/cdot.html"
-    }
-  ];
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -112,7 +81,12 @@ const CertsSection = () => {
           viewport={{ once: false, amount: 0.15, margin: "-50px" }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-10"
         >
-          {certifications.map((cert, index) => (
+          {certifications.map((cert, index) => {
+            const showCertMeta =
+              SHOW_PLACEHOLDER_CONTENT ||
+              (!isPlaceholderValue(cert.certificateNumber) && !isPlaceholderValue(cert.expiration));
+
+            return (
             <motion.div
               key={cert.name}
               variants={itemVariants}
@@ -121,7 +95,9 @@ const CertsSection = () => {
               className="group cursor-pointer"
             >
               <Link
-                href={cert.href}
+                href={cert.verificationUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex flex-col h-full cursor-pointer block"
               >
                 {/* Certification Logo Container */}
@@ -132,7 +108,7 @@ const CertsSection = () => {
                   className="relative w-full aspect-square mb-8 bg-white border border-ink/10 group-hover:border-ink/40 overflow-hidden transition-all duration-500 flex items-center justify-center p-6"
                 >
                   <Image
-                    src={cert.image}
+                    src={cert.logo}
                     alt={cert.name}
                     width={120}
                     height={120}
@@ -157,8 +133,15 @@ const CertsSection = () => {
                     transition={{ duration: 0.3 }}
                     className="text-sm text-ink/65 group-hover:text-ink transition-colors duration-300 font-light"
                   >
-                    {cert.description}
+                    {cert.certifyingAgency}
                   </motion.p>
+                  {showCertMeta && (
+                    <p className="mt-2 text-xs text-ink/60 leading-relaxed">
+                      Cert #: {cert.certificateNumber}
+                      <br />
+                      Expires: {cert.expiration}
+                    </p>
+                  )}
                   <motion.div
                     initial={{ opacity: 0.5 }}
                     whileHover={{ opacity: 1 }}
@@ -172,7 +155,8 @@ const CertsSection = () => {
                 </div>
               </Link>
             </motion.div>
-          ))}
+            );
+          })}
         </motion.div>
 
         {/* Supporting Statement */}

@@ -29,13 +29,37 @@ export default function ProjectDetailView({
   currentPhaseIndex,
 }: ProjectDetailViewProps) {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
-  const projectImages = (project.galleryImages.length ? project.galleryImages : [project.mainImage]).filter(
-    (img) => !img.includes("coming-soon")
-  );
+  const projectGallery = project.gallery ?? [];
+  const legacyGallery = project.galleryImages
+    .filter((img) => !img.includes("coming-soon"))
+    .filter((img) => img !== project.mainImage)
+    .map((src, index) => ({
+      src,
+      alt: `${project.title} gallery photo ${index + 1}`,
+    }));
+  const projectImages = projectGallery.length ? projectGallery : legacyGallery;
   const progressWidth = `${(currentPhaseIndex / (timelinePhases.length - 1)) * 100}%`;
 
   const selectedImage =
-    selectedImageIndex === null ? null : projectImages[selectedImageIndex] ?? project.mainImage;
+    selectedImageIndex === null ? null : projectImages[selectedImageIndex]?.src ?? null;
+
+  const factItems = [
+    { label: "Contract Value", value: project.facts?.contractValueRange },
+    { label: "Square Footage", value: project.facts?.squareFootage },
+    { label: "Duration", value: project.facts?.duration },
+    { label: "Delivery Method", value: project.facts?.deliveryMethod },
+    { label: "Role", value: project.facts?.role },
+    {
+      label: "Partners",
+      value: project.facts?.partners?.length ? project.facts.partners.join(", ") : undefined,
+    },
+  ].filter((item) => item.value);
+
+  const storyItems = [
+    { label: "Challenge", value: project.story?.challenge },
+    { label: "Approach", value: project.story?.approach },
+    { label: "Result", value: project.story?.result },
+  ].filter((item) => item.value);
 
   const openPreviousImage = () => {
     if (selectedImageIndex === null) {
@@ -205,51 +229,116 @@ export default function ProjectDetailView({
           </div>
         </motion.section>
 
-        <motion.section
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.2, ease: "easeOut" }}
-          className="bg-white"
-        >
-          <div className="mx-auto max-w-7xl px-6 py-14 md:px-10 lg:px-12">
-            <div className="max-w-3xl">
-              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-blue-600">
-                Project Story
-              </p>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-gray-900 md:text-4xl">
-                Additional images and project information
-              </h2>
-              <p className="mt-5 text-lg leading-relaxed text-gray-600">{project.description}</p>
-            </div>
-
-            <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2">
-              {projectImages.map((image, index) => (
-                <motion.button
-                  key={`${project.slug}-${image}-${index}`}
-                  type="button"
-                  initial={{ opacity: 0, y: 18 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.45, delay: 0.06 * index, ease: "easeOut" }}
-                  onClick={() => setSelectedImageIndex(index)}
-                  className="group relative aspect-[4/3] overflow-hidden rounded-2xl bg-gray-100 text-left"
-                >
-                  <Image
-                    src={image}
-                    alt={`${project.title} gallery image ${index + 1}`}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-100" />
-                  <div className="absolute bottom-4 left-4 text-sm font-semibold uppercase tracking-[0.18em] text-white">
-                    Expand Image
+        {factItems.length > 0 && (
+          <motion.section
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, delay: 0.2, ease: "easeOut" }}
+            className="border-b border-gray-200 bg-white"
+          >
+            <div className="mx-auto max-w-7xl px-6 py-14 md:px-10 lg:px-12">
+              <h2 className="text-3xl font-semibold tracking-tight text-gray-900 md:text-4xl">Project Facts</h2>
+              <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {factItems.map((item) => (
+                  <div key={item.label} className="rounded-xl border border-gray-200 bg-gray-50 p-5">
+                    <p className="text-xs uppercase tracking-[0.18em] text-gray-500">{item.label}</p>
+                    <p className="mt-2 text-lg font-semibold text-gray-900">{item.value}</p>
                   </div>
-                </motion.button>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
-        </motion.section>
+          </motion.section>
+        )}
+
+        {storyItems.length > 0 && (
+          <motion.section
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, delay: 0.23, ease: "easeOut" }}
+            className="border-b border-gray-200 bg-white"
+          >
+            <div className="mx-auto max-w-7xl px-6 py-14 md:px-10 lg:px-12">
+              <h2 className="text-3xl font-semibold tracking-tight text-gray-900 md:text-4xl">Project Story</h2>
+              <div className="mt-8 grid gap-6 md:grid-cols-3">
+                {storyItems.map((item) => (
+                  <article key={item.label} className="rounded-xl border border-gray-200 bg-gray-50 p-6">
+                    <p className="text-sm font-semibold uppercase tracking-[0.18em] text-blue-600">{item.label}</p>
+                    <p className="mt-3 text-gray-700 leading-relaxed">{item.value}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </motion.section>
+        )}
+
+        {project.testimonial?.quote && (
+          <motion.section
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, delay: 0.25, ease: "easeOut" }}
+            className="border-b border-gray-200 bg-white"
+          >
+            <div className="mx-auto max-w-4xl px-6 py-14 md:px-10 lg:px-12">
+              <blockquote className="rounded-2xl border border-gray-200 bg-gray-50 p-8">
+                <p className="text-2xl leading-relaxed text-gray-900">&ldquo;{project.testimonial.quote}&rdquo;</p>
+                {(project.testimonial.name || project.testimonial.title || project.testimonial.company) && (
+                  <footer className="mt-6 text-sm text-gray-600">
+                    {project.testimonial.name ?? ""}
+                    {project.testimonial.title ? `, ${project.testimonial.title}` : ""}
+                    {project.testimonial.company ? `, ${project.testimonial.company}` : ""}
+                  </footer>
+                )}
+              </blockquote>
+            </div>
+          </motion.section>
+        )}
+
+        {projectImages.length > 0 && (
+          <motion.section
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, delay: 0.2, ease: "easeOut" }}
+            className="bg-white"
+          >
+            <div className="mx-auto max-w-7xl px-6 py-14 md:px-10 lg:px-12">
+              <div className="max-w-3xl">
+                <p className="text-sm font-semibold uppercase tracking-[0.22em] text-blue-600">
+                  Gallery
+                </p>
+                <h2 className="mt-3 text-3xl font-semibold tracking-tight text-gray-900 md:text-4xl">
+                  Project Images
+                </h2>
+              </div>
+
+              <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2">
+                {projectImages.map((image, index) => (
+                  <motion.button
+                    key={`${project.slug}-${image.src}-${index}`}
+                    type="button"
+                    initial={{ opacity: 0, y: 18 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ duration: 0.45, delay: 0.06 * index, ease: "easeOut" }}
+                    onClick={() => setSelectedImageIndex(index)}
+                    className="group relative aspect-[4/3] overflow-hidden rounded-2xl bg-gray-100 text-left"
+                  >
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-100" />
+                    <div className="absolute bottom-4 left-4 text-sm font-semibold uppercase tracking-[0.18em] text-white">
+                      Expand Image
+                    </div>
+                  </motion.button>
+                ))}
+              </div>
+            </div>
+          </motion.section>
+        )}
 
         <motion.section
           initial={{ opacity: 0, y: 18 }}

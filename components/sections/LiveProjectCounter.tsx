@@ -2,25 +2,41 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { companyStats } from "@/data/company";
 
 const LiveProjectCounter = () => {
-  const [counters, setCounters] = useState({
-    projects: 0,
-    experience: 0,
-    satisfaction: 0,
-  });
+  const finalStats = companyStats;
+  const [animatedValues, setAnimatedValues] = useState<number[]>(() =>
+    finalStats.map((stat) => stat.value)
+  );
+  const [isHydrated, setIsHydrated] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const targetValues = {
-    projects: 500,
-    experience: 25,
-    satisfaction: 99,
-  };
+  useEffect(() => {
+    setIsHydrated(true);
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefersReducedMotion(mediaQuery.matches);
+
+    const handleMotionChange = (event: MediaQueryListEvent) => {
+      setPrefersReducedMotion(event.matches);
+    };
+
+    mediaQuery.addEventListener("change", handleMotionChange);
+    return () => mediaQuery.removeEventListener("change", handleMotionChange);
+  }, []);
 
   useEffect(() => {
+    if (!isHydrated) return;
     if (!isInView) return;
+    if (prefersReducedMotion) {
+      setAnimatedValues(finalStats.map((stat) => stat.value));
+      return;
+    }
+
+    setAnimatedValues(finalStats.map(() => 0));
 
     const duration = 2000; // 2 seconds
     const steps = 60;
@@ -34,38 +50,20 @@ const LiveProjectCounter = () => {
       // Easing function for smooth animation
       const easeOutQuart = 1 - Math.pow(1 - progress, 4);
 
-      setCounters({
-        projects: Math.floor(targetValues.projects * easeOutQuart),
-        experience: Math.floor(targetValues.experience * easeOutQuart),
-        satisfaction: Math.floor(targetValues.satisfaction * easeOutQuart),
-      });
+      setAnimatedValues(
+        finalStats.map((stat) => Math.floor(stat.value * easeOutQuart))
+      );
 
       if (step >= steps) {
         clearInterval(timer);
-        setCounters(targetValues);
+        setAnimatedValues(finalStats.map((stat) => stat.value));
       }
     }, interval);
 
     return () => clearInterval(timer);
-  }, [isInView]);
+  }, [finalStats, isHydrated, isInView, prefersReducedMotion]);
 
-  const stats = [
-    {
-      label: "Projects Completed",
-      value: counters.projects,
-      suffix: "+",
-    },
-    {
-      label: "Client Satisfaction",
-      value: counters.satisfaction,
-      suffix: "%",
-    },
-    {
-      label: "Years Experience",
-      value: counters.experience,
-      suffix: "+",
-    },
-  ];
+  const displayedValues = isHydrated ? animatedValues : finalStats.map((stat) => stat.value);
 
   return (
     <section ref={ref} className="py-20 lg:py-28 bg-ink">
@@ -81,15 +79,15 @@ const LiveProjectCounter = () => {
             className="font-display font-black uppercase text-4xl md:text-5xl text-bone leading-[0.95] tracking-tight mb-4"
             style={{ fontVariationSettings: "'opsz' 72, 'wght' 900" }}
           >
-            ASHLAUR by the numbers.
+            Ashlaur by the numbers.
           </h2>
           <p className="text-bone/65 text-lg max-w-2xl">
             Our track record speaks for itself. Here&apos;s what we&apos;ve achieved together with our clients.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-bone/15 border-t border-b border-bone/15">
-          {stats.map((stat, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-bone/15 border-t border-b border-bone/15">
+          {finalStats.map((stat, index) => (
             <motion.div
               key={stat.label}
               initial={{ opacity: 0, y: 12 }}
@@ -99,7 +97,8 @@ const LiveProjectCounter = () => {
               className="py-10 px-2 md:px-10"
             >
               <div className="font-technical text-5xl md:text-6xl tabular-nums text-bone mb-2">
-                {stat.value.toLocaleString()}{stat.suffix}
+                {displayedValues[index].toLocaleString()}
+                {stat.suffix}
               </div>
               <p className="font-technical text-xs uppercase tracking-[0.15em] text-bone/55">
                 {stat.label}

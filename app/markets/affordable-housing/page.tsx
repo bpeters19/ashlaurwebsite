@@ -1,6 +1,10 @@
+import type { Metadata } from "next";
 import ProjectGrid from "./ProjectGrid";
 import MarketHero from "../MarketHero";
 import { projects } from "@/data/projects";
+import { getMarketMetadata } from "@/data/markets";
+
+export const metadata: Metadata = getMarketMetadata("affordable-housing");
 
 const affordableHousingProjects = Array.from(
   new Map(

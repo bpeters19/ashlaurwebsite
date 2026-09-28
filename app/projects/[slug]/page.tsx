@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import ProjectDetailView from "./ProjectDetailView";
 import { getProjectBySlug, projects, type ProjectStatus } from "@/data/projects";
 
@@ -17,6 +18,42 @@ type ProjectDetailPageProps = {
 
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
+}
+
+export async function generateMetadata({ params }: ProjectDetailPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const project = getProjectBySlug(slug);
+
+  if (!project) {
+    return {
+      title: "Project Not Found | Ashlaur Construction",
+      description: "The requested project could not be found.",
+    };
+  }
+
+  const title = `${project.title} | ${project.category} Construction in Chicago | Ashlaur Construction`;
+  const description = project.description;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      images: [
+        {
+          url: project.mainImage,
+          alt: `${project.title} project hero image`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [project.mainImage],
+    },
+  };
 }
 
 export default async function ProjectDetailPage({ params }: ProjectDetailPageProps) {

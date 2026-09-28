@@ -1,8 +1,13 @@
-"use client";
-
+import type { Metadata } from "next";
 import Navbar from "../../../components/Navbar";
 import Footer from "../../../components/Footer";
 import ProjectMap from "../../../components/ProjectMap";
+
+export const metadata: Metadata = {
+  title: "Project Locations Map | Ashlaur Construction",
+  description:
+    "View Ashlaur Construction project locations across Chicago and surrounding communities.",
+};
 
 export default function ProjectMapPage() {
   return (

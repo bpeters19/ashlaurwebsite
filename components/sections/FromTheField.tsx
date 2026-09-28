@@ -27,7 +27,7 @@ const FromTheField = () => {
     },
     {
       id: 3,
-      title: "Cook County Health – Buildings and Grounds Storage Trailer site developement",
+      title: "Cook County Health – Buildings and Grounds Storage Trailer site development",
       image: "/images/from-the-field/cook-county-health-building.jpg",
       slug: "cook-county-health-storage-trailer-site",
     },

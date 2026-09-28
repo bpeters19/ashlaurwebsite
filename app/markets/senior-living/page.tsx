@@ -1,6 +1,10 @@
+import type { Metadata } from "next";
 import ProjectGrid from "./ProjectGrid";
 import { seniorLivingProjects } from "./projects/data";
 import MarketHero from "../MarketHero";
+import { getMarketMetadata } from "@/data/markets";
+
+export const metadata: Metadata = getMarketMetadata("senior-living");
 
 export default function SeniorLiving() {
   return (

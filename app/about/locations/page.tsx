@@ -7,16 +7,6 @@ export const metadata = {
 };
 
 export default function Locations() {
-  const locations = [
-    {
-      type: "Headquarters",
-      city: "Chicago",
-      state: "Illinois",
-      description: "Our home base. Where vision meets execution. 20+ years of Chicago construction excellence.",
-      services: ["Full-service construction", "Project management", "Preconstruction"],
-    },
-  ];
-
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
@@ -50,7 +40,7 @@ export default function Locations() {
                     509 E 75th St, Chicago, IL 60619, United States
                   </p>
                   <p className="text-gray-600 text-lg leading-relaxed mb-6">
-                    Our headquarters sits in the heart of Chicago&apos;s construction ecosystem. For over two decades, we&apos;ve served as a trusted partner to Chicago&apos;s leading general contractors and owners.
+                    Our headquarters sits in the heart of Chicago&apos;s construction ecosystem. For over 25 years, we&apos;ve served as a trusted partner to Chicago&apos;s leading general contractors and owners.
                   </p>
                 </div>
                 <div className="space-y-4">

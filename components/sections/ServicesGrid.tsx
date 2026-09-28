@@ -37,7 +37,7 @@ const ServicesGrid = () => {
       step: "05",
       title: "Subcontracting",
       description:
-        "ASHLAUR partners with general contractors and project teams to deliver specialized scopes with reliability and precision. Our team integrates seamlessly into active job sites, maintaining the same standards of safety, communication, and quality that define every ASHLAUR project.",
+        "Ashlaur partners with general contractors and project teams to deliver specialized scopes with reliability and precision. Our team integrates seamlessly into active job sites, maintaining the same standards of safety, communication, and quality that define every Ashlaur project.",
       href: "/about/become-a-subcontractor",
     },
   ];

@@ -2,8 +2,16 @@
 
 import Link from "next/link";
 import SocialIcons from "./SocialIcons";
+import { companyInfo } from "@/data/company";
+import { serviceLinks } from "@/data/services";
+import { capabilitiesStatement } from "@/data/documents";
+import { SHOW_PLACEHOLDER_CONTENT } from "@/data/siteConfig";
+import { trackEvent } from "@/lib/analytics";
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+  const showCapabilitiesCta = SHOW_PLACEHOLDER_CONTENT || !capabilitiesStatement.isPlaceholder;
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -14,7 +22,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* About */}
           <div>
-            <h3 className="text-3xl font-black text-blue-600 mb-6 cursor-pointer hover:text-blue-400 transition-colors duration-300">ASHLAUR</h3>
+            <h3 className="text-3xl font-black text-blue-600 mb-6 cursor-pointer hover:text-blue-400 transition-colors duration-300">Ashlaur</h3>
             <p className="text-gray-400 mb-6 leading-relaxed">
               Building Tomorrow, Today. Precision. Power. Performance. Where vision meets extraordinary execution.
             </p>
@@ -25,10 +33,13 @@ const Footer = () => {
           <div>
             <h4 className="text-xl font-bold text-white mb-6 uppercase tracking-wide">Services</h4>
             <ul className="space-y-4">
-              <li><Link href="/services" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">Architect Services</Link></li>
-              <li><Link href="/services" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">Subcontracting</Link></li>
-              <li><Link href="/services" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">General Contracting</Link></li>
-              <li><Link href="/projects" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">Project Management</Link></li>
+              {serviceLinks.map((service) => (
+                <li key={service.href}>
+                  <Link href={service.href} className="text-gray-400 hover:text-blue-400 transition-colors duration-300">
+                    {service.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -37,7 +48,10 @@ const Footer = () => {
             <h4 className="text-xl font-bold text-white mb-6 uppercase tracking-wide">Company</h4>
             <ul className="space-y-4">
               <li><Link href="/about" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">About Us</Link></li>
+              <li><Link href="/work-with-us" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">Work With Us</Link></li>
               <li><Link href="/careers" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">Careers</Link></li>
+              <li><Link href="/safety" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">Safety</Link></li>
+              <li><Link href="/privacy" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">Privacy</Link></li>
               <li><Link href="/policies" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">Policies</Link></li>
               <li><Link href="/projects" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">Projects</Link></li>
               <li><Link href="/contact" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">Contact</Link></li>
@@ -48,39 +62,44 @@ const Footer = () => {
           <div>
             <h4 className="text-xl font-bold text-white mb-6 uppercase tracking-wide">Get In Touch</h4>
             <div className="space-y-4 text-gray-400 mb-6">
-              <p>509 E 75th St, Chicago, IL 60619, United States</p>
-              <p className="hover:text-blue-400 transition-colors duration-300 cursor-pointer">Phone: (773) 651-1900</p>
-              <p className="hover:text-blue-400 transition-colors duration-300 cursor-pointer">Email: info@ashlaurconstruction.com</p>
+              <p>{companyInfo.address.full}</p>
+              <p>
+                Phone: {" "}
+                <a
+                  href="tel:+17736511900"
+                  className="hover:text-blue-400 transition-colors duration-300"
+                  onClick={() => trackEvent("phone_click", { source: "footer" })}
+                >
+                  {companyInfo.phone}
+                </a>
+              </p>
+              <p>
+                Email: {" "}
+                <a href={`mailto:${companyInfo.email}`} className="hover:text-blue-400 transition-colors duration-300">
+                  {companyInfo.email}
+                </a>
+              </p>
             </div>
+            {showCapabilitiesCta && (
+              <a
+                href={capabilitiesStatement.path}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackEvent("capabilities_download", { source: "footer" })}
+                className="mb-4 inline-block text-blue-400 hover:text-blue-300 transition-colors"
+              >
+                Download Capabilities Statement
+              </a>
+            )}
             <Link href="/contact" className="inline-block bg-blue-700 hover:bg-blue-900 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 hover:shadow-lg">
               GET QUOTE
             </Link>
           </div>
         </div>
 
-        {/* Newsletter */}
-        <div className="mt-16 pt-12 border-t border-gray-800">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="mb-6 md:mb-0">
-              <h4 className="text-2xl font-bold text-white mb-2">Stay Connected</h4>
-              <p className="text-gray-400">Get the latest updates on our extraordinary projects.</p>
-            </div>
-            <div className="flex w-full md:w-auto group">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="px-6 py-3 bg-gray-800 text-white rounded-l-xl border border-gray-700 focus:outline-none focus:border-blue-600 flex-1 md:w-64 group-hover:border-gray-600 transition-colors duration-300"
-              />
-              <button className="bg-blue-700 hover:bg-blue-900 text-white font-bold px-8 py-3 rounded-r-xl transition-all duration-300 hover:shadow-lg">
-                Subscribe
-              </button>
-            </div>
-          </div>
-        </div>
-
         {/* Back to Top + Copyright */}
         <div className="mt-12 pt-8 border-t border-gray-800 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-gray-400">&copy; 2024 ASHLAUR Construction. All rights reserved. | Building Tomorrow, Today.</p>
+          <p className="text-gray-400">&copy; {currentYear} Ashlaur Construction. All rights reserved. | Building Tomorrow, Today.</p>
           <button
             onClick={scrollToTop}
             className="text-gray-400 hover:text-blue-400 transition-colors duration-300 cursor-pointer font-semibold flex items-center gap-2 group"

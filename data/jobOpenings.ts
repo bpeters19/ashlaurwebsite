@@ -11,8 +11,6 @@ export interface JobOpening {
   applyUrl: string;
 }
 
-const linkedinJobsUrl = "https://www.linkedin.com/company/ashlaur-construction/jobs/";
-
 export const jobOpenings: JobOpening[] = [
   // No active openings right now. Add new roles here when available.
 ];

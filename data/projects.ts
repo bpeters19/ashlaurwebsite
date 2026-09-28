@@ -12,21 +12,62 @@ export type ProjectLocation = {
   address: string;
 };
 
+export type ProjectGalleryImage = {
+  src: string;
+  alt: string;
+};
+
+export type ProjectFacts = {
+  contractValueRange?: string;
+  squareFootage?: string;
+  duration?: string;
+  deliveryMethod?: string;
+  role?: "GC" | "JV partner" | "Subcontractor";
+  partners?: string[];
+};
+
+export type ProjectStory = {
+  challenge?: string;
+  approach?: string;
+  result?: string;
+};
+
+export type ProjectTestimonial = {
+  quote?: string;
+  name?: string;
+  title?: string;
+  company?: string;
+};
+
 export type Project = {
   title: string;
   slug: string;
   category: string;
   mainImage: string;
   galleryImages: string[];
+  gallery?: ProjectGalleryImage[];
   description: string;
   location?: ProjectLocation;
   scope?: string;
+  facts?: ProjectFacts;
+  story?: ProjectStory;
+  testimonial?: ProjectTestimonial;
   status: ProjectStatus;
 };
 
 const COMING_SOON_IMAGE = "/images/projects/coming-soon.svg";
 
 const buildGallery = (mainImage: string) => [mainImage, COMING_SOON_IMAGE];
+
+// TODO(client-content): Each project below still needs optional detail fields from the client.
+// Required fields per project slug:
+// - gallery[] with alt text: invest-southwest, zachary-hotel, stroger-hospital, friend-health-woodlawn,
+//   raintree-hall, cps-near-west-offices, foglia-residences, westhaven-park, jigzibik,
+//   jtdc-bathroom-renovations, ccab-1st-floor-toilet, cook-county-health-storage-trailer-site,
+//   park-forest-blackhawk-plaza, skokie-courthouse, walsh-school-flooring
+// - facts: contractValueRange, squareFootage, duration, deliveryMethod, role, partners
+// - story: challenge, approach, result
+// - testimonial: quote, name, title, company
 
 export const projects: Project[] = [
   {

@@ -8,6 +8,9 @@ import Link from "next/link";
 import Image from "next/image";
 import SocialIcons from "./SocialIcons";
 import { markets } from "@/data/markets";
+import { capabilitiesStatement } from "@/data/documents";
+import { SHOW_PLACEHOLDER_CONTENT } from "@/data/siteConfig";
+import { trackEvent } from "@/lib/analytics";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,6 +18,10 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const navWrapperRef = useRef<HTMLDivElement | null>(null);
   const menuRef = useRef<HTMLDivElement | null>(null);
+  const mobileMenuRef = useRef<HTMLDivElement | null>(null);
+  const mobileMenuButtonRef = useRef<HTMLButtonElement | null>(null);
+
+  const showCapabilitiesCta = SHOW_PLACEHOLDER_CONTENT || !capabilitiesStatement.isPlaceholder;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,11 +53,63 @@ const Navbar = () => {
     };
   }, [activeDropdown]);
 
+  useEffect(() => {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setActiveDropdown(null);
+      }
+    };
+
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, []);
+
+  useEffect(() => {
+    if (!isOpen || !mobileMenuRef.current) {
+      return;
+    }
+
+    const focusableElements = Array.from(
+      mobileMenuRef.current.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      )
+    );
+
+    focusableElements[0]?.focus();
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsOpen(false);
+        mobileMenuButtonRef.current?.focus();
+        return;
+      }
+
+      if (event.key !== "Tab" || focusableElements.length === 0) {
+        return;
+      }
+
+      const first = focusableElements[0];
+      const last = focusableElements[focusableElements.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen]);
+
   const navItems = [
     { name: "About", href: "/about", hasDropdown: true },
     { name: "Services", href: "/services", hasDropdown: true },
     { name: "Projects", href: "/projects", hasDropdown: true },
     { name: "Process", href: "/process", hasDropdown: false },
+    { name: "Work With Us", href: "/work-with-us", hasDropdown: false },
     { name: "Careers", href: "/careers", hasDropdown: false },
     { name: "Contact", href: "/contact", hasDropdown: false },
   ];
@@ -119,7 +178,7 @@ const Navbar = () => {
       title: "Projects",
       description:
         "Sector-led teams delivering healthcare, industrial, and commercial builds with predictable outcomes.",
-      cta: { label: "See Featured Projects →", href: "/markets/affordable-housing" },
+      cta: { label: "See Featured Projects →", href: "/projects" },
       columns: [
         {
           heading: "Market Sectors",
@@ -239,7 +298,18 @@ const Navbar = () => {
             <div className="flex items-center gap-6 md:gap-8">
               <div className="hidden md:flex items-center gap-6">
                 <SocialIcons size="sm" variant="light" />
-                <Link href="/about/market-sectors">
+                {showCapabilitiesCta && (
+                  <a
+                    href={capabilitiesStatement.path}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="border border-white/25 bg-white/10 px-5 py-3 rounded text-white font-semibold text-sm hover:bg-white/20"
+                    onClick={() => trackEvent("capabilities_download", { source: "navbar" })}
+                  >
+                    CAPABILITIES
+                  </a>
+                )}
+                <Link href="/projects">
                   <button className="bg-[#123563] hover:bg-[#1c3a66] text-white font-bold py-3 px-6 rounded transition duration-300 transform hover:scale-105 border border-white/25 shadow-lg">
                     SEE OUR PROJECTS
                   </button>
@@ -248,8 +318,12 @@ const Navbar = () => {
 
               {/* Mobile menu button */}
               <button
+                ref={mobileMenuButtonRef}
                 onClick={toggleMobileMenu}
                 className="md:hidden text-white hover:text-[#AFC6FF] p-2 transition-colors"
+                aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+                aria-expanded={isOpen}
+                aria-controls="mobile-nav-panel"
               >
                 {isOpen ? <X className="h-8 w-8" /> : <Menu className="h-8 w-8" />}
               </button>
@@ -365,49 +439,31 @@ const Navbar = () => {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'tween', duration: 0.3 }}
+              id="mobile-nav-panel"
+              ref={mobileMenuRef}
               className="absolute right-0 top-0 h-full w-80 bg-accent border-l border-border p-8"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex flex-col space-y-8 mt-20">
                 {navItems.map((item, index) => {
-                  const hasMegaMenu = Boolean(
-                    item.hasDropdown && megaMenuContent[item.name as keyof typeof megaMenuContent]
-                  );
-
-                  if (hasMegaMenu) {
-                    return (
-                      <motion.button
-                        key={item.name}
-                        initial={{ opacity: 0, x: 50 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.1 }}
-                        className="text-white hover:text-[#AFC6FF] text-2xl font-bold transition-colors flex items-center justify-between w-full"
-                        onClick={() => {
-                          setActiveDropdown(activeDropdown === item.name ? null : item.name);
-                          setIsOpen(false);
-                        }}
-                      >
-                        {item.name}
-                        <ChevronDown className="ml-3 h-6 w-6" />
-                      </motion.button>
-                    );
-                  }
-
                   return (
-                    <motion.a
+                    <motion.div
                       key={item.name}
-                      href={item.href}
                       initial={{ opacity: 0, x: 50 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.1 }}
-                      className="text-white hover:text-[#AFC6FF] text-2xl font-bold transition-colors"
-                      onClick={() => setIsOpen(false)}
                     >
-                      {item.name}
-                    </motion.a>
+                      <Link
+                        href={item.href}
+                        className="text-white hover:text-[#AFC6FF] text-2xl font-bold transition-colors"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        {item.name}
+                      </Link>
+                    </motion.div>
                   );
                 })}
-                <Link href="/about/market-sectors">
+                <Link href="/projects">
                   <motion.button
                     initial={{ opacity: 0, x: 50 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -418,6 +474,20 @@ const Navbar = () => {
                     SEE OUR PROJECTS
                   </motion.button>
                 </Link>
+                {showCapabilitiesCta && (
+                  <a
+                    href={capabilitiesStatement.path}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center border border-white/30 text-white font-bold py-3 px-6 rounded text-base"
+                    onClick={() => {
+                      trackEvent("capabilities_download", { source: "mobile_menu" });
+                      setIsOpen(false);
+                    }}
+                  >
+                    CAPABILITIES
+                  </a>
+                )}
               </div>
             </motion.div>
           </motion.div>

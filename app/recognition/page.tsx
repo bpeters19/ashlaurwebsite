@@ -1,9 +1,10 @@
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import Image from "next/image";
 
 export const metadata = {
-  title: "Recognition & Partners - AshLaur",
-  description: "AshLaur's certifications, accreditations, and trusted industry partners.",
+  title: "Recognition & Partners - Ashlaur",
+  description: "Ashlaur's certifications, accreditations, and trusted industry partners.",
 };
 
 export default function Recognition() {
@@ -28,7 +29,7 @@ export default function Recognition() {
             <p className="text-sm font-semibold tracking-wide text-blue-400">Credentials & Partnerships</p>
             <h1 className="text-4xl md:text-5xl font-bold text-secondary">Recognition & Partners</h1>
             <p className="text-lg text-white/85 max-w-3xl mx-auto">
-              AshLaur is proud to hold industry-leading certifications and work alongside trusted partners who share our commitment to excellence.
+              Ashlaur is proud to hold industry-leading certifications and work alongside trusted partners who share our commitment to excellence.
             </p>
           </header>
 
@@ -159,7 +160,7 @@ export default function Recognition() {
               <div className="p-6 rounded-xl bg-white/10 border border-white/20 shadow-md space-y-4 hover:bg-white/15 transition-colors">
                 <div className="flex items-center gap-4">
                   <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center flex-shrink-0">
-                    <img src="/images/certs/cha-logo-cert.png" alt="CHA Logo" className="w-full h-full object-contain p-2" />
+                    <Image src="/images/certs/cha-logo-cert.png" alt="CHA logo" width={64} height={64} className="w-full h-full object-contain p-2" />
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-secondary">CHA Certified</h3>
@@ -174,7 +175,7 @@ export default function Recognition() {
               <div className="p-6 rounded-xl bg-white/10 border border-white/20 shadow-md space-y-4 hover:bg-white/15 transition-colors">
                 <div className="flex items-center gap-4">
                   <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center flex-shrink-0">
-                    <img src="/images/certs/cms-logo-cert.jpg" alt="CMS Logo" className="w-full h-full object-contain p-2" />
+                    <Image src="/images/certs/cms-logo-cert.jpg" alt="CMS logo" width={64} height={64} className="w-full h-full object-contain p-2" />
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-secondary">CMS Certified</h3>
@@ -189,7 +190,7 @@ export default function Recognition() {
               <div className="p-6 rounded-xl bg-white/10 border border-white/20 shadow-md space-y-4 hover:bg-white/15 transition-colors">
                 <div className="flex items-center gap-4">
                   <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center flex-shrink-0">
-                    <img src="/images/certs/mbe-logo-cert.png" alt="MBE Logo" className="w-full h-full object-contain p-2" />
+                    <Image src="/images/certs/mbe-logo-cert.png" alt="MBE logo" width={64} height={64} className="w-full h-full object-contain p-2" />
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-secondary">MBE Certified</h3>
@@ -204,7 +205,7 @@ export default function Recognition() {
               <div className="p-6 rounded-xl bg-white/10 border border-white/20 shadow-md space-y-4 hover:bg-white/15 transition-colors">
                 <div className="flex items-center gap-4">
                   <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center flex-shrink-0">
-                    <img src="/images/certs/dbe-logo-cert.png" alt="DBE Logo" className="w-full h-full object-contain p-2" />
+                    <Image src="/images/certs/dbe-logo-cert.png" alt="DBE logo" width={64} height={64} className="w-full h-full object-contain p-2" />
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-secondary">DBE Certified</h3>
@@ -219,7 +220,7 @@ export default function Recognition() {
               <div className="p-6 rounded-xl bg-white/10 border border-white/20 shadow-md space-y-4 hover:bg-white/15 transition-colors">
                 <div className="flex items-center gap-4">
                   <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center flex-shrink-0">
-                    <img src="/images/certs/cdot-logo-cert.png" alt="CDOT Logo" className="w-full h-full object-contain p-2" />
+                    <Image src="/images/certs/cdot-logo-cert.png" alt="CDOT logo" width={64} height={64} className="w-full h-full object-contain p-2" />
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-secondary">CDOT Approved</h3>
@@ -263,7 +264,7 @@ export default function Recognition() {
               <a href="https://www.fhpaschen.com/" target="_blank" rel="noopener noreferrer" className="p-6 rounded-xl bg-white border border-white/20 shadow-md hover:shadow-lg transition-all group">
                 <div className="flex flex-col items-center text-center space-y-3">
                   <div className="w-full h-24 flex items-center justify-center">
-                    <img src="/images/partners/fhp/partners-02%20fhp.png" alt="FHP" className="max-w-full max-h-full object-contain" />
+                    <Image src="/images/partners/fhp/partners-02%20fhp.png" alt="FHP logo" width={180} height={96} className="max-w-full max-h-full object-contain" />
                   </div>
                   <h3 className="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">FHP</h3>
                 </div>
@@ -272,7 +273,7 @@ export default function Recognition() {
               <div className="p-6 rounded-xl bg-white border border-white/20 shadow-md hover:shadow-lg transition-all group">
                 <div className="flex flex-col items-center text-center space-y-3">
                   <div className="w-full h-24 flex items-center justify-center">
-                    <img src="/images/partners/mchugh/partners-05%20mchugh.png" alt="McHugh Construction" className="max-w-full max-h-full object-contain" />
+                    <Image src="/images/partners/mchugh/partners-05%20mchugh.png" alt="McHugh Construction logo" width={180} height={96} className="max-w-full max-h-full object-contain" />
                   </div>
                   <h3 className="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">McHugh Construction</h3>
                 </div>
@@ -281,7 +282,7 @@ export default function Recognition() {
               <div className="p-6 rounded-xl bg-white border border-white/20 shadow-md hover:shadow-lg transition-all group">
                 <div className="flex flex-col items-center text-center space-y-3">
                   <div className="w-full h-24 flex items-center justify-center">
-                    <img src="/images/partners/mcshane/partners-01%20mcshane.png" alt="McShane Construction" className="max-w-full max-h-full object-contain" />
+                    <Image src="/images/partners/mcshane/partners-01%20mcshane.png" alt="McShane Construction logo" width={180} height={96} className="max-w-full max-h-full object-contain" />
                   </div>
                   <h3 className="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">McShane Construction</h3>
                 </div>
@@ -290,7 +291,7 @@ export default function Recognition() {
               <div className="p-6 rounded-xl bg-white border border-white/20 shadow-md hover:shadow-lg transition-all group">
                 <div className="flex flex-col items-center text-center space-y-3">
                   <div className="w-full h-24 flex items-center justify-center">
-                    <img src="/images/partners/powers-sons/partners-06-1%20p%26s.png" alt="Powers & Sons Construction" className="max-w-full max-h-full object-contain" />
+                    <Image src="/images/partners/powers-sons/partners-06-1%20p%26s.png" alt="Powers and Sons Construction logo" width={180} height={96} className="max-w-full max-h-full object-contain" />
                   </div>
                   <h3 className="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">Powers & Sons Construction</h3>
                 </div>
@@ -299,7 +300,7 @@ export default function Recognition() {
               <div className="p-6 rounded-xl bg-white border border-white/20 shadow-md hover:shadow-lg transition-all group">
                 <div className="flex flex-col items-center text-center space-y-3">
                   <div className="w-full h-24 flex items-center justify-center">
-                    <img src="/images/partners/skender/partners-03%20skender.png" alt="Skender" className="max-w-full max-h-full object-contain" />
+                    <Image src="/images/partners/skender/partners-03%20skender.png" alt="Skender logo" width={180} height={96} className="max-w-full max-h-full object-contain" />
                   </div>
                   <h3 className="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">Skender</h3>
                 </div>
@@ -308,7 +309,7 @@ export default function Recognition() {
               <div className="p-6 rounded-xl bg-white border border-white/20 shadow-md hover:shadow-lg transition-all group">
                 <div className="flex flex-col items-center text-center space-y-3">
                   <div className="w-full h-24 flex items-center justify-center">
-                    <img src="/images/partners/weis-builders/partners-04%20weis.png" alt="Weis Builders" className="max-w-full max-h-full object-contain" />
+                    <Image src="/images/partners/weis-builders/partners-04%20weis.png" alt="Weis Builders logo" width={180} height={96} className="max-w-full max-h-full object-contain" />
                   </div>
                   <h3 className="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">Weis Builders</h3>
                 </div>
@@ -319,7 +320,7 @@ export default function Recognition() {
           {/* CTA Section */}
           <section className="p-8 rounded-2xl bg-gradient-to-r from-primary via-blue-600 to-secondary text-white shadow-lg">
             <div className="space-y-3 text-center">
-              <h3 className="text-2xl font-semibold">Partner with AshLaur</h3>
+              <h3 className="text-2xl font-semibold">Partner with Ashlaur</h3>
               <p className="max-w-3xl mx-auto text-white/90">
                 Interested in learning more about our certifications or exploring partnership opportunities? Let&apos;s connect.
               </p>

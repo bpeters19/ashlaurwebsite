@@ -3,6 +3,9 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Play, X, Star } from "lucide-react";
+import Image, { type ImageLoaderProps } from "next/image";
+
+const passthroughLoader = ({ src }: ImageLoaderProps) => src;
 
 const VideoTestimonials = () => {
   const [selectedVideo, setSelectedVideo] = useState<number | null>(null);
@@ -16,7 +19,7 @@ const VideoTestimonials = () => {
       rating: 5,
       thumbnail: "https://picsum.photos/seed/ashlaur-testimonial-1/1280/720",
       videoUrl: "https://example.com/video1.mp4", // Replace with actual video URL
-      quote: "ASHLAUR transformed our outdated kitchen into a modern masterpiece. Their attention to detail and professionalism exceeded our expectations.",
+      quote: "Ashlaur transformed our outdated kitchen into a modern masterpiece. Their attention to detail and professionalism exceeded our expectations.",
     },
     {
       id: 2,
@@ -26,7 +29,7 @@ const VideoTestimonials = () => {
       rating: 5,
       thumbnail: "https://picsum.photos/seed/ashlaur-testimonial-2/1280/720",
       videoUrl: "https://example.com/video2.mp4", // Replace with actual video URL
-      quote: "Working with ASHLAUR was a game-changer for our office space. They delivered on time and within budget, creating a workspace we're proud of.",
+      quote: "Working with Ashlaur was a game-changer for our office space. They delivered on time and within budget, creating a workspace we're proud of.",
     },
     {
       id: 3,
@@ -36,7 +39,7 @@ const VideoTestimonials = () => {
       rating: 5,
       thumbnail: "https://picsum.photos/seed/ashlaur-testimonial-3/1280/720",
       videoUrl: "https://example.com/video3.mp4", // Replace with actual video URL
-      quote: "ASHLAUR's expertise in large-scale renovations is unmatched. They managed our complex project seamlessly and delivered exceptional results.",
+      quote: "Ashlaur's expertise in large-scale renovations is unmatched. They managed our complex project seamlessly and delivered exceptional results.",
     },
   ];
 
@@ -66,9 +69,13 @@ const VideoTestimonials = () => {
             >
               {/* Video Thumbnail */}
               <div className="relative aspect-video overflow-hidden">
-                <img
+                <Image
+                  loader={passthroughLoader}
+                  unoptimized
                   src={testimonial.thumbnail}
                   alt={`${testimonial.name} testimonial`}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 33vw"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-300" />

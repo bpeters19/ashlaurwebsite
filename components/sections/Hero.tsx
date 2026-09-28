@@ -114,6 +114,8 @@ const Hero = () => {
         muted
         loop
         playsInline
+        poster="/images/projects/invest-southwest/cover.jpg"
+        aria-label="Ashlaur Construction project highlight video"
       >
         <source src="/ashlaur-intro-video.mp4" type="video/mp4" />
       </video>

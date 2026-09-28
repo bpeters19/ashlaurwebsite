@@ -88,13 +88,14 @@ const PartnersSection = () => {
         <div className="absolute right-0 top-0 bottom-0 w-32 lg:w-48 bg-gradient-to-l from-concrete to-transparent z-10 pointer-events-none" />
 
         {/* Scrolling Container */}
-        <div className="partner-marquee-track">
+        <div className="partner-marquee-track motion-reduce:animate-none" aria-label="Partner organizations">
           {/* First Set of Logos */}
           <div className="partner-marquee-group">
             {partners.map((partner) => (
               <PartnerLogo
                 key={`original-${partner.name}`}
                 partner={partner}
+                isDuplicate={false}
               />
             ))}
           </div>
@@ -105,6 +106,7 @@ const PartnersSection = () => {
               <PartnerLogo
                 key={`duplicate-${partner.name}`}
                 partner={partner}
+                isDuplicate
               />
             ))}
           </div>
@@ -131,8 +133,10 @@ const PartnersSection = () => {
 // Individual Partner Logo Component
 const PartnerLogo = ({
   partner,
+  isDuplicate = false,
 }: {
   partner: Partner;
+  isDuplicate?: boolean;
 }) => {
   return (
     <div className="group relative flex-shrink-0">
@@ -141,12 +145,14 @@ const PartnerLogo = ({
         target="_blank"
         rel="noopener noreferrer"
         aria-label={`Visit ${partner.name} website (opens in a new tab)`}
+        aria-hidden={isDuplicate}
+        tabIndex={isDuplicate ? -1 : 0}
         className="block transition-all duration-500 ease-out"
       >
         <div className="relative h-16 w-40 lg:h-20 lg:w-48 grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 ease-out">
           <Image
             src={partner.logo}
-            alt={partner.name}
+            alt={`${partner.name} logo`}
             fill
             className="object-contain"
             sizes="(max-width: 768px) 160px, 192px"

@@ -1,8 +1,15 @@
 import Link from "next/link";
 import Image from "next/image";
+import type { Metadata } from "next";
 import Navbar from "../../../components/Navbar";
 import Footer from "../../../components/Footer";
 import { projects } from "@/data/projects";
+
+export const metadata: Metadata = {
+	title: "Upcoming Construction Projects | Ashlaur Construction",
+	description:
+		"Preview Ashlaur Construction projects currently in preconstruction, permitting, and mobilization phases.",
+};
 
 const timelinePhases = [
 	"preconstruction",

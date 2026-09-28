@@ -2,8 +2,8 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 
 export const metadata = {
-  title: "Policies - AshLaur Construction",
-  description: "Policies and guidelines for AshLaur Construction.",
+  title: "Policies - Ashlaur Construction",
+  description: "Policies and guidelines for Ashlaur Construction.",
 };
 
 const policySections = [

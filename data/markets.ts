@@ -65,3 +65,25 @@ export const markets = [
   },
 ] as const;
 
+export type Market = (typeof markets)[number];
+
+export function getMarketBySlug(slug: string): Market | undefined {
+  return markets.find((market) => market.slug === slug);
+}
+
+export function getMarketMetadata(slug: string) {
+  const market = getMarketBySlug(slug);
+
+  if (!market) {
+    return {
+      title: "Market Sector | Ashlaur Construction",
+      description: "Explore market sectors served by Ashlaur Construction.",
+    };
+  }
+
+  return {
+    title: `${market.name} Construction in Chicago | Ashlaur Construction`,
+    description: market.description,
+  };
+}
+

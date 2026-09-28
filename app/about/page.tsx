@@ -1,17 +1,22 @@
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import Link from "next/link";
+import { companyStats } from "@/data/company";
+import { capabilitiesStatement } from "@/data/documents";
+import { SHOW_PLACEHOLDER_CONTENT } from "@/data/siteConfig";
 
 export const metadata = {
-  title: "About AshLaur - Building Tomorrow, Today",
-  description: "Learn about AshLaur's commitment to precision, power, and performance in modern construction.",
+  title: "About Ashlaur Construction",
+  description: "Learn how Ashlaur Construction delivers projects with accountability, safety, and disciplined execution.",
 };
 
 export default function About() {
+  const showCapabilitiesCta = SHOW_PLACEHOLDER_CONTENT || !capabilitiesStatement.isPlaceholder;
+
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
-      <main className="pt-20">
+      <main id="main-content" className="pt-20">
         <section className="py-28 md:py-32 border-b border-gray-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl space-y-6">
@@ -20,7 +25,7 @@ export default function About() {
                 Building With Precision. Leading With Integrity.
               </h1>
               <p className="text-lg md:text-xl text-gray-700 max-w-3xl">
-                AshLaur delivers complex construction projects with disciplined execution, clear accountability, and long-term partnership. We combine field expertise with operational rigor to build environments that perform for decades.
+                Ashlaur delivers complex construction projects with disciplined execution, clear accountability, and long-term partnership. We combine field expertise with operational rigor to build environments that perform for decades.
               </p>
             </div>
           </div>
@@ -34,7 +39,7 @@ export default function About() {
               </div>
               <div className="lg:col-span-8 space-y-5 text-lg text-gray-700">
                 <p>
-                  For more than two decades, AshLaur has delivered construction programs across commercial, institutional, healthcare, education, and public-sector markets.
+                  For over 25 years, Ashlaur has delivered construction programs across commercial, institutional, healthcare, education, and public-sector markets.
                 </p>
                 <p>
                   We serve clients throughout the Midwest with the capacity to execute in complex regulatory and operational environments, including occupied facilities and accelerated schedules.
@@ -101,22 +106,15 @@ export default function About() {
         <section className="py-20 md:py-24 border-b border-gray-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-              <div className="rounded-2xl bg-white p-8 md:p-10 shadow-lg space-y-2">
-                <p className="text-4xl md:text-5xl font-bold text-gray-900">500+</p>
-                <p className="text-sm md:text-base text-gray-700">Projects Completed</p>
-              </div>
-              <div className="rounded-2xl bg-white p-8 md:p-10 shadow-lg space-y-2">
-                <p className="text-4xl md:text-5xl font-bold text-gray-900">25+</p>
-                <p className="text-sm md:text-base text-gray-700">Years Experience</p>
-              </div>
-              <div className="rounded-2xl bg-white p-8 md:p-10 shadow-lg space-y-2">
-                <p className="text-4xl md:text-5xl font-bold text-gray-900">30+</p>
-                <p className="text-sm md:text-base text-gray-700">Cities Served</p>
-              </div>
-              <div className="rounded-2xl bg-white p-8 md:p-10 shadow-lg space-y-2">
-                <p className="text-4xl md:text-5xl font-bold text-gray-900">99%</p>
-                <p className="text-sm md:text-base text-gray-700">Repeat Clients</p>
-              </div>
+              {companyStats.map((stat) => (
+                <div key={stat.key} className="rounded-2xl bg-white p-8 md:p-10 shadow-lg space-y-2">
+                  <p className="text-4xl md:text-5xl font-bold text-gray-900">
+                    {stat.value}
+                    {stat.suffix}
+                  </p>
+                  <p className="text-sm md:text-base text-gray-700">{stat.label}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -125,12 +123,24 @@ export default function About() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mx-auto text-center space-y-6">
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900">Let&apos;s Build Something That Lasts.</h2>
-              <Link
-                href="/projects"
-                className="inline-flex items-center justify-center px-8 py-4 bg-primary text-white font-semibold border border-primary hover:bg-secondary hover:border-secondary transition-colors"
-              >
-                View Our Projects
-              </Link>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <Link
+                  href="/projects"
+                  className="inline-flex items-center justify-center px-8 py-4 bg-primary text-white font-semibold border border-primary hover:bg-secondary hover:border-secondary transition-colors"
+                >
+                  View Our Projects
+                </Link>
+                {showCapabilitiesCta && (
+                  <a
+                    href={capabilitiesStatement.path}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center px-8 py-4 border border-blue-700 text-blue-700 font-semibold hover:bg-blue-50 transition-colors"
+                  >
+                    Download Capabilities Statement
+                  </a>
+                )}
+              </div>
             </div>
           </div>
         </section>

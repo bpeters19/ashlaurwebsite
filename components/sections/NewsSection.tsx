@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const NewsSection = () => {
   const featuredArticle = {
-    title: "ASHLAUR Wins Major Infrastructure Contract",
+    title: "Ashlaur Wins Major Infrastructure Contract",
     excerpt: "We're excited to announce our selection for the $250M downtown transit project, showcasing our commitment to sustainable urban development.",
     image: "https://picsum.photos/600/400?random=22",
     date: "January 15, 2024",

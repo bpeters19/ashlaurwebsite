@@ -42,7 +42,7 @@ const ValuePropositions = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Why Choose ASHLAUR
+            Why Choose Ashlaur
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             We combine expertise, innovation, and dedication to deliver construction solutions that exceed expectations.

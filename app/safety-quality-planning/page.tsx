@@ -3,7 +3,7 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 
 export const metadata = {
-  title: "Safety & Quality Planning - AshLaur",
+  title: "Safety & Quality Planning - Ashlaur",
   description:
     "Disciplined safety and quality planning rooted in preconstruction rigor, field accountability, and documented control.",
 };

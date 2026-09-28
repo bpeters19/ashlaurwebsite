@@ -15,7 +15,7 @@ const IntroSection = () => {
           transition={{ duration: 0.5 }}
           className="font-technical text-xs tracking-[0.2em] uppercase text-ink/55 mb-4"
         >
-          Est. 2008
+          25+ Years of Experience
         </motion.p>
 
         <motion.h2
@@ -26,7 +26,7 @@ const IntroSection = () => {
           className="font-display font-black uppercase text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-ink leading-[0.9] tracking-tight mb-6 max-w-4xl"
           style={{ fontVariationSettings: "'opsz' 72, 'wght' 900" }}
         >
-          Building excellence since 2008.
+          Building excellence for over 25 years.
         </motion.h2>
 
         <motion.p
@@ -36,7 +36,7 @@ const IntroSection = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-ink/80 text-lg leading-relaxed mb-8 max-w-2xl"
         >
-          ASHLAUR Construction has been at the forefront of innovative building solutions for over 15 years.
+          Ashlaur Construction has delivered innovative building solutions for over 25 years.
           We combine traditional craftsmanship with cutting-edge technology to deliver projects that stand the test of time.
         </motion.p>
 

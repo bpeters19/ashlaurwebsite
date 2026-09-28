@@ -1,6 +1,10 @@
+import type { Metadata } from "next";
 import ProjectGrid from "./ProjectGrid";
 import { officeBuildoutsProjects } from "./projects/data";
 import MarketHero from "../MarketHero";
+import { getMarketMetadata } from "@/data/markets";
+
+export const metadata: Metadata = getMarketMetadata("office-buildouts");
 
 export default function OfficeBuildouts() {
   return (
