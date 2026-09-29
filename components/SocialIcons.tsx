@@ -22,8 +22,8 @@ const SocialIcons = ({ size = "md", variant = "light" }: SocialIconsProps) => {
   };
 
   const colorClasses = {
-    light: "text-gray-400 hover:text-blue-400",
-    dark: "text-gray-600 hover:text-blue-600",
+    light: "text-[#b9b2a7] hover:text-[#f5f3ef]",
+    dark: "text-[#6f6a5f] hover:text-[#141414]",
   };
 
   const socialLinks: SocialLink[] = [

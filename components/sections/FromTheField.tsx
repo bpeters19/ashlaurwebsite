@@ -153,7 +153,42 @@ const FromTheField = () => {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+        <div
+          className="lg:hidden"
+          role="region"
+          aria-label="Featured projects from the field"
+          tabIndex={0}
+          onKeyDown={(event) => {
+            const row = event.currentTarget.querySelector(".mobile-snap-row") as HTMLDivElement | null;
+            if (!row) return;
+            if (event.key === "ArrowRight") row.scrollBy({ left: 220, behavior: "smooth" });
+            if (event.key === "ArrowLeft") row.scrollBy({ left: -220, behavior: "smooth" });
+          }}
+        >
+          <div className="mobile-snap-row" aria-label="Swipe featured project cards">
+            {[featuredArticle, ...articles].map((article) => (
+              <Link
+                key={article.id}
+                href={`/projects/upcoming#${article.slug}`}
+                className="mobile-snap-card block"
+              >
+                <div className="relative h-[270px] w-full overflow-hidden rounded-lg border border-white/15">
+                  <Image
+                    src={article.image}
+                    alt={article.title}
+                    fill
+                    sizes="85vw"
+                    className="object-cover"
+                  />
+                </div>
+                <h3 className="mt-3 text-xl font-semibold text-bone leading-tight">{article.title}</h3>
+              </Link>
+            ))}
+          </div>
+          <p className="mobile-scroll-indicator text-white/60">Swipe for more featured projects</p>
+        </div>
+
+        <div className="hidden lg:grid lg:grid-cols-3 gap-6 items-start">
           <div className="lg:col-span-2">
             <Link href={`/projects/upcoming#${featuredArticle.slug}`} className="block group">
               <div className="relative w-full h-[460px] overflow-hidden rounded-lg">
@@ -162,7 +197,6 @@ const FromTheField = () => {
                   alt={featuredArticle.title}
                   fill
                   sizes="(min-width: 1024px) 66vw, 100vw"
-                  quality={100}
                   priority
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
@@ -230,6 +264,7 @@ const FromTheField = () => {
                       src={article.image}
                       alt={article.title}
                       fill
+                      sizes="(min-width: 1024px) 28vw, 100vw"
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                   </div>

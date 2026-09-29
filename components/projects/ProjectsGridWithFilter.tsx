@@ -45,21 +45,29 @@ export default function ProjectsGridWithFilter({ projects }: ProjectsGridWithFil
   return (
     <>
       <section className="border-b border-border bg-background py-8">
-        <div className="editorial-container flex flex-wrap gap-2">
-          {filters.map((filter) => (
-            <button
-              key={filter.value}
-              type="button"
-              onClick={() => setSelectedMarket(filter.value)}
-              className={`px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] border transition-colors ${
-                selectedMarket === filter.value
-                  ? "border-foreground bg-foreground text-background"
-                  : "border-border text-muted hover:border-foreground hover:text-foreground"
-              }`}
-            >
-              {filter.label}
-            </button>
-          ))}
+        <div className="editorial-container" role="region" aria-label="Project market filters" tabIndex={0} onKeyDown={(event) => {
+          const row = event.currentTarget.querySelector(".mobile-snap-row") as HTMLDivElement | null;
+          if (!row) return;
+          if (event.key === "ArrowRight") row.scrollBy({ left: 180, behavior: "smooth" });
+          if (event.key === "ArrowLeft") row.scrollBy({ left: -180, behavior: "smooth" });
+        }}>
+          <div className="mobile-snap-row md:flex md:flex-wrap md:gap-2 md:overflow-visible md:pb-0 md:[scroll-snap-type:none]">
+            {filters.map((filter) => (
+              <button
+                key={filter.value}
+                type="button"
+                onClick={() => setSelectedMarket(filter.value)}
+                className={`whitespace-nowrap px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] border transition-colors ${
+                  selectedMarket === filter.value
+                    ? "border-foreground bg-foreground text-background"
+                    : "border-border text-muted hover:border-foreground hover:text-foreground"
+                }`}
+              >
+                {filter.label}
+              </button>
+            ))}
+          </div>
+          <p className="mobile-scroll-indicator md:hidden">Swipe filters</p>
         </div>
       </section>
 

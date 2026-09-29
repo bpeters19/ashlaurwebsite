@@ -1,14 +1,15 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { ChevronDown, Menu, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import SocialIcons from "./SocialIcons";
 import { markets } from "@/data/markets";
-import { capabilitiesStatement } from "@/data/documents";
-import { SHOW_PLACEHOLDER_CONTENT } from "@/data/siteConfig";
+import { companyInfo } from "@/data/company";
 import { trackEvent } from "@/lib/analytics";
 
 const Navbar = () => {
@@ -19,8 +20,8 @@ const Navbar = () => {
   const menuRef = useRef<HTMLDivElement | null>(null);
   const mobileMenuRef = useRef<HTMLDivElement | null>(null);
   const mobileMenuButtonRef = useRef<HTMLButtonElement | null>(null);
-
-  const showCapabilitiesCta = SHOW_PLACEHOLDER_CONTENT || !capabilitiesStatement.isPlaceholder;
+  const shouldReduceMotion = useReducedMotion();
+  const portalRoot = typeof document !== "undefined" ? document.body : null;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,13 +56,17 @@ const Navbar = () => {
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
+        if (isOpen) {
+          setIsOpen(false);
+          mobileMenuButtonRef.current?.focus();
+        }
         setActiveDropdown(null);
       }
     };
 
     document.addEventListener("keydown", handleEscape);
     return () => document.removeEventListener("keydown", handleEscape);
-  }, []);
+  }, [isOpen]);
 
   useEffect(() => {
     if (!isOpen || !mobileMenuRef.current) {
@@ -206,6 +211,46 @@ const Navbar = () => {
 
   const pathname = usePathname();
   const isHomePage = pathname === "/";
+  const hasDarkHeroHeader =
+    isHomePage ||
+    pathname === "/about" ||
+    pathname === "/contact" ||
+    pathname === "/careers" ||
+    pathname === "/process" ||
+    pathname.startsWith("/about/") ||
+    pathname.startsWith("/services/") ||
+    pathname.startsWith("/markets/");
+  const useTransparentHeader = hasDarkHeroHeader && !isScrolled && !isOpen;
+
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => {
+      setIsOpen(false);
+      setActiveDropdown(null);
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [pathname]);
+
+  useEffect(() => {
+    const body = document.body;
+    if (isOpen) {
+      body.classList.add("mobile-menu-open");
+      const previousOverflow = body.style.overflow;
+      const previousTouchAction = body.style.touchAction;
+      body.style.overflow = "hidden";
+      body.style.touchAction = "none";
+      return () => {
+        body.classList.remove("mobile-menu-open");
+        body.style.overflow = previousOverflow;
+        body.style.touchAction = previousTouchAction;
+      };
+    }
+
+    body.classList.remove("mobile-menu-open");
+    body.style.overflow = "";
+    body.style.touchAction = "";
+    return undefined;
+  }, [isOpen]);
 
   const handleLogoClick = () => {
     if (pathname === "/") {
@@ -215,25 +260,28 @@ const Navbar = () => {
 
   // Determine navbar background based on route and scroll state
   const getNavbarClasses = () => {
-    if (!isHomePage) {
-      return 'bg-background/95 border-b border-border backdrop-blur';
+    if (!useTransparentHeader) {
+      return "bg-[#111214]/96 border-b border-white/10 backdrop-blur";
     }
-    return isScrolled
-      ? 'bg-background/95 border-b border-border backdrop-blur'
-      : 'bg-transparent border-b border-transparent';
+    return "bg-transparent border-b border-transparent";
+  };
+
+  const isMobileLinkActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    return pathname === href || pathname.startsWith(`${href}/`);
   };
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ease-in-out ${getNavbarClasses()}`}>
+    <nav className={`fixed top-0 left-0 right-0 z-[90] transition-colors duration-300 ease-in-out ${getNavbarClasses()}`}>
       <div
         ref={navWrapperRef}
         className="relative"
         onMouseLeave={() => setActiveDropdown(null)}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
+          <div className="flex h-16 items-center justify-between md:h-20">
             {/* Logo */}
-            <div className="flex-shrink-0 mr-8 md:mr-12">
+            <div className="mr-6 flex-shrink-0 md:mr-12">
               <Link
                 href="/"
                 onClick={handleLogoClick}
@@ -243,9 +291,9 @@ const Navbar = () => {
                 <Image
                   src="/logo.png"
                   alt="Ashlaur Construction"
-                  width={180}
-                  height={50}
-                  className="h-10 md:h-11 w-auto"
+                  width={196}
+                  height={72}
+                  className="h-9 w-auto md:h-11"
                   priority
                 />
               </Link>
@@ -263,7 +311,7 @@ const Navbar = () => {
                     <Link
                       key={item.name}
                       href={item.href}
-                      className={`px-3 py-2 text-[11px] tracking-[0.14em] uppercase font-semibold flex items-center transition-colors ${isScrolled || !isHomePage ? "text-foreground hover:text-primary" : "text-white hover:text-white/75"}`}
+                      className="flex items-center px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:text-white/75"
                     >
                       {item.name}
                     </Link>
@@ -273,7 +321,7 @@ const Navbar = () => {
                 return (
                   <div key={item.name} className="relative" onMouseEnter={() => setActiveDropdown(item.name)}>
                     <button
-                      className={`px-3 py-2 text-[11px] tracking-[0.14em] uppercase font-semibold flex items-center transition-colors nav-link ${isScrolled || !isHomePage ? "text-foreground hover:text-primary" : "text-white hover:text-white/75"}`}
+                      className="nav-link flex items-center px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:text-white/75"
                       aria-haspopup="true"
                       aria-expanded={activeDropdown === item.name}
                       type="button"
@@ -292,25 +340,11 @@ const Navbar = () => {
 
             {/* Right side: Social Icons + CTA + Mobile Menu */}
             <div className="flex items-center gap-4 md:gap-5">
-              <div className="hidden md:flex items-center gap-3">
-                {showCapabilitiesCta && (
-                  <a
-                    href={capabilitiesStatement.path}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`btn-editorial-quiet ${isScrolled || !isHomePage ? "text-foreground" : "text-white"}`}
-                    onClick={() => trackEvent("capabilities_download", { source: "navbar" })}
-                  >
-                    Capabilities <span className="btn-arrow">→</span>
-                  </a>
-                )}
-              </div>
-
               {/* Mobile menu button */}
               <button
                 ref={mobileMenuButtonRef}
                 onClick={toggleMobileMenu}
-                className={`md:hidden p-2 transition-colors ${isScrolled || !isHomePage ? "text-foreground hover:text-primary" : "text-white hover:text-white/75"}`}
+                className="mobile-menu-toggle inline-flex min-h-11 min-w-11 items-center justify-center p-2 text-white transition-colors hover:text-white/75 md:hidden"
                 aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
                 aria-expanded={isOpen}
                 aria-controls="mobile-nav-panel"
@@ -415,74 +449,98 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Navigation - Full screen overlay */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-background/95 backdrop-blur md:hidden"
-            onClick={() => setIsOpen(false)}
-          >
-            <motion.div
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'tween', duration: 0.3 }}
-              id="mobile-nav-panel"
-              ref={mobileMenuRef}
-              className="absolute right-0 top-0 h-full w-full bg-background p-8"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="flex flex-col space-y-8 mt-20">
-                {navItems.map((item, index) => {
-                  return (
-                    <motion.div
-                      key={item.name}
-                      initial={{ opacity: 0, x: 50 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                    >
-                      <Link
-                        href={item.href}
-                        className="text-foreground hover:text-primary text-2xl font-semibold uppercase tracking-[0.08em] transition-colors"
-                        onClick={() => setIsOpen(false)}
-                      >
-                        {item.name}
-                      </Link>
-                    </motion.div>
-                  );
-                })}
-                <Link href="/projects">
-                  <motion.button
-                    initial={{ opacity: 0, x: 50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.5 }}
-                    className="btn-editorial text-base mt-8"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    See Projects <span className="btn-arrow">→</span>
-                  </motion.button>
-                </Link>
-                {showCapabilitiesCta && (
-                  <a
-                    href={capabilitiesStatement.path}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-editorial-quiet text-base"
+      {portalRoot &&
+        createPortal(
+          <AnimatePresence>
+            {isOpen && (
+              <motion.div
+                initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
+                transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.2 }}
+                className="fixed inset-0 z-[120] h-[100dvh] bg-[#111214] text-[#f5f3ef] md:hidden"
+                onClick={() => setIsOpen(false)}
+              >
+                <motion.div
+                  initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 8 }}
+                  transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.22, ease: "easeOut" }}
+                  id="mobile-nav-panel"
+                  ref={mobileMenuRef}
+                  className="absolute inset-0 flex h-full w-full flex-col px-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] pt-20"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <button
+                    type="button"
+                    aria-label="Close navigation menu"
+                    className="absolute right-4 top-2 inline-flex min-h-11 min-w-11 items-center justify-center text-white hover:text-white/75"
                     onClick={() => {
-                      trackEvent("capabilities_download", { source: "mobile_menu" });
                       setIsOpen(false);
+                      mobileMenuButtonRef.current?.focus();
                     }}
                   >
-                    Capabilities <span className="btn-arrow">→</span>
-                  </a>
-                )}
-              </div>
-            </motion.div>
-          </motion.div>
+                    <X className="h-8 w-8" />
+                  </button>
+
+                  <div className="flex flex-col items-start gap-4">
+                    {navItems.map((item, index) => {
+                      return (
+                        <motion.div
+                          key={item.name}
+                          initial={shouldReduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 14 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={shouldReduceMotion ? { duration: 0 } : { delay: index * 0.04, duration: 0.2 }}
+                        >
+                          <Link
+                            href={item.href}
+                            className={`mobile-menu-link inline-flex min-h-11 items-center text-[1.2rem] font-semibold uppercase tracking-[0.09em] transition-colors ${isMobileLinkActive(item.href) ? "text-[#f5f3ef] underline decoration-white/40 underline-offset-8" : "text-[#d5d1ca] hover:text-[#f5f3ef]"}`}
+                            onClick={() => setIsOpen(false)}
+                          >
+                            {item.name}
+                          </Link>
+                        </motion.div>
+                      );
+                    })}
+                    <Link href="/projects">
+                      <motion.button
+                        initial={shouldReduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 14 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.24, duration: 0.22 }}
+                        className="btn-editorial mt-6 text-base"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        See Projects <span className="btn-arrow">→</span>
+                      </motion.button>
+                    </Link>
+                  </div>
+
+                  <div className="mt-auto border-t border-white/15 pt-6">
+                    <div className="space-y-3 text-sm text-[#d5d1ca]">
+                      <a
+                        href={`tel:${companyInfo.phone.replace(/[^0-9+]/g, "")}`}
+                        className="inline-flex min-h-11 items-center text-[#f5f3ef] hover:text-white/80"
+                        onClick={() => trackEvent("phone_click", { source: "mobile_menu" })}
+                      >
+                        {companyInfo.phone}
+                      </a>
+                      <a
+                        href={`mailto:${companyInfo.email}`}
+                        className="inline-flex min-h-11 items-center text-[#d5d1ca] hover:text-[#f5f3ef]"
+                      >
+                        {companyInfo.email}
+                      </a>
+                    </div>
+                    <div className="mt-4">
+                      <SocialIcons size="sm" variant="light" />
+                    </div>
+                  </div>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>,
+          portalRoot
         )}
-      </AnimatePresence>
     </nav>
   );
 };

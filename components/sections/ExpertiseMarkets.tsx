@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { markets } from "@/data/markets";
 
 const ExpertiseMarkets = () => {
@@ -27,8 +28,40 @@ const ExpertiseMarkets = () => {
           </p>
         </motion.div>
 
+        <div className="md:hidden" role="region" aria-label="Market sectors" tabIndex={0} onKeyDown={(event) => {
+          const target = event.currentTarget.querySelector(".mobile-snap-row") as HTMLDivElement | null;
+          if (!target) return;
+          if (event.key === "ArrowRight") target.scrollBy({ left: 220, behavior: "smooth" });
+          if (event.key === "ArrowLeft") target.scrollBy({ left: -220, behavior: "smooth" });
+        }}>
+          <div className="mobile-snap-row" aria-label="Swipe market cards">
+            {markets.map((market) => (
+              <Link
+                key={market.slug}
+                href={market.path}
+                className="mobile-snap-card block border border-ink/15 bg-white"
+              >
+                <div className="relative aspect-[4/3] w-full">
+                  <Image
+                    src={`/markets/${market.slug}/hero.jpg`}
+                    alt={`${market.name} market`}
+                    fill
+                    sizes="85vw"
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black/30" />
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <p className="text-white text-2xl font-semibold leading-tight">{market.name}</p>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+          <p className="mobile-scroll-indicator">Swipe for more sectors</p>
+        </div>
+
         {/* Markets Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 border-t border-ink/15">
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-0 border-t border-ink/15">
           {markets.map((market, index) => (
             <motion.div
               key={market.slug}

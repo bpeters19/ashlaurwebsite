@@ -239,7 +239,15 @@ export default function ProjectDetailView({
             <div className="editorial-container py-20">
               <p className="section-label mb-4">Project Facts</p>
               <h2 className="font-display text-5xl md:text-6xl leading-[0.92] text-foreground">Project Facts</h2>
-              <div className="mt-10 border-y border-border">
+              <div className="mt-8 grid grid-cols-2 gap-3 md:hidden">
+                {factItems.map((item) => (
+                  <article key={item.label} className="border border-border bg-surface p-4">
+                    <p className="text-[10px] uppercase tracking-[0.18em] text-muted">{item.label}</p>
+                    <p className="mt-2 text-sm font-semibold leading-snug text-foreground">{item.value}</p>
+                  </article>
+                ))}
+              </div>
+              <div className="mt-10 hidden border-y border-border md:block">
                 {factItems.map((item) => (
                   <div key={item.label} className="grid grid-cols-1 md:grid-cols-12 gap-3 py-5 border-b border-border last:border-b-0">
                     <p className="md:col-span-4 text-xs uppercase tracking-[0.18em] text-muted">{item.label}</p>
@@ -311,7 +319,41 @@ export default function ProjectDetailView({
                 </h2>
               </div>
 
-              <div className="mt-14 grid grid-cols-1 gap-8 md:grid-cols-2">
+              <div
+                className="mt-8 md:hidden"
+                role="region"
+                aria-label="Project image gallery"
+                tabIndex={0}
+                onKeyDown={(event) => {
+                  const row = event.currentTarget.querySelector(".mobile-snap-row") as HTMLDivElement | null;
+                  if (!row) return;
+                  if (event.key === "ArrowRight") row.scrollBy({ left: 220, behavior: "smooth" });
+                  if (event.key === "ArrowLeft") row.scrollBy({ left: -220, behavior: "smooth" });
+                }}
+              >
+                <div className="mobile-snap-row" aria-label="Swipe project gallery cards">
+                  {projectImages.map((image, index) => (
+                    <motion.button
+                      key={`${project.slug}-mobile-${image.src}-${index}`}
+                      type="button"
+                      onClick={() => setSelectedImageIndex(index)}
+                      className="mobile-snap-card group relative aspect-[16/11] overflow-hidden bg-surface text-left"
+                    >
+                      <Image
+                        src={image.src}
+                        alt={image.alt}
+                        fill
+                        className="object-cover"
+                        sizes="85vw"
+                      />
+                      <div className="absolute inset-0 bg-black/15" />
+                    </motion.button>
+                  ))}
+                </div>
+                <p className="mobile-scroll-indicator">Swipe gallery</p>
+              </div>
+
+              <div className="mt-14 hidden grid-cols-1 gap-8 md:grid md:grid-cols-2">
                 {projectImages.map((image, index) => (
                   <motion.button
                     key={`${project.slug}-${image.src}-${index}`}

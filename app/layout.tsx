@@ -17,6 +17,7 @@ const bigShoulders = Big_Shoulders({
   subsets: ["latin"],
   weight: "variable",
   variable: "--font-big-shoulders",
+  preload: true,
 });
 
 const plexMono = IBM_Plex_Mono({

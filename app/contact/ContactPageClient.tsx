@@ -11,6 +11,7 @@ import { trackEvent } from "@/lib/analytics";
 export default function ContactPageClient() {
   const [formData, setFormData] = useState({
     name: "",
+    organization: "",
     email: "",
     phone: "",
     projectType: "",
@@ -57,6 +58,7 @@ export default function ContactPageClient() {
       trackEvent("form_submit_success", { form: "contact" });
       setFormData({
         name: "",
+        organization: "",
         email: "",
         phone: "",
         projectType: "",
@@ -213,12 +215,32 @@ export default function ContactPageClient() {
                     value={formData.name}
                     onChange={handleChange}
                     required
+                    autoComplete="name"
                     aria-required="true"
+                    aria-invalid={Boolean(errorMessage)}
                     aria-describedby={errorMessage ? "contact-form-error" : undefined}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    className="w-full min-h-11 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 text-base"
                     placeholder="John Doe"
                   />
                 </div>
+                <div>
+                  <label htmlFor="organization" className="block text-sm font-semibold text-gray-900 mb-2">
+                    Organization
+                  </label>
+                  <input
+                    type="text"
+                    id="organization"
+                    name="organization"
+                    value={formData.organization}
+                    onChange={handleChange}
+                    autoComplete="organization"
+                    className="w-full min-h-11 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 text-base"
+                    placeholder="Company or organization"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="email" className="block text-sm font-semibold text-gray-900 mb-2">
                     Email *
@@ -230,16 +252,14 @@ export default function ContactPageClient() {
                     value={formData.email}
                     onChange={handleChange}
                     required
+                    autoComplete="email"
                     aria-required="true"
+                    aria-invalid={Boolean(errorMessage)}
                     aria-describedby={errorMessage ? "contact-form-error" : undefined}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    className="w-full min-h-11 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 text-base"
                     placeholder="john@example.com"
                   />
                 </div>
-              </div>
-
-              {/* Phone & Project Type Row */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="phone" className="block text-sm font-semibold text-gray-900 mb-2">
                     Phone Number
@@ -250,10 +270,15 @@ export default function ContactPageClient() {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    autoComplete="tel"
+                    className="w-full min-h-11 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 text-base"
                     placeholder="(773) 651-1900"
                   />
                 </div>
+              </div>
+
+              {/* Project Type Row */}
+              <div>
                 <div>
                   <label htmlFor="projectType" className="block text-sm font-semibold text-gray-900 mb-2">
                     Project Type *
@@ -265,8 +290,9 @@ export default function ContactPageClient() {
                     onChange={handleChange}
                     required
                     aria-required="true"
+                    aria-invalid={Boolean(errorMessage)}
                     aria-describedby={errorMessage ? "contact-form-error" : undefined}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    className="w-full min-h-11 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 text-base"
                   >
                     <option value="">Select a project type</option>
                     {serviceLinks.map((service) => (
@@ -292,9 +318,10 @@ export default function ContactPageClient() {
                   onChange={handleChange}
                   required
                   aria-required="true"
+                  aria-invalid={Boolean(errorMessage)}
                   aria-describedby={errorMessage ? "contact-form-error" : undefined}
                   rows={6}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 resize-none"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 resize-none text-base"
                   placeholder="Tell us about your project, timeline, budget, and any specific requirements..."
                 />
               </div>
@@ -302,17 +329,17 @@ export default function ContactPageClient() {
               <TurnstileWidget onTokenChange={setTurnstileToken} />
 
               {/* Submit Button */}
-              <div className="flex gap-4 pt-4">
+              <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <button
                   type="submit"
-                  className="px-8 py-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition disabled:opacity-60"
+                  className="w-full sm:w-auto min-h-11 px-8 py-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition disabled:opacity-60"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? "Sending..." : "Send Message"}
                 </button>
                 <a
                   href="tel:(773) 651-1900"
-                  className="px-8 py-4 border border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition"
+                  className="w-full sm:w-auto inline-flex items-center justify-center min-h-11 px-8 py-4 border border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition"
                   onClick={() => trackEvent("phone_click", { source: "contact_form" })}
                 >
                   Call Now

@@ -5,11 +5,12 @@
   --background: #f5f3ef;
   --foreground: #141414;
   --surface: #efede8;
-  --accent: #1f4e8c;
+  --accent: #6a7f97;
   --muted: #6f6a5f;
   --border: #d7d2c8;
   --dark-surface: #111214;
   --dark-foreground: #f5f3ef;
+  --mobile-action-bar-height: 5.25rem;
 }
 
 @theme inline {
@@ -29,6 +30,11 @@
 
 * {
   box-sizing: border-box;
+}
+
+html,
+body {
+  overflow-x: clip;
 }
 
 img, video {
@@ -64,14 +70,18 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 1rem;
 }
 
-h1, .display-xl, .display-lg {
+h1, h2, .display-xl, .display-lg {
   font-family: var(--font-big-shoulders), sans-serif;
   font-weight: 800;
   letter-spacing: -0.015em;
 }
 
-h1 { font-size: clamp(3rem, 7.2vw, 8rem); }
-h2 { font-size: clamp(2.2rem, 4vw, 4.5rem); }
+h3, h4, h5, h6 {
+  font-family: 'Inter', sans-serif;
+}
+
+h1 { font-size: clamp(2.6rem, 7.2vw, 8rem); }
+h2 { font-size: clamp(2rem, 5vw, 4.5rem); }
 h3 { font-size: clamp(1.4rem, 2vw, 2rem); }
 
 @media (max-width: 768px) {
@@ -114,52 +124,6 @@ textarea:focus-visible,
   opacity: 0.8;
 }
 
-/* Logo Image Styles */
-.logo-image {
-  display: block;
-  height: auto;
-  width: auto;
-  max-height: 50px;
-}
-
-@media (max-width: 768px) {
-  .logo-image {
-    max-height: 40px;
-  }
-}
-
-.logo-text-styled {
-  display: flex;
-  align-items: baseline;
-  font-size: 24px;
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-
-.logo-ash {
-  color: #2563EB;
-  font-weight: 900;
-}
-
-.logo-laur {
-  color: white;
-  font-weight: 700;
-}
-
-.logo-laur-scrolled {
-  color: hsl(var(--foreground)) !important;
-}
-
-.logo-laur-transparent {
-  color: white !important;
-}
-
-@media (max-width: 768px) {
-  .logo-text-styled {
-    font-size: 20px;
-  }
-}
-
 .editorial-section {
   padding-top: clamp(4.5rem, 8vw, 10rem);
   padding-bottom: clamp(4.5rem, 8vw, 10rem);
@@ -182,7 +146,7 @@ textarea:focus-visible,
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.18em;
-  color: var(--accent);
+  color: #7a7468;
 }
 
 .body-wide {
@@ -205,6 +169,7 @@ textarea:focus-visible,
   letter-spacing: 0.08em;
   font-size: 0.76rem;
   font-weight: 600;
+  min-height: 44px;
 }
 
 .btn-editorial {
@@ -235,6 +200,70 @@ textarea:focus-visible,
 .btn-editorial-outline:hover .btn-arrow,
 .btn-editorial-quiet:hover .btn-arrow {
   transform: translateX(4px);
+}
+
+.footer-action-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: fit-content;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid transparent;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+  line-height: 1;
+  font-weight: 600;
+  transition: color 220ms ease, border-color 220ms ease;
+}
+
+.footer-action-link:hover {
+  border-bottom-color: currentColor;
+}
+
+.footer-action-link:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+.footer-action-link-primary {
+  color: #f5f3ef;
+}
+
+.footer-action-link-secondary {
+  color: #d5d1ca;
+}
+
+.mobile-snap-row {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(111, 106, 95, 0.65) transparent;
+}
+
+.mobile-snap-card {
+  min-width: 85%;
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+.mobile-scroll-indicator {
+  margin-top: 0.6rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #7a7468;
+}
+
+body.mobile-menu-open {
+  overflow: hidden;
+  touch-action: none;
+}
+
+body.mobile-menu-open .mobile-action-bar {
+  display: none;
 }
 
 .image-reveal {
@@ -298,7 +327,29 @@ textarea:focus-visible,
 }
 
 @media (max-width: 767px) {
-  body {
-    padding-bottom: 5.5rem;
+  .mobile-menu-link,
+  .mobile-menu-toggle,
+  .mobile-action-button {
+    min-height: 44px;
+  }
+
+  .btn-editorial,
+  .btn-editorial-outline {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .editorial-container {
+    padding-inline: 1.25rem;
+  }
+
+  body.has-mobile-action-bar {
+    padding-bottom: calc(var(--mobile-action-bar-height) + env(safe-area-inset-bottom));
+  }
+
+  input,
+  select,
+  textarea {
+    font-size: 16px;
   }
 }

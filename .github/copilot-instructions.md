@@ -11,11 +11,14 @@
 
 - [x] Compile the Project
 
-- [ ] Create and Run Task
+- [x] Create and Run Task
+  - Started the existing `npm run dev` task and confirmed the dev server is running on localhost.
 
-- [ ] Launch the Project
+- [x] Launch the Project
+  - Opened the local site in the browser and verified the homepage renders.
 
-- [ ] Ensure Documentation is Complete
+- [x] Ensure Documentation is Complete
+  - Replaced the default starter README with project-specific setup, scripts, and environment notes.
 
 ## Execution Guidelines
 PROGRESS TRACKING:
