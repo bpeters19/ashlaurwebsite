@@ -33,6 +33,7 @@ const Footer = () => {
               height={72}
               className="h-10 w-auto"
               sizes="196px"
+              unoptimized
             />
             <p className="section-label text-white/70 mb-5">Ashlaur Construction</p>
             <h3 className="font-display text-5xl leading-[0.9] mb-6">Built To Endure.</h3>
