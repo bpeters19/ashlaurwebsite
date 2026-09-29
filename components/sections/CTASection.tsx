@@ -5,25 +5,23 @@ import Link from "next/link";
 
 const CTASection = () => {
   return (
-    <section className="py-20 bg-gray-900">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <section className="editorial-section bg-background border-t border-border">
+      <div className="editorial-container text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 group hover:text-blue-300 transition-colors duration-300">
+          <p className="section-label mb-4">09 — Next Step</p>
+          <h2 className="font-display text-5xl md:text-7xl text-foreground mb-6 leading-[0.92]">
             Ready to Start Your Project?
           </h2>
-          <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
+          <p className="body-wide mb-10 mx-auto">
             Explore our portfolio and see what we can build together.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/projects" className="inline-block bg-blue-700 hover:bg-blue-900 text-white font-bold py-4 px-8 rounded transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer">
-              SEE OUR PROJECTS
-            </Link>
-            <Link href="/careers" className="inline-block bg-gray-700 hover:bg-gray-600 text-white font-bold py-4 px-8 rounded transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer">
-              BUILD YOUR CAREER
+          <div className="flex justify-center">
+            <Link href="/projects" className="btn-editorial">
+              See Our Projects <span className="btn-arrow">→</span>
             </Link>
           </div>
         </motion.div>

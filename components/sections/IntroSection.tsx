@@ -2,20 +2,19 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 
 const IntroSection = () => {
   return (
-    <section id="intro" className="py-20 lg:py-28 bg-concrete">
-      <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12">
+    <section id="intro" className="editorial-section bg-background border-b border-border">
+      <div className="editorial-container">
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="font-technical text-xs tracking-[0.2em] uppercase text-ink/55 mb-4"
+          className="section-label mb-4"
         >
-          25+ Years of Experience
+          02 — About
         </motion.p>
 
         <motion.h2
@@ -23,10 +22,10 @@ const IntroSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="font-display font-black uppercase text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-ink leading-[0.9] tracking-tight mb-6 max-w-4xl"
+          className="font-display font-black uppercase text-[clamp(2.8rem,7vw,8rem)] text-foreground leading-[0.9] tracking-tight mb-8 max-w-5xl"
           style={{ fontVariationSettings: "'opsz' 72, 'wght' 900" }}
         >
-          Building excellence for over 25 years.
+          25 years of dependable delivery.
         </motion.h2>
 
         <motion.p
@@ -34,7 +33,7 @@ const IntroSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-ink/80 text-lg leading-relaxed mb-8 max-w-2xl"
+          className="body-wide mb-10"
         >
           Ashlaur Construction has delivered innovative building solutions for over 25 years.
           We combine traditional craftsmanship with cutting-edge technology to deliver projects that stand the test of time.
@@ -46,11 +45,8 @@ const IntroSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <Link
-            href="/about"
-            className="group inline-flex items-center gap-2 text-ink font-medium border-b-2 border-ink/30 hover:border-ink transition-all duration-300 hover:gap-3"
-          >
-            Our story <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          <Link href="/about" className="btn-editorial-outline">
+            Our Story <span className="btn-arrow">→</span>
           </Link>
         </motion.div>
       </div>

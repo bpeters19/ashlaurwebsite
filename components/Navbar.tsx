@@ -6,7 +6,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Menu, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import SocialIcons from "./SocialIcons";
 import { markets } from "@/data/markets";
 import { capabilitiesStatement } from "@/data/documents";
 import { SHOW_PLACEHOLDER_CONTENT } from "@/data/siteConfig";
@@ -217,12 +216,10 @@ const Navbar = () => {
   // Determine navbar background based on route and scroll state
   const getNavbarClasses = () => {
     if (!isHomePage) {
-      // All non-home pages: always blue
-      return 'bg-[#0B1F3B] border-b border-white/10';
+      return 'bg-background/95 border-b border-border backdrop-blur';
     }
-    // Home page: responsive to scroll
-    return isScrolled 
-      ? 'bg-[#0B1F3B] shadow-lg border-b border-white/10' 
+    return isScrolled
+      ? 'bg-background/95 border-b border-border backdrop-blur'
       : 'bg-transparent border-b border-transparent';
   };
 
@@ -248,14 +245,14 @@ const Navbar = () => {
                   alt="Ashlaur Construction"
                   width={180}
                   height={50}
-                  className="h-10 md:h-12 w-auto drop-shadow-lg"
+                  className="h-10 md:h-11 w-auto"
                   priority
                 />
               </Link>
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-4">
+            <div className="hidden md:flex items-center space-x-2">
               {navItems.map((item) => {
                 const hasMegaMenu = Boolean(
                   item.hasDropdown && megaMenuContent[item.name as keyof typeof megaMenuContent]
@@ -266,7 +263,7 @@ const Navbar = () => {
                     <Link
                       key={item.name}
                       href={item.href}
-                      className="text-white hover:text-[#AFC6FF] px-4 py-2 text-lg font-semibold flex items-center transition-colors drop-shadow-lg"
+                      className={`px-3 py-2 text-[11px] tracking-[0.14em] uppercase font-semibold flex items-center transition-colors ${isScrolled || !isHomePage ? "text-foreground hover:text-primary" : "text-white hover:text-white/75"}`}
                     >
                       {item.name}
                     </Link>
@@ -276,7 +273,7 @@ const Navbar = () => {
                 return (
                   <div key={item.name} className="relative" onMouseEnter={() => setActiveDropdown(item.name)}>
                     <button
-                      className="text-white hover:text-[#AFC6FF] px-4 py-2 text-lg font-semibold flex items-center transition-colors nav-link drop-shadow-lg"
+                      className={`px-3 py-2 text-[11px] tracking-[0.14em] uppercase font-semibold flex items-center transition-colors nav-link ${isScrolled || !isHomePage ? "text-foreground hover:text-primary" : "text-white hover:text-white/75"}`}
                       aria-haspopup="true"
                       aria-expanded={activeDropdown === item.name}
                       type="button"
@@ -286,7 +283,7 @@ const Navbar = () => {
                       }
                     >
                       {item.name}
-                      <ChevronDown className="ml-2 h-5 w-5 text-white" />
+                      <ChevronDown className="ml-2 h-4 w-4" />
                     </button>
                   </div>
                 );
@@ -294,32 +291,26 @@ const Navbar = () => {
             </div>
 
             {/* Right side: Social Icons + CTA + Mobile Menu */}
-            <div className="flex items-center gap-6 md:gap-8">
-              <div className="hidden md:flex items-center gap-6">
-                <SocialIcons size="sm" variant="light" />
+            <div className="flex items-center gap-4 md:gap-5">
+              <div className="hidden md:flex items-center gap-3">
                 {showCapabilitiesCta && (
                   <a
                     href={capabilitiesStatement.path}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="border border-white/25 bg-white/10 px-5 py-3 rounded text-white font-semibold text-sm hover:bg-white/20"
+                    className={`btn-editorial-quiet ${isScrolled || !isHomePage ? "text-foreground" : "text-white"}`}
                     onClick={() => trackEvent("capabilities_download", { source: "navbar" })}
                   >
-                    CAPABILITIES
+                    Capabilities <span className="btn-arrow">→</span>
                   </a>
                 )}
-                <Link href="/projects">
-                  <button className="bg-[#123563] hover:bg-[#1c3a66] text-white font-bold py-3 px-6 rounded transition duration-300 transform hover:scale-105 border border-white/25 shadow-lg">
-                    SEE OUR PROJECTS
-                  </button>
-                </Link>
               </div>
 
               {/* Mobile menu button */}
               <button
                 ref={mobileMenuButtonRef}
                 onClick={toggleMobileMenu}
-                className="md:hidden text-white hover:text-[#AFC6FF] p-2 transition-colors"
+                className={`md:hidden p-2 transition-colors ${isScrolled || !isHomePage ? "text-foreground hover:text-primary" : "text-white hover:text-white/75"}`}
                 aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
                 aria-expanded={isOpen}
                 aria-controls="mobile-nav-panel"
@@ -339,7 +330,7 @@ const Navbar = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 16 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
-              className="mega-menu fixed left-0 right-0 top-20 w-full bg-white border-t border-blue-100 shadow-2xl z-40 min-h-[320px] overflow-hidden"
+              className="mega-menu fixed left-0 right-0 top-20 w-full bg-background border-t border-border z-40 min-h-[320px] overflow-hidden"
               role="menu"
               aria-label={`${menuContent.title} Mega Menu`}
               tabIndex={-1}
@@ -347,28 +338,28 @@ const Navbar = () => {
                 if (e.key === 'Escape') setActiveDropdown(null);
               }}
             >
-              <div className="mx-auto max-w-7xl px-6 lg:px-8 py-10 overflow-hidden">
+              <div className="mx-auto max-w-7xl px-6 lg:px-8 py-14 overflow-hidden">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-                  <div className="lg:col-span-3 bg-[#0B2A57] text-white rounded-lg p-6 flex flex-col justify-between">
+                  <div className="lg:col-span-3 border-r border-border pr-6 flex flex-col justify-between">
                     <div>
-                      <p className="text-sm uppercase tracking-[0.2em] text-blue-200 mb-3">
+                      <p className="section-label mb-3">
                         {menuContent.title}
                       </p>
-                      <h3 className="text-3xl font-semibold mb-4">{menuContent.title}</h3>
-                      <p className="text-sm leading-relaxed text-blue-100">
+                      <h3 className="display-lg text-4xl mb-4 text-foreground">{menuContent.title}</h3>
+                      <p className="text-sm leading-relaxed text-muted">
                         {menuContent.description}
                       </p>
                     </div>
                     <Link
                       href={menuContent.cta.href}
-                      className="mt-6 inline-flex items-center text-base font-semibold text-white hover:text-blue-200 transition-colors"
+                      className="mt-6 btn-editorial-quiet"
                     >
-                      {menuContent.cta.label}
+                      {menuContent.cta.label.replace(" →", "")} <span className="btn-arrow">→</span>
                     </Link>
                   </div>
 
                   <div
-                    className={`bg-white rounded-lg p-6 ${
+                    className={`p-6 ${
                       menuContent.feature ? "lg:col-span-6" : "lg:col-span-9"
                     }`}
                   >
@@ -377,13 +368,13 @@ const Navbar = () => {
                     >
                       {menuContent.columns.map((section) => (
                         <div key={section.heading}>
-                          <h4 className="text-lg font-semibold text-slate-900 mb-3">{section.heading}</h4>
+                          <h4 className="text-xs font-semibold uppercase tracking-[0.16em] text-muted mb-3">{section.heading}</h4>
                           <ul className="space-y-2">
                             {section.links.map((link) => (
                               <li key={link.href}>
                                 <Link
                                   href={link.href}
-                                  className="text-sm text-gray-600 hover:text-blue-600 transition-colors"
+                                  className="text-sm text-foreground/85 hover:text-primary transition-colors"
                                 >
                                   {link.name}
                                 </Link>
@@ -396,8 +387,8 @@ const Navbar = () => {
                   </div>
 
                   {menuContent.feature && (
-                    <div className="lg:col-span-3 bg-[#F5F7FA] rounded-lg p-6 flex flex-col">
-                      <div className="relative w-full h-40 rounded-lg overflow-hidden">
+                    <div className="lg:col-span-3 border-l border-border pl-6 flex flex-col">
+                      <div className="relative w-full h-44 overflow-hidden image-reveal">
                         <Image
                           src={menuContent.feature.image}
                           alt={menuContent.feature.title}
@@ -405,14 +396,14 @@ const Navbar = () => {
                           className="object-cover"
                         />
                       </div>
-                      <h4 className="text-lg font-semibold text-slate-900 mt-4">
+                      <h4 className="text-lg font-semibold text-foreground mt-4">
                         {menuContent.feature.title}
                       </h4>
                       <Link
                         href={menuContent.feature.href}
-                        className="mt-3 inline-flex items-center text-sm font-semibold text-[#0B2A57] hover:text-[#123563] transition-colors"
+                        className="mt-3 btn-editorial-quiet"
                       >
-                        {menuContent.feature.cta}
+                        {menuContent.feature.cta} <span className="btn-arrow">→</span>
                       </Link>
                     </div>
                   )}
@@ -430,7 +421,7 @@ const Navbar = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-background/95 backdrop-blur-md md:hidden"
+            className="fixed inset-0 bg-background/95 backdrop-blur md:hidden"
             onClick={() => setIsOpen(false)}
           >
             <motion.div
@@ -440,7 +431,7 @@ const Navbar = () => {
               transition={{ type: 'tween', duration: 0.3 }}
               id="mobile-nav-panel"
               ref={mobileMenuRef}
-              className="absolute right-0 top-0 h-full w-80 bg-accent border-l border-border p-8"
+              className="absolute right-0 top-0 h-full w-full bg-background p-8"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex flex-col space-y-8 mt-20">
@@ -454,7 +445,7 @@ const Navbar = () => {
                     >
                       <Link
                         href={item.href}
-                        className="text-white hover:text-[#AFC6FF] text-2xl font-bold transition-colors"
+                        className="text-foreground hover:text-primary text-2xl font-semibold uppercase tracking-[0.08em] transition-colors"
                         onClick={() => setIsOpen(false)}
                       >
                         {item.name}
@@ -467,10 +458,10 @@ const Navbar = () => {
                     initial={{ opacity: 0, x: 50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.5 }}
-                    className="bg-[#123563] hover:bg-[#1c3a66] text-white font-bold py-4 px-8 rounded transition duration-300 text-xl mt-8 border border-white/15"
+                    className="btn-editorial text-base mt-8"
                     onClick={() => setIsOpen(false)}
                   >
-                    SEE OUR PROJECTS
+                    See Projects <span className="btn-arrow">→</span>
                   </motion.button>
                 </Link>
                 {showCapabilitiesCta && (
@@ -478,13 +469,13 @@ const Navbar = () => {
                     href={capabilitiesStatement.path}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center border border-white/30 text-white font-bold py-3 px-6 rounded text-base"
+                    className="btn-editorial-quiet text-base"
                     onClick={() => {
                       trackEvent("capabilities_download", { source: "mobile_menu" });
                       setIsOpen(false);
                     }}
                   >
-                    CAPABILITIES
+                    Capabilities <span className="btn-arrow">→</span>
                   </a>
                 )}
               </div>

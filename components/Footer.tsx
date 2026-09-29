@@ -17,13 +17,14 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gray-900 border-t border-gray-800">
-      <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+    <footer className="bg-[#111214] border-t border-white/15 text-[#f5f3ef]">
+      <div className="max-w-7xl mx-auto py-24 px-5 sm:px-8 lg:px-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-14">
           {/* About */}
           <div>
-            <h3 className="text-3xl font-black text-blue-600 mb-6 cursor-pointer hover:text-blue-400 transition-colors duration-300">Ashlaur</h3>
-            <p className="text-gray-400 mb-6 leading-relaxed">
+            <p className="section-label text-white/70 mb-5">Ashlaur Construction</p>
+            <h3 className="font-display text-5xl leading-[0.9] mb-6">Built To Endure.</h3>
+            <p className="text-[#d5d1ca] mb-6 leading-relaxed">
               Building Tomorrow, Today. Precision. Power. Performance. Where vision meets extraordinary execution.
             </p>
             <SocialIcons size="md" variant="light" />
@@ -31,11 +32,11 @@ const Footer = () => {
 
           {/* Services */}
           <div>
-            <h4 className="text-xl font-bold text-white mb-6 uppercase tracking-wide">Services</h4>
+            <h4 className="text-xs font-semibold text-white/75 mb-6 uppercase tracking-[0.16em]">Services</h4>
             <ul className="space-y-4">
               {serviceLinks.map((service) => (
                 <li key={service.href}>
-                  <Link href={service.href} className="text-gray-400 hover:text-blue-400 transition-colors duration-300">
+                  <Link href={service.href} className="text-[#d5d1ca] hover:text-white transition-colors duration-300 text-sm">
                     {service.label}
                   </Link>
                 </li>
@@ -45,28 +46,28 @@ const Footer = () => {
 
           {/* Company */}
           <div>
-            <h4 className="text-xl font-bold text-white mb-6 uppercase tracking-wide">Company</h4>
+            <h4 className="text-xs font-semibold text-white/75 mb-6 uppercase tracking-[0.16em]">Company</h4>
             <ul className="space-y-4">
-              <li><Link href="/about" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">About Us</Link></li>
-              <li><Link href="/careers" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">Careers</Link></li>
-              <li><Link href="/safety" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">Safety</Link></li>
-              <li><Link href="/privacy" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">Privacy</Link></li>
-              <li><Link href="/policies" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">Policies</Link></li>
-              <li><Link href="/projects" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">Projects</Link></li>
-              <li><Link href="/contact" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">Contact</Link></li>
+              <li><Link href="/about" className="text-[#d5d1ca] hover:text-white transition-colors duration-300 text-sm">About Us</Link></li>
+              <li><Link href="/careers" className="text-[#d5d1ca] hover:text-white transition-colors duration-300 text-sm">Careers</Link></li>
+              <li><Link href="/safety" className="text-[#d5d1ca] hover:text-white transition-colors duration-300 text-sm">Safety</Link></li>
+              <li><Link href="/privacy" className="text-[#d5d1ca] hover:text-white transition-colors duration-300 text-sm">Privacy</Link></li>
+              <li><Link href="/policies" className="text-[#d5d1ca] hover:text-white transition-colors duration-300 text-sm">Policies</Link></li>
+              <li><Link href="/projects" className="text-[#d5d1ca] hover:text-white transition-colors duration-300 text-sm">Projects</Link></li>
+              <li><Link href="/contact" className="text-[#d5d1ca] hover:text-white transition-colors duration-300 text-sm">Contact</Link></li>
             </ul>
           </div>
 
           {/* Contact */}
           <div>
-            <h4 className="text-xl font-bold text-white mb-6 uppercase tracking-wide">Get In Touch</h4>
-            <div className="space-y-4 text-gray-400 mb-6">
+            <h4 className="text-xs font-semibold text-white/75 mb-6 uppercase tracking-[0.16em]">Contact</h4>
+            <div className="space-y-4 text-[#d5d1ca] mb-8 text-sm">
               <p>{companyInfo.address.full}</p>
               <p>
                 Phone: {" "}
                 <a
                   href="tel:+17736511900"
-                  className="hover:text-blue-400 transition-colors duration-300"
+                  className="hover:text-white transition-colors duration-300"
                   onClick={() => trackEvent("phone_click", { source: "footer" })}
                 >
                   {companyInfo.phone}
@@ -74,7 +75,7 @@ const Footer = () => {
               </p>
               <p>
                 Email: {" "}
-                <a href={`mailto:${companyInfo.email}`} className="hover:text-blue-400 transition-colors duration-300">
+                <a href={`mailto:${companyInfo.email}`} className="hover:text-white transition-colors duration-300">
                   {companyInfo.email}
                 </a>
               </p>
@@ -85,26 +86,26 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackEvent("capabilities_download", { source: "footer" })}
-                className="mb-4 inline-block text-blue-400 hover:text-blue-300 transition-colors"
+                className="mb-4 inline-flex items-center gap-2 text-[#f5f3ef] text-sm border-b border-white/50 pb-1 hover:border-white"
               >
-                Download Capabilities Statement
+                Capabilities Statement <span className="btn-arrow">→</span>
               </a>
             )}
-            <Link href="/contact" className="inline-block bg-blue-700 hover:bg-blue-900 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 hover:shadow-lg">
-              GET QUOTE
+            <Link href="/contact" className="btn-editorial">
+              Request Consultation <span className="btn-arrow">→</span>
             </Link>
           </div>
         </div>
 
         {/* Back to Top + Copyright */}
-        <div className="mt-12 pt-8 border-t border-gray-800 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-gray-400">&copy; {currentYear} Ashlaur Construction. All rights reserved. | Building Tomorrow, Today.</p>
+        <div className="mt-16 pt-8 border-t border-white/15 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p className="text-[#b9b2a7] text-xs tracking-[0.04em]">&copy; {currentYear} Ashlaur Construction. All rights reserved. | Building Tomorrow, Today.</p>
           <button
             onClick={scrollToTop}
-            className="text-gray-400 hover:text-blue-400 transition-colors duration-300 cursor-pointer font-semibold flex items-center gap-2 group"
+            className="text-[#d5d1ca] hover:text-white transition-colors duration-300 cursor-pointer text-xs uppercase tracking-[0.14em] flex items-center gap-2 group"
           >
             Back to Top
-            <span className="group-hover:translate-y-1 transition-transform duration-300">↑</span>
+            <span className="btn-arrow">→</span>
           </button>
         </div>
       </div>

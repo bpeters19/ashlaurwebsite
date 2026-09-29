@@ -6,40 +6,14 @@ import Image from "next/image";
 import { markets } from "@/data/markets";
 import { type Project } from "@/data/projects";
 
-const tileSizes = [
-  "col-span-2 row-span-2",
-  "row-span-2",
-  "col-span-1 row-span-1",
-  "col-span-2 row-span-1",
-  "col-span-1 row-span-1",
-  "row-span-2",
-  "col-span-1 row-span-1",
-  "col-span-2 row-span-2",
-] as const;
-
 type ProjectsGridWithFilterProps = {
   projects: Project[];
 };
 
-function getTileSizeClass(index: number, slug: string, totalCount: number) {
-  const remainingItems = totalCount - index;
-
-  if (remainingItems <= 2) {
-    return "col-span-1 row-span-1";
-  }
-
-  const seed = (index + slug.length) % tileSizes.length;
-  const candidateSize = tileSizes[seed];
-
-  if (remainingItems <= 4 && candidateSize.includes("row-span-2")) {
-    return "col-span-1 row-span-1";
-  }
-
-  if (remainingItems <= 6 && candidateSize === "col-span-2 row-span-2") {
-    return "col-span-2 row-span-1";
-  }
-
-  return candidateSize;
+function getTileSizeClass(index: number) {
+  if (index === 0) return "md:col-span-12 lg:col-span-7";
+  if (index === 1) return "md:col-span-12 lg:col-span-5";
+  return "md:col-span-6 lg:col-span-4";
 }
 
 export default function ProjectsGridWithFilter({ projects }: ProjectsGridWithFilterProps) {
@@ -70,17 +44,17 @@ export default function ProjectsGridWithFilter({ projects }: ProjectsGridWithFil
 
   return (
     <>
-      <section className="border-b border-gray-200 bg-white py-6">
-        <div className="mx-auto flex max-w-7xl flex-wrap gap-2 px-4 sm:px-6 lg:px-8">
+      <section className="border-b border-border bg-background py-8">
+        <div className="editorial-container flex flex-wrap gap-2">
           {filters.map((filter) => (
             <button
               key={filter.value}
               type="button"
               onClick={() => setSelectedMarket(filter.value)}
-              className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
+              className={`px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] border transition-colors ${
                 selectedMarket === filter.value
-                  ? "bg-[#0B1F3B] text-white"
-                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                  ? "border-foreground bg-foreground text-background"
+                  : "border-border text-muted hover:border-foreground hover:text-foreground"
               }`}
             >
               {filter.label}
@@ -89,24 +63,29 @@ export default function ProjectsGridWithFilter({ projects }: ProjectsGridWithFil
         </div>
       </section>
 
-      <section className="w-full">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-[250px] gap-2 grid-flow-dense">
+      <section className="editorial-section bg-background">
+        <div className="editorial-container grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-16">
           {filteredProjects.map((project, index) => (
             <Link
               key={`${project.slug}-${index}`}
               href={`/projects/${project.slug}`}
-              className={`relative group overflow-hidden ${getTileSizeClass(index, project.slug, filteredProjects.length)}`}
+              className={`group block ${getTileSizeClass(index)}`}
             >
-              <Image
-                src={project.mainImage}
-                alt={`${project.title} project photo`}
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-                sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-              />
-              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition" />
-              <div className="absolute bottom-4 left-4 text-white font-semibold text-lg pr-4">
-                {project.title}
+              <div className="relative overflow-hidden aspect-[16/10] image-reveal">
+                <Image
+                  src={project.mainImage}
+                  alt={`${project.title} project photo`}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
+                />
+              </div>
+              <div className="mt-5 border-t border-border pt-4">
+                <p className="section-label mb-2">{String(index + 1).padStart(2, "0")} — {project.category}</p>
+                <h3 className="font-display text-4xl leading-[0.95] text-foreground group-hover:text-primary transition-colors">
+                  {project.title}
+                </h3>
+                <p className="mt-3 text-sm text-muted max-w-[56ch]">{project.description}</p>
               </div>
             </Link>
           ))}

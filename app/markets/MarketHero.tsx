@@ -8,7 +8,7 @@ type MarketHeroProps = {
 
 const MarketHero = ({ title, subtitle, backgroundImage }: MarketHeroProps) => {
   return (
-    <section className="relative overflow-hidden min-h-[60vh] flex items-end">
+    <section className="relative overflow-hidden min-h-[82vh] flex items-end bg-[#111214]">
       <Image
         src={backgroundImage}
         alt={title}
@@ -18,15 +18,16 @@ const MarketHero = ({ title, subtitle, backgroundImage }: MarketHeroProps) => {
         sizes="100vw"
       />
 
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/65" />
+      <div className="absolute inset-0 bg-black/50" />
 
-      <div className="relative z-10 w-full py-20 lg:py-28">
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+      <div className="relative z-10 w-full py-20 lg:py-24">
+        <div className="editorial-container">
           <div className="space-y-6 text-white">
-            <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black leading-[0.9] tracking-tighter">
+            <p className="section-label text-white/75">01 — Market</p>
+            <h1 className="font-display text-[clamp(3rem,9vw,10rem)] leading-[0.88] tracking-tight">
               {title}
             </h1>
-            <p className="text-xl lg:text-2xl text-gray-200 max-w-4xl leading-relaxed">{subtitle}</p>
+            <p className="text-lg lg:text-xl text-[#ece7de] max-w-[60ch] leading-relaxed">{subtitle}</p>
           </div>
         </div>
       </div>
