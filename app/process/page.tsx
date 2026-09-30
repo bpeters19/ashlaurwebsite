@@ -54,7 +54,7 @@ export default function ProcessPage() {
   return (
     <div className="min-h-screen">
       <Navbar />
-      <main className="pt-20">
+      <main className="pt-[var(--header-h)]">
         <section className="py-20 bg-white">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="space-y-6">

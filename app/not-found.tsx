@@ -6,7 +6,7 @@ export default function NotFound() {
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
-      <main id="main-content" className="pt-20">
+      <main id="main-content" className="pt-[var(--header-h)]">
         <section className="py-24 lg:py-32">
           <div className="max-w-3xl mx-auto px-6 sm:px-8 lg:px-12 text-center space-y-6">
             <p className="text-sm font-semibold tracking-wide text-blue-600 uppercase">404</p>

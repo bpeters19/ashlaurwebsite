@@ -28,7 +28,7 @@ export default function ConstructionManagement() {
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
-      <main className="pt-20 overflow-x-hidden">
+      <main className="pt-[var(--header-h)] overflow-x-hidden">
         <section className="relative isolate overflow-hidden">
           <div
             className="absolute inset-0 -z-10"

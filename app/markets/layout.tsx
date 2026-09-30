@@ -30,7 +30,7 @@ const MarketsLayout = ({ children }: MarketsLayoutProps) => {
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
-      <main className="pt-20">
+      <main className="pt-[var(--header-h)]">
         <MarketNav />
         <AnimatePresence mode="wait" initial={false}>
           <motion.div

@@ -43,7 +43,7 @@ export default function PoliciesPage() {
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
-      <main className="pt-20">
+      <main className="pt-[var(--header-h)]">
         <section className="py-28 md:py-32 border-b border-gray-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl space-y-6">

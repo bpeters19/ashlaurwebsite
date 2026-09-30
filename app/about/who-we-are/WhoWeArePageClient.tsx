@@ -9,7 +9,7 @@ export default function WhoWeArePageClient() {
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
-      <main className="pt-20">
+      <main className="pt-[var(--header-h)]">
         {/* Hero Section */}
         <section className="relative overflow-hidden py-20 lg:py-28 bg-gradient-to-b from-gray-900 to-gray-800">
           <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">

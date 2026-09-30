@@ -211,16 +211,7 @@ const Navbar = () => {
 
   const pathname = usePathname();
   const isHomePage = pathname === "/";
-  const hasDarkHeroHeader =
-    isHomePage ||
-    pathname === "/about" ||
-    pathname === "/contact" ||
-    pathname === "/careers" ||
-    pathname === "/process" ||
-    pathname.startsWith("/about/") ||
-    pathname.startsWith("/services/") ||
-    pathname.startsWith("/markets/");
-  const useTransparentHeader = hasDarkHeroHeader && !isScrolled && !isOpen;
+  const useTransparentHeader = isHomePage && !isScrolled && !isOpen;
 
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
@@ -258,7 +249,6 @@ const Navbar = () => {
     }
   };
 
-  // Determine navbar background based on route and scroll state
   const getNavbarClasses = () => {
     if (!useTransparentHeader) {
       return "bg-[#111214]/96 border-b border-white/10 backdrop-blur";

@@ -10,7 +10,7 @@ export default function BecomeSubcontractor() {
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
-      <main className="pt-20">
+      <main className="pt-[var(--header-h)]">
         {/* Hero Section */}
         <section className="relative isolate overflow-hidden">
           <div

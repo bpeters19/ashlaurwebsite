@@ -10,7 +10,14 @@
   --border: #d7d2c8;
   --dark-surface: #111214;
   --dark-foreground: #f5f3ef;
+  --header-h: 4rem;
   --mobile-action-bar-height: 5.25rem;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --header-h: 5rem;
+  }
 }
 
 @theme inline {
@@ -48,6 +55,10 @@ body {
   color: var(--foreground);
   line-height: 1.75;
   letter-spacing: 0.01em;
+}
+
+#content-root > main:not(.home-main) {
+  padding-top: var(--header-h);
 }
 
 .skip-link {

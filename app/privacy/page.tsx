@@ -11,7 +11,7 @@ export default function PrivacyPage() {
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
-      <main id="main-content" className="pt-20">
+      <main id="main-content" className="pt-[var(--header-h)]">
         <section className="py-20 lg:py-28 border-b border-gray-200">
           <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12 space-y-6">
             <p className="text-sm font-semibold tracking-wide text-blue-600 uppercase">Privacy</p>

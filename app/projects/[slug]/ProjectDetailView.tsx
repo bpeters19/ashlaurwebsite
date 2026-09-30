@@ -106,7 +106,7 @@ export default function ProjectDetailView({
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <main className="pt-20">
+      <main className="pt-[var(--header-h)]">
         <motion.section
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}

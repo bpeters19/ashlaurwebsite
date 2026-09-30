@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <Navbar />
-      <main id="main-content">
+      <main id="main-content" className="home-main">
         <Hero />
         <IntroSection />
         <LiveProjectCounter />

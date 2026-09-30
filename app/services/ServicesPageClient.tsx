@@ -97,7 +97,7 @@ export default function ServicesPageClient() {
   return (
     <div className="min-h-screen">
       <Navbar />
-      <main className="pt-20">
+      <main className="pt-[var(--header-h)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <h1 className="text-4xl font-bold text-secondary mb-8">Our Services</h1>
           <p className="text-lg text-muted">

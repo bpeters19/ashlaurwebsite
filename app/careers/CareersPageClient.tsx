@@ -12,7 +12,7 @@ export default function CareersPageClient() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
-      <main className="pt-20">
+      <main className="pt-[var(--header-h)]">
         <section className="relative overflow-hidden py-20 lg:py-28 bg-gradient-to-b from-gray-900 to-gray-800">
           <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 text-white space-y-6">
             <p className="text-sm font-semibold tracking-wide text-blue-400 uppercase">Careers</p>

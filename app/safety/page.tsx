@@ -17,7 +17,7 @@ export default function SafetyPage() {
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
-      <main id="main-content" className="pt-20">
+      <main id="main-content" className="pt-[var(--header-h)]">
         <section className="py-20 lg:py-28 bg-gray-900 text-white">
           <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 space-y-6">
             <p className="text-sm font-semibold tracking-wide text-blue-400 uppercase">Safety</p>

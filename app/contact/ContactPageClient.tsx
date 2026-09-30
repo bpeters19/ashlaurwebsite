@@ -76,7 +76,7 @@ export default function ContactPageClient() {
   return (
     <div className="min-h-screen">
       <Navbar />
-      <main id="main-content" className="pt-20">
+      <main id="main-content" className="pt-[var(--header-h)]">
         {/* Hero Section */}
         <section className="relative overflow-hidden py-20 lg:py-28 bg-gradient-to-b from-gray-900 to-gray-800">
           <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
