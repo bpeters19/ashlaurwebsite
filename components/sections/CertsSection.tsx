@@ -5,8 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { certifications } from "@/data/certifications";
 import { isPlaceholderValue, SHOW_PLACEHOLDER_CONTENT } from "@/data/siteConfig";
+import { SectionContainer, SectionEyebrow, type HomepageSectionProps } from "./SectionPrimitives";
 
-const CertsSection = () => {
+const CertsSection = ({ sectionNumber }: HomepageSectionProps) => {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -44,7 +45,7 @@ const CertsSection = () => {
 
   return (
     <section className="pt-20 pb-16 lg:pt-24 lg:pb-20 bg-concrete relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+      <SectionContainer>
         {/* Section Header - Editorial Scale */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -53,12 +54,9 @@ const CertsSection = () => {
           viewport={{ once: true, margin: "-100px" }}
           className="mb-24 lg:mb-32"
         >
-          <h2
-            className="font-display font-black uppercase text-6xl sm:text-7xl md:text-8xl lg:text-9xl leading-[0.9] tracking-tight text-ink mb-8 lg:mb-10"
-            style={{ fontVariationSettings: "'opsz' 72, 'wght' 900" }}
-          >
-            Strength in <br />
-            Certifications
+          <SectionEyebrow number={sectionNumber} label="Certifications" />
+          <h2 className="section-heading max-w-5xl text-ink">
+            Strength in certifications.
           </h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -173,7 +171,7 @@ const CertsSection = () => {
             We don&apos;t just hold these certifications—we earn them every single day.
           </p>
         </motion.div>
-      </div>
+      </SectionContainer>
     </section>
   );
 };

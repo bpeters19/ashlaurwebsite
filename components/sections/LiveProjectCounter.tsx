@@ -3,15 +3,16 @@
 import { motion } from "framer-motion";
 import { companyStats } from "@/data/company";
 import { SHOW_PLACEHOLDER_CONTENT } from "@/data/siteConfig";
+import { SectionContainer, SectionEyebrow, type HomepageSectionProps } from "./SectionPrimitives";
 
-const LiveProjectCounter = () => {
+const LiveProjectCounter = ({ sectionNumber }: HomepageSectionProps) => {
   if (!SHOW_PLACEHOLDER_CONTENT && companyStats.some((stat) => !stat.verified)) {
     return null;
   }
 
   return (
     <section className="editorial-section bg-[#111214] text-[#f5f3ef]">
-      <div className="editorial-container">
+      <SectionContainer>
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -19,8 +20,8 @@ const LiveProjectCounter = () => {
           transition={{ duration: 0.6 }}
           className="mb-16"
         >
-          <p className="section-label text-white/70 mb-4">02 — Performance</p>
-          <h2 className="font-display font-black uppercase text-[clamp(2.2rem,5vw,5.6rem)] leading-[0.92] tracking-tight mb-4">
+          <SectionEyebrow number={sectionNumber} label="Performance" className="text-white/70" />
+          <h2 className="section-heading mb-4 text-[#f5f3ef]">
             Ashlaur by the numbers.
           </h2>
           <p className="text-white/70 text-lg max-w-2xl leading-relaxed">
@@ -48,7 +49,7 @@ const LiveProjectCounter = () => {
             </motion.div>
           ))}
         </div>
-      </div>
+      </SectionContainer>
     </section>
   );
 };

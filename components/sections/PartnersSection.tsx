@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { SectionContainer, SectionEyebrow, type HomepageSectionProps } from "./SectionPrimitives";
 
 type Partner = {
   name: string;
@@ -53,10 +54,10 @@ const partners: Partner[] = [
   },
 ];
 
-const PartnersSection = () => {
+const PartnersSection = ({ sectionNumber }: HomepageSectionProps) => {
   return (
     <section className="pt-16 pb-20 lg:pt-20 lg:pb-24 bg-concrete relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+      <SectionContainer>
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -65,17 +66,15 @@ const PartnersSection = () => {
           viewport={{ once: true, margin: "-100px" }}
           className="mb-20 lg:mb-24"
         >
-          <h2
-            className="font-display font-black uppercase text-6xl sm:text-7xl md:text-8xl lg:text-9xl leading-[0.9] tracking-tight text-ink"
-            style={{ fontVariationSettings: "'opsz' 72, 'wght' 900" }}
-          >
-            Strength in <br />
-            Collaboration
+          <SectionEyebrow number={sectionNumber} label="Collaboration" />
+          <h2 className="section-heading max-w-5xl text-ink">
+            Strength in collaboration.
           </h2>
         </motion.div>
-      </div>
+      </SectionContainer>
 
       {/* Infinite Scrolling Logo Band */}
+      <SectionContainer className="mt-16 lg:mt-20">
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -119,13 +118,14 @@ const PartnersSection = () => {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
         viewport={{ once: true, margin: "-100px" }}
-        className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mt-16 lg:mt-20"
+        className=""
       >
         <p className="text-base lg:text-lg text-ink/70 max-w-4xl leading-relaxed font-light">
           Trusted by Chicago&apos;s leading general contractors, we bring specialized expertise
           to ambitious projects that shape our city&apos;s future.
         </p>
       </motion.div>
+      </SectionContainer>
     </section>
   );
 };

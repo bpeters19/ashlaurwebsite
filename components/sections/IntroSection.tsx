@@ -2,28 +2,27 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { SectionContainer, SectionEyebrow, type HomepageSectionProps } from "./SectionPrimitives";
 
-const IntroSection = () => {
+const IntroSection = ({ sectionNumber }: HomepageSectionProps) => {
   return (
     <section id="intro" className="editorial-section bg-background border-b border-border">
-      <div className="editorial-container">
-        <motion.p
+      <SectionContainer>
+        <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="section-label mb-4"
         >
-          01 — About
-        </motion.p>
+          <SectionEyebrow number={sectionNumber} label="About" />
+        </motion.div>
 
         <motion.h2
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="font-display font-black uppercase text-[clamp(2.8rem,7vw,8rem)] text-foreground leading-[0.9] tracking-tight mb-8 max-w-5xl"
-          style={{ fontVariationSettings: "'opsz' 72, 'wght' 900" }}
+          className="section-heading max-w-5xl text-foreground"
         >
           Dependable delivery, built on experience.
         </motion.h2>
@@ -49,7 +48,7 @@ const IntroSection = () => {
             Our Story <span className="btn-arrow">→</span>
           </Link>
         </motion.div>
-      </div>
+      </SectionContainer>
     </section>
   );
 };

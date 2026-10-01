@@ -1,19 +1,20 @@
 import Link from "next/link";
 import { SHOW_PLACEHOLDER_CONTENT } from "@/data/siteConfig";
+import { SectionContainer, SectionEyebrow, type HomepageSectionProps } from "./SectionPrimitives";
 
-export default function CommunityImpactSection() {
+export default function CommunityImpactSection({ sectionNumber }: HomepageSectionProps) {
   if (!SHOW_PLACEHOLDER_CONTENT) {
     return null;
   }
 
   return (
     <section className="py-20 md:py-24 border-t border-gray-200 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <SectionContainer>
         <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
           <div className="space-y-5">
-            <p className="text-sm font-semibold tracking-wide text-blue-600 uppercase">Community</p>
-            <h2 className="text-4xl sm:text-5xl font-black leading-tight tracking-tight text-gray-900">
-              Building Opportunity Beyond the Jobsite
+            <SectionEyebrow number={sectionNumber} label="Community" className="text-blue-600" />
+            <h2 className="section-heading text-gray-900">
+              Building opportunity beyond the jobsite
             </h2>
             <p className="text-lg text-gray-700 leading-relaxed">
               We support neighborhoods through local hiring, mentorship, and partnerships that create long-term economic impact.
@@ -37,7 +38,7 @@ export default function CommunityImpactSection() {
             </Link>
           </div>
         </div>
-      </div>
+      </SectionContainer>
     </section>
   );
 }

@@ -1,15 +1,16 @@
 import Link from "next/link";
 import { markets } from "@/data/markets";
 import { SHOW_PLACEHOLDER_CONTENT } from "@/data/siteConfig";
+import { SectionContainer, SectionEyebrow, type HomepageSectionProps } from "./SectionPrimitives";
 
-const ExpertiseMarkets = () => {
+const ExpertiseMarkets = ({ sectionNumber }: HomepageSectionProps) => {
   return (
     <section className="w-full bg-concrete py-20 lg:py-28">
-      <div className="mx-auto max-w-[1600px] px-6 sm:px-8 lg:px-12">
+      <SectionContainer>
         <div className="mb-14 lg:mb-20">
+          <SectionEyebrow number={sectionNumber} label="Markets" />
           <h2
-            className="mb-7 max-w-5xl font-display text-[clamp(2.75rem,6vw,6.5rem)] font-black leading-[0.9] text-ink"
-            style={{ fontVariationSettings: "'opsz' 72, 'wght' 900" }}
+            className="section-heading max-w-5xl text-ink"
           >
             Expertise for every market.
           </h2>
@@ -46,7 +47,7 @@ const ExpertiseMarkets = () => {
             </Link>
           ))}
         </div>
-      </div>
+      </SectionContainer>
     </section>
   );
 };

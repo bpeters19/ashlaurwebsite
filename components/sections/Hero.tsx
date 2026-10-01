@@ -3,8 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { SectionContainer, SectionEyebrow, type HomepageSectionProps } from "./SectionPrimitives";
 
-const Hero = () => {
+const Hero = ({ sectionNumber }: HomepageSectionProps) => {
   const [prefersReducedMotion] = useState(() => {
     if (typeof window === "undefined") {
       return false;
@@ -86,7 +87,8 @@ const Hero = () => {
       {!prefersReducedMotion && <div className="absolute inset-0 z-10 bg-black/10 pointer-events-none" />}
 
       <div className="relative z-20 flex min-h-screen items-end pb-14 sm:pb-20 lg:pb-24">
-        <div className="editorial-container w-full">
+        <SectionContainer className="w-full">
+          <SectionEyebrow number={sectionNumber} label="Home" className="text-white/75" />
           <h1 className="max-w-5xl text-[#f5f3ef] text-[clamp(3rem,10vw,11rem)] leading-[0.88] mb-8">
             Built with discipline.
           </h1>
@@ -99,7 +101,7 @@ const Hero = () => {
               Explore Services <span className="btn-arrow">→</span>
             </Link>
           </div>
-        </div>
+        </SectionContainer>
       </div>
     </section>
   );

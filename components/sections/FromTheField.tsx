@@ -3,8 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRef, useEffect, useState } from "react";
+import { SectionContainer, SectionEyebrow, type HomepageSectionProps } from "./SectionPrimitives";
 
-const FromTheField = () => {
+const FromTheField = ({ sectionNumber }: HomepageSectionProps) => {
   const articlesContainerRef = useRef<HTMLDivElement>(null);
   const scrollAnimationRef = useRef<number | null>(null);
   const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -141,14 +142,12 @@ const FromTheField = () => {
 
   return (
     <section className="bg-ink pt-16 pb-16 lg:pt-20">
-      <div className="max-w-7xl mx-auto px-6">
+      <SectionContainer>
         <div className="flex justify-between items-center mb-8">
           <Link href="/projects/upcoming" className="group inline-block">
-            <h2
-              className="font-display font-black uppercase text-4xl md:text-5xl tracking-tight text-bone group-hover:text-bone/70 transition-colors duration-300"
-              style={{ fontVariationSettings: "'opsz' 72, 'wght' 900" }}
-            >
-              From the Field
+            <SectionEyebrow number={sectionNumber} label="From the Field" className="text-white/70" />
+            <h2 className="section-heading text-bone group-hover:text-bone/70 transition-colors duration-300">
+              From the field
             </h2>
           </Link>
         </div>
@@ -276,7 +275,7 @@ const FromTheField = () => {
             ))}
           </div>
         </div>
-      </div>
+      </SectionContainer>
     </section>
   );
 };

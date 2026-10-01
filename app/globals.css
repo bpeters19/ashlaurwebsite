@@ -87,6 +87,15 @@ h1, h2, .display-xl, .display-lg {
   letter-spacing: -0.015em;
 }
 
+.section-heading {
+  margin-bottom: 2rem;
+  font-family: var(--font-big-shoulders), sans-serif;
+  font-size: clamp(2.4rem, 5vw, 5.6rem);
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: 0;
+}
+
 h3, h4, h5, h6 {
   font-family: 'Inter', sans-serif;
 }
