@@ -1,6 +1,11 @@
 import Link from "next/link";
+import { SHOW_PLACEHOLDER_CONTENT } from "@/data/siteConfig";
 
 export default function CommunityImpactSection() {
+  if (!SHOW_PLACEHOLDER_CONTENT) {
+    return null;
+  }
+
   return (
     <section className="py-20 md:py-24 border-t border-gray-200 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

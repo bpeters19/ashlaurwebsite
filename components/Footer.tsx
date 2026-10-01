@@ -37,9 +37,6 @@ const Footer = () => {
             />
             <p className="section-label text-white/70 mb-5">Ashlaur Construction</p>
             <h3 className="font-display text-5xl leading-[0.9] mb-6">Built To Endure.</h3>
-            <p className="text-[#d5d1ca] mb-6 leading-relaxed">
-              Building Tomorrow, Today. Precision. Power. Performance. Where vision meets extraordinary execution.
-            </p>
             <SocialIcons size="md" variant="light" />
           </div>
 

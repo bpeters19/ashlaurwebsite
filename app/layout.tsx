@@ -41,8 +41,10 @@ export const metadata: Metadata = {
       "Ashlaur Construction delivers accountable, safety-first construction services across Chicago and the Midwest.",
     images: [
       {
-        url: "/logo.png",
-        alt: "Ashlaur Construction logo",
+        url: "/ashlaur-project-og.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Affordable housing construction project by Ashlaur Construction",
       },
     ],
   },
@@ -51,7 +53,7 @@ export const metadata: Metadata = {
     title: "Ashlaur Construction | Building Tomorrow, Today",
     description:
       "Ashlaur Construction delivers accountable, safety-first construction services across Chicago and the Midwest.",
-    images: ["/logo.png"],
+    images: ["/ashlaur-project-og.jpg"],
   },
 };
 

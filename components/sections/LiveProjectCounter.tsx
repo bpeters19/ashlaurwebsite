@@ -2,8 +2,13 @@
 
 import { motion } from "framer-motion";
 import { companyStats } from "@/data/company";
+import { SHOW_PLACEHOLDER_CONTENT } from "@/data/siteConfig";
 
 const LiveProjectCounter = () => {
+  if (!SHOW_PLACEHOLDER_CONTENT && companyStats.some((stat) => !stat.verified)) {
+    return null;
+  }
+
   return (
     <section className="editorial-section bg-[#111214] text-[#f5f3ef]">
       <div className="editorial-container">
@@ -14,7 +19,7 @@ const LiveProjectCounter = () => {
           transition={{ duration: 0.6 }}
           className="mb-16"
         >
-          <p className="section-label text-white/70 mb-4">03 — Performance</p>
+          <p className="section-label text-white/70 mb-4">02 — Performance</p>
           <h2 className="font-display font-black uppercase text-[clamp(2.2rem,5vw,5.6rem)] leading-[0.92] tracking-tight mb-4">
             Ashlaur by the numbers.
           </h2>

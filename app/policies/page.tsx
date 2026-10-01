@@ -1,5 +1,6 @@
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import { SHOW_PLACEHOLDER_CONTENT } from "@/data/siteConfig";
 
 export const metadata = {
   title: "Policies - Ashlaur Construction",
@@ -40,6 +41,27 @@ const policySections = [
 ];
 
 export default function PoliciesPage() {
+  if (!SHOW_PLACEHOLDER_CONTENT) {
+    return (
+      <div className="min-h-screen bg-white">
+        <Navbar />
+        <main className="pt-[var(--header-h)]">
+          <section className="py-28 md:py-32 border-b border-gray-200">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="max-w-4xl space-y-6">
+                <p className="text-sm font-semibold tracking-wide text-blue-600 uppercase">Policies</p>
+                <h1 className="text-5xl md:text-6xl font-bold text-gray-900 leading-tight">
+                  Policies and Guidelines
+                </h1>
+              </div>
+            </div>
+          </section>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-white">
       <Navbar />

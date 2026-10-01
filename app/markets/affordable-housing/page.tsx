@@ -15,9 +15,9 @@ const affordableHousingProjects = Array.from(
         {
           name: project.title,
           image: project.mainImage,
-          contractor: "TBD",
+          contractor: "",
           address: project.location?.address ?? "Chicago, IL",
-          contractValue: "TBD",
+          contractValue: "",
           scope: project.scope ?? "Scope details available upon request.",
           duration: "Active",
         },

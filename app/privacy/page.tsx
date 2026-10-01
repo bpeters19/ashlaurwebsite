@@ -22,10 +22,6 @@ export default function PrivacyPage() {
               We respect your privacy and use collected information to respond to inquiries, deliver services,
               and improve site performance.
             </p>
-            <p className="text-sm text-gray-500">
-              TODO(legal-review): Replace this page with legal-approved privacy policy language, retention periods,
-              cookie disclosures, and jurisdiction-specific notices.
-            </p>
           </div>
         </section>
 

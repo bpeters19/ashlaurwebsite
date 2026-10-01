@@ -87,7 +87,6 @@ const Hero = () => {
 
       <div className="relative z-20 flex min-h-screen items-end pb-14 sm:pb-20 lg:pb-24">
         <div className="editorial-container w-full">
-          <p className="section-label text-white/75 mb-5">01 — Home</p>
           <h1 className="max-w-5xl text-[#f5f3ef] text-[clamp(3rem,10vw,11rem)] leading-[0.88] mb-8">
             Built with discipline.
           </h1>

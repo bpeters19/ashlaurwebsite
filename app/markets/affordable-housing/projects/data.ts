@@ -20,9 +20,9 @@ export const affordableHousingProjects = [
   {
     name: "Invest Southwest",
     image: "/images/projects/invest-southwest/cover.jpg",
-    contractor: "[To Be Announced]",
+    contractor: "",
     address: "Chicago, Illinois",
-    contractValue: "TBD",
+    contractValue: "",
     scope: "Modern affordable housing development, community engagement, and sustainable design.",
     duration: "Pre-Construction",
   },

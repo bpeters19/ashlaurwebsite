@@ -226,8 +226,8 @@ export const projects: Project[] = [
       "/images/projects/jigzibik/gallery-4-jig.jpeg",
     ],
     description:
-      "Affordable housing project added to the portfolio with placeholder image filenames that can be replaced with the final cover and gallery assets.",
-    scope: "Affordable housing development, portfolio showcase, and gallery imagery placeholder setup.",
+      "Affordable housing construction in Chicago.",
+    scope: "Affordable housing development.",
     status: "complete",
     location: {
       lat: 41.8781,

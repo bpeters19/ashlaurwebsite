@@ -12,7 +12,7 @@ const CTASection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <p className="section-label mb-4">09 — Next Step</p>
+          <p className="section-label mb-4">03 — Next Step</p>
           <h2 className="font-display text-5xl md:text-7xl text-foreground mb-6 leading-[0.92]">
             Ready to Start Your Project?
           </h2>

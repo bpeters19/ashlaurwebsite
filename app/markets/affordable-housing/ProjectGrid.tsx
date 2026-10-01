@@ -35,18 +35,22 @@ const ProjectGrid = ({ projects }: ProjectGridProps) => {
               {project.name}
             </h3>
             <div className="border-y border-border">
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-2 py-3 border-b border-border">
-                <p className="md:col-span-4 text-xs uppercase tracking-[0.14em] text-muted">Contractor</p>
-                <p className="md:col-span-8 text-sm text-foreground">{project.contractor}</p>
-              </div>
+              {project.contractor && (
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-2 py-3 border-b border-border">
+                  <p className="md:col-span-4 text-xs uppercase tracking-[0.14em] text-muted">Contractor</p>
+                  <p className="md:col-span-8 text-sm text-foreground">{project.contractor}</p>
+                </div>
+              )}
               <div className="grid grid-cols-1 md:grid-cols-12 gap-2 py-3 border-b border-border">
                 <p className="md:col-span-4 text-xs uppercase tracking-[0.14em] text-muted">Address</p>
                 <p className="md:col-span-8 text-sm text-foreground">{project.address}</p>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-2 py-3 border-b border-border">
-                <p className="md:col-span-4 text-xs uppercase tracking-[0.14em] text-muted">Contract Value</p>
-                <p className="md:col-span-8 text-sm text-foreground">{project.contractValue}</p>
-              </div>
+              {project.contractValue && (
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-2 py-3 border-b border-border">
+                  <p className="md:col-span-4 text-xs uppercase tracking-[0.14em] text-muted">Contract Value</p>
+                  <p className="md:col-span-8 text-sm text-foreground">{project.contractValue}</p>
+                </div>
+              )}
               <div className="grid grid-cols-1 md:grid-cols-12 gap-2 py-3 border-b border-border">
                 <p className="md:col-span-4 text-xs uppercase tracking-[0.14em] text-muted">Scope</p>
                 <p className="md:col-span-8 text-sm text-foreground">{project.scope}</p>

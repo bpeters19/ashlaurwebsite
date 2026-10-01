@@ -1,85 +1,49 @@
-"use client";
-
-import { motion } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
 import { markets } from "@/data/markets";
+import { SHOW_PLACEHOLDER_CONTENT } from "@/data/siteConfig";
 
 const ExpertiseMarkets = () => {
   return (
     <section className="w-full bg-concrete py-20 lg:py-28">
-      <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-12">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-16 lg:mb-20"
-        >
+      <div className="mx-auto max-w-[1600px] px-6 sm:px-8 lg:px-12">
+        <div className="mb-14 lg:mb-20">
           <h2
-            className="font-display font-black uppercase text-6xl sm:text-7xl md:text-8xl lg:text-9xl leading-[0.9] tracking-tight text-ink mb-8"
+            className="mb-7 max-w-5xl font-display text-[clamp(2.75rem,6vw,6.5rem)] font-black leading-[0.9] text-ink"
             style={{ fontVariationSettings: "'opsz' 72, 'wght' 900" }}
           >
             Expertise for every market.
           </h2>
-          <p className="text-ink/70 text-lg md:text-xl lg:text-2xl max-w-4xl leading-relaxed font-normal">
+          <p className="max-w-4xl text-lg leading-relaxed text-ink/70 md:text-xl lg:text-2xl">
             Across every market and sector, our expertise ensures we meet the unique demands of your project.
           </p>
-        </motion.div>
-
-        <div className="md:hidden" role="region" aria-label="Market sectors" tabIndex={0} onKeyDown={(event) => {
-          const target = event.currentTarget.querySelector(".mobile-snap-row") as HTMLDivElement | null;
-          if (!target) return;
-          if (event.key === "ArrowRight") target.scrollBy({ left: 220, behavior: "smooth" });
-          if (event.key === "ArrowLeft") target.scrollBy({ left: -220, behavior: "smooth" });
-        }}>
-          <div className="mobile-snap-row" aria-label="Swipe market cards">
-            {markets.map((market) => (
-              <Link
-                key={market.slug}
-                href={market.path}
-                className="mobile-snap-card block border border-ink/15 bg-white"
-              >
-                <div className="relative aspect-[4/3] w-full">
-                  <Image
-                    src={`/markets/${market.slug}/hero.jpg`}
-                    alt={`${market.name} market`}
-                    fill
-                    sizes="85vw"
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-black/30" />
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <p className="text-white text-2xl font-semibold leading-tight">{market.name}</p>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-          <p className="mobile-scroll-indicator">Swipe for more sectors</p>
         </div>
 
-        {/* Markets Grid */}
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-0 border-t border-ink/15">
+        <div className="market-list grid grid-cols-1 border-y border-ink/15 md:grid-cols-2 lg:grid-cols-4" aria-label="Market sectors">
           {markets.map((market, index) => (
-            <motion.div
+            <Link
               key={market.slug}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.05 }}
-              className="group"
+              href={market.path}
+              className="market-row relative grid min-h-24 grid-cols-[2rem_minmax(0,1fr)_1.5rem] items-center gap-3 border-b border-ink/15 px-5 py-5"
             >
-              <Link
-                href={market.path}
-                className="border-b border-ink/15 hover:bg-ink/5 transition-all duration-300 py-8 px-8 cursor-pointer block"
-              >
-                <p className="text-ink font-medium text-xl md:text-2xl group-hover:translate-x-1 transition-transform duration-300">
+              <span className="font-technical text-xs text-ink/45">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <span className="market-copy min-w-0">
+                <span className="market-name block whitespace-nowrap font-sans text-[clamp(1rem,1.35vw,1.375rem)] font-normal leading-tight text-ink">
                   {market.name}
-                </p>
-              </Link>
-            </motion.div>
+                </span>
+                {SHOW_PLACEHOLDER_CONTENT && (
+                  <span className="market-description-wrap grid grid-rows-[0fr]">
+                    <span className="market-description overflow-hidden text-ellipsis whitespace-nowrap pt-0 text-sm leading-snug text-ink/75">
+                      {market.shortDescription}
+                    </span>
+                  </span>
+                )}
+              </span>
+              <span className="market-arrow justify-self-end font-sans text-xl font-normal text-ink/55" aria-hidden="true">
+                →
+              </span>
+            </Link>
           ))}
         </div>
       </div>

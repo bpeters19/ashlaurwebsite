@@ -155,17 +155,9 @@ export default function Team() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {teamMembers.length > 0 ? (
-                teamMembers.map((executive) => (
-                  <ExecutiveCard key={executive.id} executive={executive} />
-                ))
-              ) : (
-                <div className="col-span-full text-center py-12">
-                  <p className="text-gray-600 text-lg">
-                    Team profiles coming soon. Images added to /images/team/ will appear here.
-                  </p>
-                </div>
-              )}
+              {teamMembers.map((executive) => (
+                <ExecutiveCard key={executive.id} executive={executive} />
+              ))}
             </div>
           </div>
         </section>
