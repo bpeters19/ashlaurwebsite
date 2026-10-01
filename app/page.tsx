@@ -10,7 +10,6 @@ import PartnersSection from "../components/sections/PartnersSection";
 import CTASection from "../components/sections/CTASection";
 import CommunityImpactSection from "../components/sections/CommunityImpactSection";
 import Footer from "../components/Footer";
-import { companyStats } from "@/data/company";
 import { SHOW_PLACEHOLDER_CONTENT } from "@/data/siteConfig";
 
 export const metadata: Metadata = {
@@ -23,7 +22,7 @@ export default function Home() {
   const renderedSections = [
     { key: "home", visible: true },
     { key: "about", visible: true },
-    { key: "performance", visible: SHOW_PLACEHOLDER_CONTENT || companyStats.every((stat) => stat.verified) },
+    { key: "performance", visible: true },
     { key: "markets", visible: true },
     { key: "field", visible: true },
     { key: "certifications", visible: true },

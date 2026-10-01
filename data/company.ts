@@ -24,27 +24,23 @@ export const companyStats = [
     label: "Projects Completed",
     value: 500,
     suffix: "+",
-    verified: false,
   },
   {
     key: "experience",
     label: "Years Experience",
     value: 25,
     suffix: "+",
-    verified: false,
   },
   {
     key: "cities",
     label: "Cities Served",
     value: 30,
     suffix: "+",
-    verified: false,
   },
   {
     key: "repeatClients",
     label: "Repeat Clients",
     value: 99,
     suffix: "%",
-    verified: false,
   },
 ] as const;

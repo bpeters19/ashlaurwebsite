@@ -2,19 +2,14 @@
 
 import { motion } from "framer-motion";
 import { companyStats } from "@/data/company";
-import { SHOW_PLACEHOLDER_CONTENT } from "@/data/siteConfig";
 import { SectionContainer, SectionEyebrow, type HomepageSectionProps } from "./SectionPrimitives";
 
 const LiveProjectCounter = ({ sectionNumber }: HomepageSectionProps) => {
-  if (!SHOW_PLACEHOLDER_CONTENT && companyStats.some((stat) => !stat.verified)) {
-    return null;
-  }
-
   return (
     <section className="editorial-section bg-[#111214] text-[#f5f3ef]">
       <SectionContainer>
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
@@ -33,7 +28,7 @@ const LiveProjectCounter = ({ sectionNumber }: HomepageSectionProps) => {
           {companyStats.map((stat, index) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, y: 12 }}
+              initial={false}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
