@@ -9,7 +9,7 @@ const timelinePhases: Array<{ key: ProjectStatus; label: string }> = [
   { key: "mobilization", label: "Mobilization" },
   { key: "in-progress", label: "In Progress" },
   { key: "substantial-completion", label: "Substantial Completion" },
-  { key: "complete", label: "Complete" },
+  { key: "complete", label: "Completed" },
 ] as const;
 
 type ProjectDetailPageProps = {

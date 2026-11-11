@@ -19,6 +19,15 @@ export const markets = [
     capabilities: ["Hospital Construction", "Surgical Centers", "Medical Offices", "Regulatory Compliance"],
   },
   {
+    name: "Commercial",
+    slug: "commercial",
+    path: "/markets/commercial",
+    shortDescription: "Commercial properties and workplaces across Chicago.",
+    description:
+      "Commercial construction projects across Chicago and the surrounding region.",
+    capabilities: ["Commercial Buildings", "Office Spaces", "Mixed-Use Properties", "Tenant Improvements"],
+  },
+  {
     name: "Hospitality",
     slug: "hospitality",
     path: "/markets/hospitality",
@@ -95,4 +104,3 @@ export function getMarketMetadata(slug: string) {
     description: market.description,
   };
 }
-

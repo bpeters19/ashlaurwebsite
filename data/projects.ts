@@ -64,7 +64,7 @@ const buildGallery = (mainImage: string) => [mainImage, COMING_SOON_IMAGE];
 // - gallery[] with alt text: invest-southwest, zachary-hotel, stroger-hospital, friend-health-woodlawn,
 //   raintree-hall, cps-near-west-offices, foglia-residences, westhaven-park, jigzibik,
 //   jtdc-bathroom-renovations, ccab-1st-floor-toilet, cook-county-health-storage-trailer-site,
-//   park-forest-blackhawk-plaza, skokie-courthouse, walsh-school-flooring
+//   park-forest-blackhawk-plaza, skokie-courthouse, 2-n-riverside
 // - facts: contractValueRange, squareFootage, duration, deliveryMethod, role, partners
 // - story: challenge, approach, result
 // - testimonial: quote, name, title, company
@@ -329,19 +329,36 @@ export const projects: Project[] = [
     },
   },
   {
-    title: "Walsh School Cafeteria Flooring",
-    slug: "walsh-school-flooring",
-    category: "Education",
-    mainImage: "/markets/municipal/projects/walsh-elementary-school-lockport-il-primaryphoto.jpg",
-    galleryImages: buildGallery("/markets/municipal/projects/walsh-elementary-school-lockport-il-primaryphoto.jpg"),
+    title: "2 N Riverside",
+    slug: "2-n-riverside",
+    category: "Commercial",
+    mainImage: "/images/projects/2-n-riverside/cover.jpeg",
+    galleryImages: [
+      "/images/projects/2-n-riverside/cover.jpeg",
+      "/images/projects/2-n-riverside/interior-before.jpeg",
+      "/images/projects/2-n-riverside/interior-progress.jpeg",
+    ],
+    gallery: [
+      {
+        src: "/images/projects/2-n-riverside/cover.jpeg",
+        alt: "2 N Riverside building along the Chicago River",
+      },
+      {
+        src: "/images/projects/2-n-riverside/interior-before.jpeg",
+        alt: "Interior facade at 2 N Riverside before the project work",
+      },
+      {
+        src: "/images/projects/2-n-riverside/interior-progress.jpeg",
+        alt: "Interior project work in progress at 2 N Riverside",
+      },
+    ],
     description:
-      "Full cafeteria flooring replacement and door upgrades delivered with school-calendar coordination and durable finish selection.",
-    scope: "Flooring replacement, door upgrades, and school operations coordination.",
-    status: "preconstruction",
+      "A commercial project currently in progress at 2 N Riverside in Chicago, Illinois. Project details will be added when available.",
+    status: "in-progress",
     location: {
-      lat: 41.6039758,
-      lng: -88.0348505,
-      address: "514 MacGregor Rd, Lockport, IL 60441",
+      lat: 41.88237,
+      lng: -87.639478,
+      address: "2 N Riverside Plaza, Chicago, IL 60606",
     },
   },
 ];
